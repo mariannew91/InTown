@@ -1354,7 +1354,7 @@ input[type=number] {
 }
 
 
-#listing-address-container {
+#listingx-address-container {
     display: flex;
     flex-direction: column;
     width: 52%;
@@ -1561,6 +1561,86 @@ input[type=number] {
     text-align: left;
 }
 
+/* Create Profile Page */
+
+#create-profile-top {
+    width: 100%;
+    height: 100px;
+    background-color: rgb(241, 245, 249);
+
+}
+
+#create-profile-top h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin: 0;
+    padding: 15px 0;
+    height: 100px;
+}
+
+#orange-in {
+    color: rgb(255, 106, 94);
+    font-weight: 400;
+}
+
+#create {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+#create-profile-form {
+    margin: 0 10px;
+    color: rgb(21, 32, 57);
+    border: 30px solid rgb(21, 32, 57);
+    padding: 0 50px 50px 75px;
+}
+
+#profile-bio-box {
+    width: 40%;
+}
+
+#profile-bio-box label, #create-profile-form p, #profile-pic-upload label {
+    margin-left: 25px;
+    margin-top: 26px;
+}
+
+#profile-bio-box textarea {
+    height: 100px;
+    margin-left: 25px;
+    margin-top: 20px;
+    border: 1.5px solid rgb(240, 90, 80);
+    border-radius: 20px;
+    padding: 7px 12px;
+    font-size: 0.9rem;
+    resize: none;
+    font-family: "Urbanist", sans-serif;
+}
+
+#profile-bio-box, #choose-type, #choose-interest, #choose-hope, #choose-age, #profile-pic-upload {
+    display: flex;
+    flex-direction: column;
+}
+
+#choose-type label, #choose-interest label, #choose-hope label, #choose-age label {
+    margin: 6px 0;
+}
+
+#choose-type input, #choose-interest input, #choose-hope input, #choose-age input {
+    margin-left: 35px;
+}
+
+
+
+#profile-pic-upload input {
+    border: 1.5px solid rgb(240, 90, 80);
+    border-radius: 20px;
+    width: 40%;
+    margin-top: 16px;
+}
+
+#create-profile-btn {
+    margin-top: 50px;
+}
 
 
 

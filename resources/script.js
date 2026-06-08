@@ -75,7 +75,9 @@ function eventCardTemplate(event, index) {
     return `
         <div class="event-cards">
             <div class="card-header">
-                <h4 class="event-price">${event.price === 'Free' ? 'Free' : '£' + event.price}</h4>
+                <h4 class="event-price">
+                    ${(event.price === '0' || event.price === '0.00' || event.price === 'Free') ? 'Free' : '£' + event.price}
+                </h4>
                 <div class="head-details">
                     <h4 class="event-type">${event.type}</h4>
                     <h4 class="cat-tag">${event.category}</h4>

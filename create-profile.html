@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    
+    <title>InTown</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./resources/style.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./resources/script.js" defer></script>
+</head>
+<body>
+     <!--Header-->
+    <header>
+        <div id="logo-town">
+            <div id="just-logo">
+                <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
+            </div>
+            <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="location">
+                <h1>Barrow</h1>
+                <!--<h1 class="logout">Find your town
+                <h3 class="login">Change location</h3></h1>-->
+            </div>
+        </div>
+        <input type="text" placeholder="Have a look around...">
+        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div id="sign-profile">
+            <h2 class="logout sign-in">Sign In</h2>
+            <h2 class="login sign-in">Profile</h2>
+        </div>
+    </header>
+    <!--Body-->
+    <div>
+        <div id="create-profile-top">
+            <h1>Welcome to <span id="orange-in">In</span>Town<span id="users-name"></span></h1>
+        </div>
+        <div>
+            <form id="create-profile-form">
+                <h2 id="create">Create your profile</h2>
+                <div id="profile-bio-box">
+                    <label for="profile-bio">Tell people about yourself</label>
+                    <textarea type="text" id="profile-bio" name="profile-bio" placeholder="Write anything here — hobbies, interests, or what brings you here…"></textarea>
+                </div>
+                <div id="types">
+                    <p>What type of thing are you looking for?</p>
+                    <div id="choose-type">
+                        <label><input type="checkbox" name="type-choice" value="type-regular"> Regular groups & clubs</label>
+                        <label><input type="checkbox" name="type-choice" value="Events"> Events</label>
+                        <label><input type="checkbox" name="type-choice" value="Classes and Courses"> Classes & courses</label>
+                        <label><input type="checkbox" name="type-choice" value="Volunteering"> Volunteering opportunites</label>
+                        <label><input type="checkbox" name="type-choice" value="Family and Kids"> Family & kids activities</label>
+                        <label><input type="checkbox" name="type-choice" value="Explore All Options"> I'm not sure yet</label>
+                    </div>
+                </div>
+                <div id="interests">
+                    <p>Which categories are you interested in?</p>
+                    <div id="choose-interest">
+                        <label><input type="checkbox" name="interest-choice" value="cat-arts"> Arts</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-sports"> Sports</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-education"> Education</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-social"> Social</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-health"> Health & Wellbeing</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-food"> Food & Drink</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-music"> Music</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-outdoor"> Outdoors</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-perform"> Performance</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-family"> Family</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-hobby"> Hobby</label>
+                        <label><input type="checkbox" name="interest-choice" value="cat-other"> Other</label>
+                    </div>
+                </div>
+                <div id="hopes">
+                    <p>What are you hoping to get out of this?</p>
+                    <div id="choose-hope">
+                        <label><input type="checkbox" name="hope-choice" value="hope-friends"> Make new friends</label>
+                        <label><input type="checkbox" name="hope-choice" value="hope-hobbies"> Try new hobbies</label>
+                        <label><input type="checkbox" name="hope-choice" value="hope-health"> Improve health</label>
+                        <label><input type="checkbox" name="hope-choice" value="hope-get-out"> Get out more</label>
+                        <label><input type="checkbox" name="hope-choice" value="hope-learn"> Learn something new</label>
+                        <label><input type="checkbox" name="hope-choice" value="hope-community"> Get involved in my community</label>
+                        <label><input type="checkbox" name="hope-choice" value="hope-fun"> Just have fun and try new experiences</label>
+                    </div>
+                </div>
+                <div id="ages">
+                    <p>Which age group/s are you looking for activities for?</p>
+                    <div id="choose-age">
+                        <label><input type="checkbox" name="age-choice" value="age-all"> All ages</label>
+                        <label><input type="checkbox" name="age-choice" value="age-children"> Children</label>
+                        <label><input type="checkbox" name="age-choice" value="age-Teens"> Teens</label>
+                        <label><input type="checkbox" name="age-choice" value="age-adult"> Adults</label>
+                        <label><input type="checkbox" name="age-choice" value="age-senior"> Seniors</label>
+                        <label><input type="checkbox" name="age-choice" value="age-family"> Family</label>
+                    </div>
+                </div>
+                <div id="profile-pic-upload">
+                    <label for="profile-photo-url">Choose your profile picture</label>
+                    <input type="text" id="profile-photo-url" name="profile-photo-url" placeholder="Paste image link here">
+                <!-- Just commenting out for now -->
+                <!--<label for="profile-photo">Choose a profile photo</label>-->
+                <!--<input type="file" id="profile-photo" name="profile-photo" accept="image/*" multiple>-->
+                </div>
+                <button id="create-profile-btn" class="button" type="submit">Create Profile</button>
+            </form>
+        </div>
+    </div>
+    <!--Footer-->
+    <footer>
+        <ul>
+            <li>About</li>
+            <li id="foot-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
+            <li>Privacy Policy</li>
+        </ul>
+    </footer>
+</body>
