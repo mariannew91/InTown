@@ -1,0 +1,1591 @@
+* {
+    box-sizing: border-box;
+}
+
+li, h2, h3, h4, p, label, input, select, textarea {
+    font-family: "Urbanist", sans-serif;
+    color: rgb(21, 32, 57);
+}
+
+h1 {
+    font-family: "Nunito", sans-serif;
+    color: rgb(21, 32, 57);
+}
+
+body {
+    background: rgb(248, 244, 236);
+}
+
+/* To hide either log out */
+.logout {
+    display: none;
+}
+
+#main-logout.logout {
+    display: none;
+} 
+
+/*  To hide either log in 
+.login {
+    display: none;
+}
+
+
+#main-body-login.login {
+    display: none;
+} */
+
+
+/* Header */
+
+header {
+    display: flex;
+    background: rgb(255, 255, 255);
+    color: rgb(22, 30, 30);
+    border: 2px solid rgb(230, 232, 235);
+    align-items: center;
+    margin-bottom: 0;
+}
+
+header input {
+    background: rgb(255,255,255);
+    border: 2px solid rgb(208, 210, 213);
+    color: rgb(100,116,139);
+}
+
+input {
+    padding: 8px 40px;
+    border-radius: 16px;
+    font-size: 1rem;
+    margin-left: 25px;
+}
+
+#sign-profile {
+    margin-left: auto;
+    margin-right: 20px;  
+}
+
+#sign-profile a {
+    text-decoration: none;
+    color: white;
+
+}
+
+#search-symbol {
+    margin-left: -30px;
+}
+
+.sign-in {
+    padding: 6px 16px;
+    border-radius: 20px;
+    box-sizing: border-box;
+    margin: 0;
+    background-color: rgb(255,106,94);
+}
+
+#logo-town {
+    display: flex;
+    align-items: center;
+    width: fit-content;
+}
+
+#just-logo {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    background-color: white ;
+}
+
+#logo {
+    width: 100px;
+    height: 100px;
+    margin: 0;
+    object-fit: cover;
+}
+
+#title-in {
+    font-size: 2.2rem;
+    font-weight: 200;
+    font-family: "Urbanist", sans-serif;
+    color: rgb(255,106,94);
+    text-decoration: none;
+}
+
+
+#town {
+    color: rgb(22, 30, 30);
+    font-weight: 500; 
+}
+
+#location {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    width: fit-content;
+    margin-left: 20px;
+}
+
+#location h1 {
+    font-family: "Nunito", sans-serif;
+    font-size: 2.8rem;
+    font-weight: 500;
+    margin: 0;
+    padding-right: 20px;
+    padding-left: 0;
+    color: rgb(21, 32, 57);
+}
+
+#location h3 {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: 0.7rem;
+    color: rgb(95, 112, 112);
+}
+
+/* Main page logged out */
+
+#main-logout {
+    display: flex;
+    flex-direction: column;
+    padding: 30px 0;
+}
+
+.button {
+    background-color: rgb(255, 106, 94);
+    border-radius: 30px;
+    padding: 10px 50px;
+    box-sizing: border-box;
+    text-align: center;
+    width: fit-content;
+    margin: auto;
+    margin-bottom: 20px;
+}
+
+#sign-up-button {
+    text-decoration: none;
+    color: white;
+}
+
+#sign-up-form button {
+    margin-top: 10px;
+}
+
+#main-logout h1 {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#top-sub {
+    text-align: center;
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+#how h1 {
+    margin-top: 20px;
+}
+
+#gen-and-group {
+    display: flex;
+    gap: 10px;
+    align-items: stretch
+}
+
+.boxes {
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(15,23,42);
+}
+
+.boxes h2 {
+    background-color: rgb(15,23,42);
+    color: white;
+}
+
+#gen-and-group ul {
+    list-style: none;
+}
+
+#general {
+    width: 50%;
+    border: 1px solid rgb(15,23,42);
+}
+
+.boxes h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin: 0;
+    padding: 10px 0;
+    width: 100%;
+    display: block;
+}
+
+
+.subhead {
+    text-align: center;
+}
+
+#groups {
+    width: 50%;
+    border: 1px solid rgb(15,23,42);
+}
+
+.how-head {
+    font-size: 1.6rem;
+    color: rgb(255, 106, 94);
+}
+
+/* Main logged in */
+
+#main-body-login {
+    display: flex;
+}
+
+#main-login {
+    width: 70%;
+    display: flex;
+    margin: 0;
+}
+
+#suggestions-box {
+    width: 50%;
+    border-right: 1px solid rgb(213, 228, 226);
+    padding-right: 5px;
+}
+
+#feed {
+    width: 50%;
+    border-left: 1px solid rgb(213, 228, 226);
+}
+
+.main-head {
+    text-align: center;
+    color: rgb(21, 32, 57);
+}
+/* Side bar logged in */
+
+#side-bar {
+    border-right: 2px solid rgb(213, 228, 226);
+    border-left: 5px solid rgb(213, 228, 226);
+    background: rgb(21, 32, 57);
+    width: 15%;
+    padding: 20px;
+    height: 800px;
+    margin: 0;
+}
+
+#side-bar ul {
+    list-style: none;
+    padding: 0;
+    margin-left: 10px;
+}
+
+#side-bar li, #main-add-listing a, .section a {
+    margin: 20px auto;
+    color: rgb(255, 255, 255);
+    font-size: 1.3rem;
+}
+
+.section a {
+    text-decoration: none;
+}
+
+#side-bar li:hover, #main-add-listing a:hover, .section a:hover {
+    color: rgb(255, 106, 94);
+    cursor: pointer;
+}
+
+#main-add-listing a {
+    text-decoration: none;
+}
+
+/* New on InTown */
+
+#newest {
+    width: 15%;
+    background-color: rgb(255,255,255);
+    border-left: 1px solid rgb(230,232,235);
+}
+
+#main-right {
+    text-align: center;
+    color: rgb(21, 32, 57);
+}
+
+
+/* Footer */
+
+footer {
+    display: flex;
+    background-color: rgb(230, 232, 235);
+}
+
+footer ul, #foot-add-listing a {
+    list-style: none;
+    padding-left: 0;
+    margin-left: auto;
+    margin-right: 10px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#foot-add-listing a {
+    text-decoration: none;
+    color: rgb(21, 32, 57);
+}
+
+/*Suggestion cards*/
+
+
+.event-cards {
+    margin: 7px 10px;
+    overflow: hidden;
+}
+
+.card-even {
+    background-color: rgb(239, 244, 254);
+}
+
+.card-odd {
+    background-color: rgb(255, 255, 255);
+}
+
+.card-header {
+    background-color: rgb(21, 32, 57);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+    padding-left: 8px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+
+.card-header h4 {
+    margin: 5px;
+    color: white;
+}
+
+.event-price {
+    font-weight: 500;
+}
+
+.head-details {
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.event-type {
+    font-weight: 500;
+    border-right: 1px solid rgb(232, 246, 244);
+    padding-right: 10px;
+}
+
+.cat-tag {
+    margin-right: 20px;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+.card-main {
+    display: flex;
+    margin-bottom: 0;
+    height: 200px;
+}
+
+.title-and-info {
+    display: block;
+    max-width: 340px;
+}
+
+
+.card-main-and-details {
+    border: 1px solid rgb(213, 228, 226);
+    margin: 0;
+    padding: 8px;
+}
+
+.event-photo {
+    width: 150px;
+    height: 150px;
+    margin: 10px 0;
+    object-fit: cover;
+}
+
+.card-main-writing {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+}
+
+.event-title {
+    margin: 3px 15px;
+    font-size: 2rem;
+    font-weight: 600;
+    color: rgb(15,23,42);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+}
+
+.date-and-age {
+    display: flex;
+    padding: 0 15px 8px 15px;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(15,23,42);
+}
+
+.date, .age {
+    font-weight: 400;
+    margin-top: 10px;
+    margin-bottom: 5px;
+
+}
+
+.just-date {
+    display: flex;
+    flex-direction: column;
+}
+
+.more-info-link {
+    color: rgb(15,23,42);
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+.dateextra {
+    font-weight: 300;
+    font-size: 0.8rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+}
+
+#regular-short-date {
+    flex-direction: column;
+    width: 62%;
+}
+
+#regular-date {
+    width: 50%;
+}
+
+
+
+.age {
+    margin-left: 0;
+    margin-right: 10px;
+    background-color: rgb(220,240,232);
+    color: rgb(46,94,78);
+    border-radius: 12px;
+    font-size: 1.1rem;
+    padding: 3px 10px;
+    font-weight: 300;
+    height: fit-content;
+}
+
+.event-info {
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-left: 15px;
+    padding-right: 5px;
+    color: rgb(21, 32, 57);
+    overflow: scroll;
+    max-height: 100px;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 500px;
+    margin: 0;
+    background-color: rgb(241, 245, 249);
+    border: 1px solid rgb(230, 232, 235);
+
+}
+
+.event-profile, .follow, .event-address {
+    font-weight: 500;
+    margin: 2px 10px;
+    padding: 2px 8px;
+    border-radius: 8px;
+}
+
+.event-address {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 45%;
+}
+
+.follow {
+    color: white;
+}
+
+.event-profile i {
+    color: rgb(21, 32, 57);
+}
+
+.event-profile i:hover {
+    color: rgb(255, 106, 94);
+}
+
+.event-profile a {
+    text-decoration: none;
+    color: rgb(21, 32, 57);
+}
+
+.event-profile a:hover {
+    color: rgb(255, 106, 94);
+}
+
+.follow {
+    background-color: rgb(255,106,94);
+}
+
+.follow a :hover {
+    background-color: rgb(240,90,80);
+}
+
+/* Main logged out */
+
+#how {
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+#how h1 {
+    background-color: rgb(230, 232, 235);
+    padding: 10px;
+}
+
+.inside-box {
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+#how h2 {
+    padding: 5px 0;
+}
+
+.subhead {
+    margin-top: 20px;
+}
+
+#how h4 {
+    margin: 20px;
+    font-weight: 500;
+}
+
+#how ul {
+    margin-bottom: 20px;
+}
+
+#how li {
+    margin-bottom: 10px;
+}
+
+.how-foot {
+    margin: 15px;
+    font-weight: 400;
+}
+
+/* Sign Up Form */
+
+#sign-up-main h1 {
+    text-align: center;  
+    margin-top: 50px; 
+    font-size: 3rem; 
+    font-weight: 600;
+    margin-bottom: 5px;
+    background-color: rgb(21, 32, 57);;
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 30px;
+    color: white;
+}
+
+#sign-up-main h2 {
+    text-align: center;
+    margin-top: 0;
+    background-color: rgb(21, 32, 57);;
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 30px;
+    font-weight: 400;
+    font-size: 1.2rem;
+    color: white;
+}
+
+#sign-up-main span {
+    color: rgb(240,90,80);
+    font-weight: 300;
+}
+
+#sign-up-form {
+    background-color: white;
+    font-family: "Urbanist", sans-serif;
+    padding: 30px;
+    width: 60%;
+    margin: 0 auto 30px auto;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    border: 1px solid rgb(32, 178, 158);   
+}
+
+.sign-up-form-group {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;
+}
+
+form input {
+    font-size: 1rem;
+}
+
+#your-details label {
+    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-top: 20px;
+    font-size: 1rem;
+}
+
+#your-details input {
+    width: 100%;
+    padding: 6px 20px;
+    margin: 0;
+}
+
+#full-name {
+    display: flex;
+    gap: 20px;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.full-name-line {
+    width: 50%;
+}
+
+#password {
+    max-width: 400px;
+}
+
+#sign-up-form p {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 50px;
+}
+
+#looking-for {
+    display: none;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+}
+
+.looking-form-group {
+    margin-bottom: 10px;
+}
+
+.looking-form-group label {
+    font-size: 1rem;
+}
+
+#looking-for input {
+    width: 40px;
+}
+
+#kind-of-thing {
+    display: none;
+}
+
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    accent-color: rgb(255, 106, 94);
+    cursor: pointer;
+}
+
+button {
+    font-weight: 500;
+    font-size: 1.3rem;
+    font-family: "Urbanist", sans-serif;
+    width: 80%;
+    display: block;
+}
+
+#create-account, #sign-in-btn {
+    color: white;
+}
+
+#already, #sign-up-btn {
+    font-size: 1rem;
+    color: white;
+}
+
+#group-business {
+    display: flex;
+    flex-direction: column;
+}
+
+#listing-name {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0;
+}
+
+#group-business p {
+    margin-left: 25px;
+}
+
+#listing-type {
+    display: flex;
+    flex-direction: column;
+    margin-left: 25px;
+    width: 40%;
+    padding-bottom: 10px;
+}
+
+#listing-type label {
+    padding: 0;
+    font-size: 1rem;
+}
+
+.type-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.type-group label {
+    padding: 0;
+    font-size: 1rem;
+}
+
+
+#why-here {
+    width: fit-content;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+#why-here p {
+    display: none;
+}
+
+#why-here label {
+    padding: 10px;
+    margin: 0;
+}
+
+#why-here input {
+    margin: 0;
+}
+
+input[type="radio"] {
+    width: 20px;
+    height: 20px;
+    accent-color: rgb(255, 106, 94);
+    cursor: pointer;
+    
+}
+
+/* Profile Page */
+
+.profile-top {
+    display: flex;
+    border-bottom: 1px solid rgb(213, 228, 226);
+    align-items: center;
+}
+
+#profile h1 {
+    text-align: center;
+    width: 60%;
+}
+
+.profile-head {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 25%;
+    height: 100px;
+    padding: 5px;
+}
+
+.profile-pic {
+    width: 90px;
+    height: 90px;
+    margin: 0 20px;
+    object-fit: cover;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+.name-and-town {
+    display: flex;
+    flex-direction: column;
+}
+
+#profile-name {
+    margin-bottom: 5px;
+}
+
+.name-and-town h4 {
+    margin: 0;
+}
+
+.name-and-town p {
+    margin: 0;
+}
+
+#profile-body {
+    display: flex;
+}
+
+.profile-side-bar {
+    border-right: 1px solid rgb(213, 228, 226);
+    width: 25%;
+    background-color: rgb(21, 32, 57);
+}
+
+.profile-side-bar h2 {
+    color: rgb(255, 106, 94);
+    text-align: center;
+}
+
+.profile-side-bar ul {
+    margin-left: 20px auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+.profile-side-bar li {
+    color: rgb(255, 255, 255);
+    list-style: none;
+    margin: 20px auto;
+    font-size: 1.3rem;
+    cursor: pointer;
+}
+
+.profile-side-bar li:hover {
+    color: rgb(255, 106, 94);
+}
+
+.profile-side-bar li.is-active {
+    color: rgb(255, 106, 94);
+    font-weight: 600;
+}
+
+#profile-side-right {
+    border-left: 1px solid rgb(213, 228, 226);
+    background-color: rgb(241, 245, 249);
+    width: 15%;
+    height: 100px;
+    align-items: center;
+}
+
+#profile-side-right h3 {
+    text-align: center;
+    font-weight: 300;
+    font-size: 1rem;
+
+}
+
+.profile-centre {
+    display: none;
+    flex-direction: column;
+    width: 60%;
+    background-color: white;
+}
+
+.is-visible {
+    display: flex;
+}
+
+.profile-centre h2 {
+    text-align: center;
+}
+
+.profile-centre p {
+    width: 80%;
+    margin: 0 auto;
+    font-size: 1.1rem;
+    color: rgb(21, 32, 57);
+}
+
+
+/* Sign In Page */
+
+#sign-in-body h1 {
+    background-color: rgb(21, 32, 57);
+    color: white;
+    width: 60%;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px 5px;
+    font-size: 3rem; 
+    font-weight: 600;
+}
+
+#sign-in-form {
+    background-color: white;
+    width: 60%;
+    margin: 0 auto;
+    padding: 50px;
+    margin-bottom: 100px;
+}
+
+#login-details {
+    padding-bottom: 20px;
+}
+
+#login-input {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+    margin: 0 auto;   
+}
+
+#login-details input {
+    margin-left: 0;
+    font-size: 1rem;
+    padding: 6px 20px;
+    margin-bottom: 20px; 
+}
+
+#login-details label {
+    font-family: "Urbanist", sans-serif;
+    margin-left: 15px;
+    margin-bottom: 5px;
+}
+
+/* Listing Page */
+
+#listing-top {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid rgb(213, 228, 226);
+    border-left: 1px solid rgb(213, 228, 226);
+    border-right: 1px solid rgb(213, 228, 226);
+}
+
+#message-box {
+    width: 15%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100px;
+    background-color: rgb(241, 245, 249);
+    border-right: 1px solid rgb(213, 228, 226);
+}
+
+#message {
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 15px;
+    font-weight: 300;
+    font-size: 1rem;
+}
+
+#listing-head-centre {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+}
+
+#listing-profile-name {
+    margin: 0 auto;
+    font-size: 3.5rem;
+}
+
+#organiser-name-box {
+    margin-left: 0 auto;
+    justify-content: end;
+}
+
+#organiser-name-box h3 {
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+#organiser-head-right {
+    justify-content: center;
+    border: none;
+}
+
+#listing-side-bar {
+    width: 15%;
+    padding: 20px;
+    border-left: 1px solid rgb(213, 228, 226);
+    border-right: 1px solid rgb(213, 228, 226);
+    border-bottom: 1px solid rgb(213, 228, 226);
+    background-color: rgb(255, 255, 255);
+}
+
+#listing-side-bar ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px;
+}
+
+#listing-side-bar li {
+    margin-bottom: 30px;
+    color: rgb(21, 32, 57);
+    font-size: 1.2rem;
+}
+
+#listing-side-bar li:hover {
+    color: rgb(255, 106, 94);
+    cursor: pointer;
+}
+
+#listing-body {
+    display: flex;
+}
+
+.listing-main {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    background-color: white;
+}
+
+#head-bottom {
+    background-color: rgb(21, 32, 57);  
+    padding: 5px 0;
+    height: 49px;
+}
+
+#head-bottom ul {
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    padding: 0 20px;
+    margin: 0;
+    justify-content: center;
+}
+
+#head-bottom li {
+    background-color: white;
+    padding: 10px 15px;
+    border-radius: 2px;
+    flex: 1;
+    text-align: center;
+    font-weight: 700;
+}
+
+#follow-button {
+    border: 2px solid black;
+    border-radius: 20px !important;
+    padding: 6px 10px !important;
+    font-size: 1.2rem;
+    background-color: rgb(255,106,94) !important;
+    color: white;
+}
+
+#follow-button:hover {
+    background-color: rgb(240,90,80) !important;
+    border-color: rgb(240,90,80) !important;
+    cursor: pointer;
+}
+.listing-centre {
+    display: none;
+}
+
+.listing-centre.is-visible {
+    display: flex; 
+}
+
+.listing-centre-title {
+    text-align: center;
+    width: 100%;
+}
+
+
+#listing-photo img {
+    height: 400px;
+    width: 400px;
+    margin: 15px;
+    padding: 0;
+    object-fit: cover; 
+    border-radius: 60px;
+    border: 1px solid rgb(213, 228, 226);
+}
+
+#listing-writing {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+    width: 50%;
+    margin-bottom: 100px;
+}
+
+#date-and-address {
+    display: flex;
+    gap: 5px;
+    flex-direction: column;
+    margin: 8px auto;
+    background-color: rgb(241, 245, 249);
+    border: 1px solid rgb(213, 228, 226);
+    padding: 2px 10px;
+    width: 100%;
+}
+
+#date-and-address p {
+    margin: 5px 5px;
+}
+
+#listing-date, #listing-address-container {
+    margin: 5px 0;
+    color: black;
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+.date-extra-style {
+    font-size: 0.9rem;
+}
+
+.listing-page-details-style {
+    margin-bottom: 0;
+    font-weight: 500;
+    font-size: 1rem;
+    border-bottom: 1px solid rgb(240,90,80);
+    width: 90%;
+    padding-bottom: 5px;
+}
+
+#about {
+    font-size: 1.2rem;
+    margin-bottom: 0;
+}
+
+.listing-extra-style {
+    font-size: 0.9rem;
+    margin: 5px 20px 5px 25px;
+    padding-top: 5px;
+}
+
+#listing-feed {
+    background-color: rgb(21, 32, 57);
+    width: 25%;
+}
+
+#feed-header {
+    background-color: rgb(241, 245, 249);
+    height: 49px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 4px;
+}
+
+#feed-header h3 {
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.9rem;
+    margin: auto 0;
+
+}
+
+/* Add listing form page 1 */
+
+#add-listing-form {
+    margin: 10px;
+    color: rgb(21, 32, 57);
+    border: 30px solid rgb(21, 32, 57);
+}
+
+#add-listing-form input, #add-listing-form textarea, #add-listing-form select, #listing-name input {
+    border: 1.5px solid rgb(240,90,80);
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+#add-listing-form textarea {
+    padding: 7px 12px;
+    font-size: 0.9rem;
+    margin-left: 25px;
+    height: 100px;
+}
+
+#add-listing-form select {
+    padding: 8px 20px;
+    height: 40px;
+}
+
+#add-listing-form input:focus, #add-listing-form textarea:focus, #add-listing-form select:focus {
+    border-color: rgb(21, 32, 57); 
+    outline: none;         
+}
+
+#form-step-one {
+    padding: 0 50px;
+}
+
+#form-step-one h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+#form-step-one h2 span {
+    color: rgb(240,90,80);
+    font-size: 2.9rem;
+}
+
+#form-step-one label {
+    margin: 15px 0 10px 25px;
+}
+
+.listing-form-group {
+    margin: 15px 0;
+}
+
+#listing-description-group {
+    display: flex;
+    flex-direction: column;
+    width: 40%;
+}
+
+#one-event-date, 
+#regular-date-container, 
+#short-course-container, 
+#volunteer-date, 
+#ongoing-multi-date {
+    display: none;
+    flex-direction: column;
+}
+
+#one-event-date input,
+#regular-date-container input,
+#short-course-container input,
+#volunteer-date input,
+#ongoing-multi-date input, #group-name input {
+    margin-left: 25px;
+}
+
+#one-event-date input[type="datetime-local"] {
+    width: 30%;
+}
+
+#regular-date-container input,
+#short-course-container input,
+#volunteer-date input,
+#ongoing-multi-date input, #listing-name {
+    width: 50%; 
+}
+
+#one-event-extra {
+    width: 50%;
+}
+
+#listing-description {
+    resize: none;
+    border-radius: 5px;
+    padding: 5px;
+    font-family: "Urbanist", sans-serif;
+    font-size: 0.9rem;
+}
+
+#listing-price, #listing-category, #listing-age, #listing-extra-details {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.price-container {
+    position: relative;
+    display: inline-block;
+    width: 25%;
+    margin-left: 25px;
+}
+
+#zero {
+    font-size: 0.8rem;
+}
+
+.pound-sign {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgb(21, 32, 57);
+    font-size: 1.1rem;
+    pointer-events: none;
+    z-index: 2;
+}
+
+#price-amount {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 38px;
+    height: 40px;
+    position: relative;
+    z-index: 1;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+
+#listing-address-container {
+    display: flex;
+    flex-direction: column;
+    width: 52%;
+}
+
+#listing-address-container input {
+    margin-left: 25px;
+}
+
+
+
+#category-select, #age-group {
+    height: 30px;
+    width: 200px;
+    border-radius: 3px;
+    margin-left: 25px;
+    font-size: 1rem;
+}
+
+#custom-category-box {
+    flex-direction: column;
+}
+
+#listing-category-other {
+    width: 30%;
+}
+
+#photo-upload input {
+    border: none;
+}
+
+
+#listing-extra-details {
+    width: 42%;
+}
+
+#listing-extra-details-box {
+    margin-left: 25px;
+}
+
+::placeholder {
+    color: #676161; /* A slightly darker grey for better readability */
+    opacity: 1;
+}
+
+#next-to-step-two {
+    margin: 40px auto;
+}
+
+/* Add listing form page 2 */
+
+#form-step-two {
+    display: none;
+}
+
+#organiser-name-container, #business-desc-container, #organiser-desc-container {
+    flex-direction: column;
+}
+
+#form-step-two h2 {
+    margin-left: 30px;
+    margin-top: 50px;
+}
+
+#form-step-two label {
+    margin: 15px 0 10px 25px;
+}
+
+#organiser-details input, #organiser-details textarea {
+    margin-left: 25px;
+    width: 40%;
+}
+
+#organiser-details textarea {
+    height: 100px;
+    padding: 7px 12px;
+    font-size: 0.9rem;
+    resize: none;
+}
+
+#contact-details {
+    display: flex;
+    flex-direction: column;
+}
+
+#contact-details input {
+    width: 40%;
+}
+
+#only-intown-group {
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+    width: 70%;
+    align-items: center;
+}
+
+#only-intown-group label {
+    font-weight: 500;
+    font-size: 1.1rem;
+}
+
+#only-intown-group input {
+    margin-left: 10px;
+    width: 20px; 
+}
+
+#photo-upload {
+    display: flex;
+    flex-direction: column;
+}
+
+#listing-photos {
+    margin-bottom: 20px;
+}
+
+#back-and-submit-btn {
+    margin: 40px auto;
+}
+
+/* Listing Contact Section */
+
+#listing-contacts {
+    
+    flex-direction: column;
+}
+
+#contact-methods {
+    margin-left: 50px;
+}
+
+#contact-methods h3 {
+    margin: 20px 30px 20px 25px;
+}
+
+#contact-methods p {
+    margin-left: 25px;
+}
+
+#intown-message {
+    display: flex;
+    flex-direction: row;
+}
+
+#intown-message i {
+    align-self: center;
+}
+
+
+.contact-item p:empty {
+    display: none;
+}
+
+.contact-item:has(p:empty) {
+    display: none;
+}
+
+/* Search page */
+
+#search-top h1 {
+    font-size: 3.2rem;
+    text-align: center;
+}
+
+#search-side-bar {
+    background-color: rgb(255, 255, 255);
+    width: 20%;
+    border-right: 1px solid rgb(21, 32, 57);
+}
+
+#search-categories {
+    width: 100%;
+    padding: 30px 0;
+    
+}
+
+#search-categories li {
+    list-style: none;
+    font-size: 1.4rem;
+    margin: 25px auto;
+    width: 100%;
+    text-align: center;
+    padding-bottom: 10px;
+}
+
+.filter-options {
+    display: none;
+    flex-direction: column;
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.filter-options.is-visible {
+    display: flex;
+}
+
+.filter-btn:hover {
+    color: rgb(255, 106, 94);
+    cursor: pointer;
+}
+
+.filter-options label {
+    font-size: 1rem;
+    text-align: left;
+}
+
+
+
+
+/* Header Background
+
+coral rgb(240,90,80)
+
+Original dark blue rgb(15, 23, 42)
+rgb(32, 178, 158) — your teal
+Header Text (InTown, Barrow)
+rgb(255, 255, 255) — clean white, pops beautifully against teal
+Header Tagline
+rgb(210, 240, 237) — soft pale teal-white, subtle step down from the heading
+Cards - rgb(240, 248, 247) rgb(232, 246, 244)
+Page Background
+rgb(248, 250, 250) — barely-there cool white
+Main Text
+rgb(22, 30, 30) — near-black with teal undertone
+Secondary Text
+rgb(95, 112, 112) — muted teal-grey
+Accent (buttons, links, tags)
+rgb(32, 178, 158) — same teal, ties header to the rest of the page
+Accent Hover
+rgb(24, 142, 125) — deeper teal
+Card Background
+rgb(255, 255, 255) — pure white
+Border / Divider
+rgb(213, 228, 226) — soft teal-tinted grey */

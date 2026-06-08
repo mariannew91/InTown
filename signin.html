@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    
+    <title>InTown</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./resources/style.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./resources/script.js" defer></script>
+</head>
+<body>
+     <!--Header-->
+     <header>
+        <div id="logo-town">
+            <div id="just-logo">
+                <a href='./main.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
+            </div>
+            <h1><a href='./main.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="location">
+                <h1>Barrow</h1>
+                <!--<h1 class="logout">Find your town
+                <h3 class="login">Change location</h3></h1>-->
+            </div>
+        </div>
+        <input type="text" placeholder="Have a look around...">
+        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+    </header>
+    <!--Body-->
+    <div id="sign-in-body">
+        <h1>Sign In</h1>
+        <div id="sign-in-form">
+            <form id="login-form">
+                <div id="login-details">
+                    <div id="login-input">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email" required>
+                    </div>
+
+                    <div id="login-input">
+                        <label for="password">Create a password</label>
+                        <input type="password" id="password" name="password" placeholder="Password" required>
+                    </div>
+                </div>
+                <button id='sign-in-btn' class="button" type="submit">Sign In</button>
+                <button class="button" id="sign-up-btn" type="button">Don't have an account? Sign Up</button>
+            </form>
+        </div>
+    </div>
+    <!--Footer-->
+    <footer>
+        <ul>
+            <li>About</li>
+            <li id="foot-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
+            <li>Privacy Policy</li>
+        </ul>
+    </footer>
+</body>

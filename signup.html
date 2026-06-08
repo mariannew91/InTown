@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    
+    <title>InTown</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./resources/style.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./resources/script.js" defer></script>
+</head>
+<body>
+    <!--Header-->
+    <header>
+        <div id="logo-town">
+            <div id="just-logo">
+                <a href='./main.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
+            </div>
+            <h1><a href='./main.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="location">
+                <h1>Barrow</h1>
+                <!--<h1 class="logout">Find your town
+                <h3 class="login">Change location</h3></h1>-->
+            </div>
+        </div>
+        <input type="text" placeholder="Have a look around...">
+        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+    </header>
+    <!--Body-->
+    <div id="sign-up-main">
+        <h1>Welcome to <span>In</span>Town</h1>
+        <h2>Discover everything happening in your town</h2>
+        <form id="sign-up-form">
+            <div id="your-details">
+                <div id="full-name">
+                    <div class="sign-up-form-group full-name-line">
+                        <label for="firstname">First Name</label>
+                        <input type="text" id="firstname" name="firstname" placeholder="Your first name" required>
+                    </div>
+
+                    <div class="sign-up-form-group full-name-line">
+                        <label for="surname">Last Name</label>
+                        <input type="text" id="surname" name="surname" placeholder="Your last name" required>
+                    </div>
+                </div>
+                <div class="sign-up-form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your email" required>
+                </div>
+
+                <div class="sign-up-form-group">
+                    <label for="password">Create a password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
+                </div>
+            </div>
+            <p>What brings you to InTown?</p>
+            <div id="why-here">
+                <div class="type-group">
+                    <input type="radio" id="public" name="user-type" value="public" required>
+                    <label for="public">I'm looking for things to do</label>
+                </div>
+
+                <div class="type-group">
+                    <input type="radio" id="group-leader" name="user-type" value="group" required>
+                    <label for="group-leader">I run a group or event</label>
+                </div>
+
+                <div class="type-group">
+                    <input type="radio" id="business" name="user-type" value="business" required>
+                    <label for="business">I represent a business</label>
+                </div>
+            </div>
+            <p id="kind-of-thing">What kind of thing are you looking for?</p>
+            <div id="looking-for">
+                <div class="looking-form-group">
+                    <input type="checkbox" id="weekly" name="interest" value="Regular">
+                    <label for="weekly">Regular groups & clubs</label>
+                </div>
+
+                <div class="looking-form-group">
+                    <input type="checkbox" id="once" name="interest" value="One off">
+                    <label for="once">One-off events</label>
+                </div>
+
+                <div class="looking-form-group">
+                    <input type="checkbox" id="courses" name="interest" value="Classes and Courses">
+                    <label for="courses">Classes & courses</label>
+                </div>
+
+                <div class="looking-form-group">
+                    <input type="checkbox" id="charity" name="interest" value="Volunteering">
+                    <label for="charity">Volunteering</label>
+                </div>
+
+                <div class="looking-form-group">
+                    <input type="checkbox" id="family" name="interest" value="Family and Kids">
+                    <label for="family">Family & kids activities</label>
+                </div>
+                <div class="looking-form-group">
+                    <input type="checkbox" id="explore-all" name="interest" value="Explore All Options">
+                    <label for="explore-all">I want to explore all options</label>
+                </div>
+            </div>
+                      
+
+            <button id='create-account' class="button" type="submit">Create my account</button>
+            <button class="button" id="already" type="button">Already have an account? Sign In</button>
+        </form>
+    </div>
+    <!--Footer-->
+    <footer>
+        <ul>
+            <li>About</li>
+            <li id="foot-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
+            <li>Privacy Policy</li>
+        </ul>
+    </footer>
+</body>

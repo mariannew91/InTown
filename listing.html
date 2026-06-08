@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    
+    <title>InTown</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./resources/style.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./resources/script.js" defer></script>
+</head>
+<body>
+     <!--Header-->
+    <header>
+        <div id="logo-town">
+            <div id="just-logo">
+                <a href='./main.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
+            </div>
+            <h1><a href='./main.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="location">
+                <h1>Barrow</h1>
+                <!--<h1 class="logout">Find your town
+                <h3 class="login">Change location</h3></h1>-->
+            </div>
+        </div>
+        <input type="text" placeholder="Have a look around...">
+        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div id="sign-profile">
+            <h2 class="logout sign-in">Sign In</h2>
+            <h2 class="login sign-in">Profile</h2>
+        </div>
+    </header>
+    <!--Body-->
+    <div class="profile-top" id="listing-top">
+        <div id="message-box">
+            <h3 id="message">Message Us</h3>
+            <i class="fa-regular fa-message fa-2x"></i>
+        </div>
+        <div id="listing-head-centre">
+            <h1 id="listing-profile-name"></h1>
+        </div>
+        <div class="profile-head" id="organiser-head-right">
+            <div class="name-and-town" id="organiser-name-box">
+                <p>Organised by</p>
+                <h3 id="organiser-person-name"></h3>
+            </div>
+            <img class="profile-pic" id="event-photo-url">
+        </div>
+    </div>
+    <div id="listing-body">
+        <div class="profile-side-bar" id="listing-side-bar">
+            <ul>
+                <li class="is-active" id="listing-about-btn">About</li>
+                <li id="members-btn">Members</li>
+                <li id="listing-photos-btn">Photos</li>
+                <li id="upcoming-date-btn">Upcoming dates</li>
+                <li id="listing-contact-btn">Contact info</li>
+                <li id="listing-follower-btn"><span id="num-followers"></span> followers</li>
+            </ul>
+        </div>
+        <div class="listing-main">
+            <div id="head-bottom">
+                <ul>
+                    <li id="listing-price">Price</li>
+                    <li id="listing-category">Category</li>
+                    <li id="follow-button">Follow</li>
+                    <li id="listing-age">Age</li>
+                    <li id="listing-type">Event Type</li>
+                </ul>
+            </div>
+            <div class="listing-centre is-visible" id="listing-about-sect">
+                <div id="listing-photo">
+                    <img id="listing-photo-img">
+                </div>
+                <div id="listing-writing">
+                    <div id="date-and-address">
+                        <p><i class="fa-regular fa-calendar"></i> <span id="listing-date"></span></p>
+                        <p><i class="fa-solid fa-map-pin"></i> <span id="listing-address"></span></p>
+                    </div>
+                    <p id="about" class="listing-page-details-style">About</p>
+                    <p id="listing-description" class="listing-extra-style"></p>
+                    <p id="about-date" class="listing-page-details-style">Date and time info</p>
+                    <p id="listing-date-extra" class="listing-extra-style"></p>
+                    <p id="listing-price-extra" class="listing-page-details-style">Price details</p>
+                    <p id="listing-price-details" class="listing-extra-style"></p>
+                    <p id="listing-age-extra" class="listing-page-details-style">Age restrictions</p>
+                    <p id="age-restriction" class="listing-extra-style"></p>
+                    <p id="extra-info-for-listing" class="listing-page-details-style">Extra info</p>
+                    <p id="listing-extra-details-box" class="listing-extra-style"></p>
+                </div> 
+            
+            </div>
+            <div class="listing-centre" id="listing-members">
+                <h2 class="listing-centre-title">Our Members</h2>
+            </div>
+            <div class="listing-centre" id="listing-photos">
+                <h2 class="listing-centre-title">Photos</h2>
+            </div>
+            <div class="listing-centre" id="listing-upcoming-dates">
+                <h2 class="listing-centre-title">Upcoming Dates</h2>
+            </div>
+            <div class="listing-centre" id="listing-contacts">
+                <h2 class="listing-centre-title">Contact</h2>
+                <div id="contact-methods">
+                    <div id="intown-message">
+                        <h3>Send a message on InTown</h3>
+                        <i class="fa-regular fa-message fa-2x"></i>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Phone Number</h3>
+                        <p id="phone-no"></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Email</h3>
+                        <p id="email-address"></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Website</h3>
+                        <p id="listing-website"></p>
+                    </div>
+                    <div class="contact-item">
+                        <h3>Social Media</h3>
+                        <p id="social-media"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="listing-centre" id="listing-followers">
+                <h2 class="listing-centre-title">Followers</h2>
+            </div>
+        </div>
+        <div id="listing-feed">
+            <div id="feed-header">
+                <h3>Feed</h3>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--Footer-->
+    <footer>
+        <ul>
+            <li>About</li>
+            <li id="foot-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
+            <li>Privacy Policy</li>
+        </ul>
+    </footer>
+</body>

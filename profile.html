@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    
+    <title>InTown</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./resources/style.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./resources/script.js" defer></script>
+</head>
+<body>
+    <!--Header-->
+    <header>
+        <div id="logo-town">
+            <div id="just-logo">
+                <a href='./main.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
+            </div>
+            <h1><a href='./main.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="location">
+                <h1>Barrow</h1>
+                <!--<h1 class="logout">Find your town
+                <h3 class="login">Change location</h3></h1>-->
+            </div>
+        </div>
+        <input type="text" placeholder="Have a look around...">
+        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+    </header>
+    <!--Body-->
+    <div id="profile">
+        <div class="profile-top">
+            <div class="profile-head">
+                <img class="profile-pic" src="./resources/images/inTown-logo.png"></img>
+                <div class="name-and-town">
+                    <h2 id="profile-name">Marianne Walsh</h2>
+                    <!-- <h4>Hometown</h4> 
+                    <p>Barrow</p> -->
+                </div>
+            </div>
+            <h1></h1>
+            <div id="profile-side-right">
+                <h3><i class="fa-solid fa-pen-to-square"></i> Edit Profile</h3>
+            </div>
+        </div>
+        <div id="profile-body">
+            <div class="profile-side-bar">
+                <div id="my-intown">
+                    <h2>My <span>In</span>Town</h2>          
+                </div>
+                <ul>
+                    <li class="is-active" id="about-btn">About Me</li>
+                    <li id="friends-btn">My Friends</li>
+                    <li id="interests-btn">My Interests</li>
+                    <li id="groups-btn">My Groups</li>
+                    <li id="events-btn">My Events</li>
+                    <li id="bookmarks-btn">Bookmarks</li>
+                </ul>
+            </div>
+            <div class="profile-centre is-visible" id="about-me">
+                <h2>About Me</h2>
+                <p>I love acting, and all things creative and games</p>
+            </div>
+            <div class="profile-centre" id="my-friends">
+                <h2>My Friends</h2>
+                <p>You don't have any friends yet. Find some groups or events to meet people in your town!</p>
+            </div>
+            <div class="profile-centre" id="my-interests">
+                <h2>My Interests</h2>
+                <p>You haven't added any interests yet. Tell us what you like and we'll show you relevant groups and events in your town.</p>
+            </div>
+            <div class="profile-centre" id="my-groups">
+                <h2>My Groups</h2>
+                <p>You haven't joined any groups yet. Find some groups or events to meet people in your town!</p>       
+            </div>
+            <div class="profile-centre" id="my-events">
+                <h2>My Events</h2>
+                <p>You haven't joined any events yet. Find some groups or events to meet people in your town!</p>
+            </div>
+            <div class="profile-centre" id="bookmarks">
+                <h2>Bookmarks</h2>
+                <p>You haven't bookmarked anything yet. Find some groups or events to meet people in your town!</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <ul>
+            <li>About</li>
+            <li id="foot-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
+            <li>Privacy Policy</li>
+        </ul>
+    </footer>
+</body>

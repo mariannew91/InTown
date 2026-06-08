@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport"
+    content="width=device-width, initial-scale=1.0">
+    
+    <title>InTown</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./resources/style.css">
+    <meta charset="UTF-8">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <script src="./resources/script.js" defer></script>
+</head>
+<body>
+    <!--Header-->
+     <header>
+        <div id="logo-town">
+            <div id="just-logo">
+                <a href='./main.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
+            </div>
+            <h1><a href='./main.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="location">
+                <h1>Barrow</h1>
+                <!--<h1 class="logout">Find your town
+                <h3 class="login">Change location</h3></h1>-->
+            </div>
+        </div>
+        <input type="text" placeholder="Have a look around...">
+        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+    </header>
+    <!--Body-->
+    <div>
+        <form id="add-listing-form">
+            <div id="form-step-one">
+                <h2>Tell people about <span id="listing-name-label"></span></h2>
+                <div id="group-business">
+                    <div id="listing-name">
+                        <label for="group-name">What's the name of your listing?</label>
+                        <input type="text" id="group-name" name="group-name" placeholder="Your listing name">
+                    </div>
+                    <p>What type of listing is it?</p>
+                    <div id="listing-type">
+                        <div class="type-group">
+                            <input type="radio" id="group" name="listing-type" value="group">
+                            <label for="group">Regular group or club</label>
+                        </div>
+
+                        <div class="type-group">
+                            <input type="radio" id="event" name="listing-type" value="event">
+                            <label for="event">One off event</label>
+                        </div>
+
+                        <div class="type-group">
+                            <input type="radio" id="course" name="listing-type" value="course">
+                            <label for="course">Class or course</label>
+                        </div>
+
+                        <div class="type-group">
+                            <input type="radio" id="ongoing-activity" name="listing-type" value="ongoing-activity">
+                            <label for="ongoing-activity">Ongoing activity</label>
+                        </div>
+
+                        <div class="type-group">
+                            <input type="radio" id="volunteering" name="listing-type" value="volunteering">
+                            <label for="volunteering">Volunteering opportunity</label>
+                        </div>
+
+                        <div class="type-group">
+                            <input type="radio" id="else" name="listing-type" value="something-else">
+                            <label for="else">Something Else</label>
+                        </div>
+
+                    </div>
+                </div> 
+                <div class="listing-form-group" id="listing-description-group">
+                    <label for="listing-description">Tell people about your listing</label>
+                    <textarea type="text" id="listing-description" name="listing-description" placeholder="Describe your listing" required></textarea>
+                </div>
+                <div id="listing-type-choice">
+
+                    <!-- 1. One-off Event -->
+                    <div id="one-event-date" class="listing-form-group">
+                        <label for="listing-date">When is it happening?</label>
+                        <input type="datetime-local" id="listing-date" name="listing-date" required>
+
+                        <label for="one-event-extra">Have more details about the time or schedule? Add them here.</label>
+                        <input type="text" id="one-event-extra" name="one-event-extra" placeholder="E.g. Doors open at 6:30pm, show starts at 7pm">
+                    </div>
+
+                    <!-- 2. Regular Group -->
+                    <div id="regular-date-container" class="listing-form-group">
+                        <label for="regular-date">Tell people when to come along.</label>
+                        <input type="text" id="regular-date" name="regular-date" placeholder="E.g. Every Tuesday @ 6pm" required>
+
+                        <label for="regular-date-extra">Have more details about the dates? Add them here.</label>
+                        <input type="text" id="regular-date-extra" name="regular-date-extra" placeholder="E.g. First session starts on 1st Aug, breaks for Bank Holidays">
+                    </div>
+
+                    <!-- 3. Short Course or Class -->
+                    <div id="short-course-container" class="listing-form-group">
+                        <label for="short-course-date">What days and times does it run? (e.g. weekly, fortnightly, monthly)</label>
+                        <input type="text" id="short-course-date" name="short-course-date" placeholder="E.g. Every Wednesday 7-9pm" required>
+
+                        <label for="short-course-extra">What are the term, block, or duration dates?</label>
+                        <input type="text" id="short-course-extra" name="short-course-extra" placeholder="E.g. Runs Oct-Dec, 6-week block starting Oct 5th">
+                    </div>
+                    <!-- 4. Volunteering Opportunity -->
+                    <div id="volunteer-date" class="listing-form-group">
+                        <label for="shift-date">What are the hours or shifts?</label>
+                        <input type="text" id="shift-date" name="shift-date" placeholder="E.g. Flexible hours, pick your own shifts" required>
+
+                        <label for="volunteer-extra">Have more details about commitments or rota options? Add them here.</label>
+                        <input type="text" id="volunteer-extra" name="volunteer-extra" placeholder="E.g. Minimum commitment of 2 hours a week">
+                    </div>
+
+                    <!-- 5. Ongoing / Multiday Activity (Something Else) -->
+                    <div id="ongoing-multi-date" class="listing-form-group">
+                        <label for="opening-hours">What is the schedule or when are you active?</label>
+                        <input type="text" id="opening-hours" name="opening-hours" placeholder="E.g. Monday to Friday 9-5" required>
+
+                        <label for="ongoing-extra">Have more details about availability or timelines? Add them here.</label>
+                        <input type="text" id="ongoing-extra" name="ongoing-extra" placeholder="E.g. Open every weekday during term time">
+                    </div>
+                    <!-- Price -->
+                    <div id="listing-price" class="listing-form-group">
+                        <label for="price-amount">How much does it cost? <span id="zero">If free put £0.</span></label>
+                        <div class="price-container">
+                            <span class="pound-sign">£</span>
+                            <input type="number" id="price-amount" name="price-amount" step="0.01" placeholder="Enter price" required>
+                        </div>
+                        <label for="listing-price">Have more details on the price?</label>
+                        <input type="text" id="listing-price-details" name="listing-price-details" placeholder="E.g. Per session, per ticket, per week">
+                    </div>
+                    <!-- Address -->
+                    <div class="listing-form-group" style="display: flex; flex-direction: column; width: 52%; gap: 10px;">
+                        <label>Where is it happening?</label>
+                        
+                        <input type="text" id="listing-address" name="listing-address" placeholder="Address Line 1 (e.g., 14 High Street)" required>
+                        
+                        <div style="display: flex; gap: 10px; width: 100%;">
+                            <input type="text" id="listing-city" name="listing-city" placeholder="Town / City" style="flex: 1;" required>
+                            <input type="text" id="listing-postcode" name="listing-postcode" placeholder="Postcode" style="width: 35%;" required>
+                        </div>
+                    </div>
+                    <!-- Category -->
+                    <div id="listing-category" class="listing-form-group">
+                        <label for="category-select">What category does it fit into?</label>
+                        <select id="category-select" name="category-select" required>
+                            <option value="">Select a category</option>
+                            <option value="arts">Arts</option>
+                            <option value="sports">Sports</option>
+                            <option value="education">Education</option>
+                            <option value="social">Social</option>
+                            <option value="health">Health & Wellbeing</option>
+                            <option value="food">Food & Drink</option>
+                            <option value="outdoors">Outdoors</option>
+                            <option value="music">Music</option>
+                            <option value="performance">Performance</option>
+                            <option value="family">Family</option>
+                            <option value="hobby">Hobby</option>
+                            <option value="volunteer">Volunteer</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div id="custom-category-box" style="display: none;">
+                        <label for="category-other-label">Can't find a category that fits? Give it your own name.</label>
+                        <input type="text" id="listing-category-other" name="listing-category-other" placeholder="Enter your own category">
+                    </div>
+                    <!-- Age -->
+                    <div id="listing-age">
+
+                        <label for="age-group">Who is it for?</label>
+                        <select id="age-group" name="age-group" required>
+                            <option value="">Select an age group</option>
+                            <option value="All Ages">All Ages</option>
+                            <option value="Children">Children</option>
+                            <option value="Teens">Teens</option>
+                            <option value="Adults">Adults</option>
+                            <option value="Seniors">Seniors</option>
+                            <option value="Family">Family</option>
+                        </select>
+
+                        <label for="age-restriction">Are there any age restriction?</label>
+                        <input type="text" id="age-restriction" name="age-restriction" placeholder="Enter age restriction details">
+                    </div>
+                    <div id="listing-extra-details">
+                        <label for="listing-extra-details">Any extra details about your listing you want to add?</label>
+                        <textarea id="listing-extra-details-box" name="listing-extra-details" placeholder="Enter any extra details here"></textarea>
+                    </div>
+                    <div id="next-btn">
+                        <button id="next-to-step-two" class="button" type="button">Next</button>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="form-step-two">
+                <div id="organiser-details">
+                    <h2>Organiser Details</h2>
+                    <div id="organiser-name-container">
+                        <label for="organiser-name">Name of your business</label>
+                        <input type="text" id="organiser-name" name="organiser-name" placeholder="Enter business name" required>
+                    </div>
+                    <div id="business-desc-container">
+                        <label for="business-description">Tell people about you or your organisation</label>
+                        <textarea id="business-description" name="business-description" placeholder="Enter business description"></textarea>
+                    </div>
+                    <div id="organiser-desc-container">
+                        <label for="organiser-description">Tell people about yourself</label>
+                        <textarea id="organiser-description" name="organiser-description" placeholder="Tell people about yourself"></textarea>
+                    </div>
+                </div>
+                <div id="contact-details">
+                    <h2>How can people get in touch?</h2>
+                    <label for="contact-email">Email</label>
+                    <input type="email" id="contact-email" name="contact-email" placeholder="Enter contact email">
+
+                    <label for="contact-phone">Phone number</label>
+                    <input type="tel" id="contact-phone" name="contact-phone" placeholder="Enter contact phone number">
+
+                    <label for="contact-website">Website</label>
+                    <input type="url" id="contact-website" name="contact-website" placeholder="Enter website">
+
+                    <label for="contact-social">Social media handle</label>
+                    <input type="text" id="contact-social" name="contact-social" placeholder="Enter social media handle">
+                    <div id="only-intown-group">
+                        <label for="only-on-intown">Only want people to contact you through InTown?</label>
+                        <input type="checkbox" id="only-on-intown" name="only-on-intown">
+                    </div>
+                </div>
+                <h2>Upload some photos</h2>
+                <div id="photo-upload">
+                    <label for="event-photo-url">Choose your profile photo</label>
+                    <input type="text" id="event-photo-url" name="event-photo-url" placeholder="Paste image link here">
+
+                    <label for="listing-photo-img">Choose a photo for your listing</label>
+                    <input type="text" id="listing-photo-img" name="listing-photo-img" placeholder="Paste image link here">
+
+                    <!-- Just commenting out for now -->
+                <!--<label for="listing-photos">Choose a profile photo</label>-->
+                <!--<input type="file" id="listing-photos" name="listing-photos" accept="image/*" multiple>-->
+
+                <!--<label for="listing-photos">Add more photos to show off your listing</label>
+                <!--<input type="file" id="listing-photos-additional" name="listing-photos-additional" accept="image/*" multiple>-->
+                </div>
+                <div id="back-and-submit-btn">
+                    <button id="back-to-step-one" class="button" type="button">Back</button>
+                    <button id="submit-listing" class="button" type="submit">Submit Listing</button>
+            
+            </div>
+            
+        </form>
+    </div>
+
+
+
+
+
+    <!--Footer-->
+    <footer>
+        <ul>
+            <li>About</li>
+            <li>Privacy Policy</li>
+        </ul>
+    </footer>
+</body>
