@@ -6,7 +6,7 @@
     
     <title>InTown</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="./resources/style.css">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -39,42 +39,50 @@
         </div>
     </header>
     <!--Body-->
-    <div id="search-top">
-        <h1>Find your thing in town</h1>
+    <div id="search-page-main">
+        <button class="sidebar-tag"><i class="fa-solid fa-sliders"></i></button>
+        <div id="search-side-bar" class="profile-side-bar">
+            <ul id="search-categories">
+                <li class="filter-btn">Type
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="filter-listing-type" value="type-group"> Regular groups or clubs</label>
+                        <label><input type="checkbox" name="filter-listing-type" value="type-event"> Events</label>
+                        <label><input type="checkbox" name="filter-listing-type" value="type-course"> Classes or courses</label>
+                        <label><input type="checkbox" name="filter-listing-type" value="type-volunteering"> Volunteering</label>
+                        <label><input type="checkbox" name="filter-listing-type" value="type-family"> Family & kids activities</label>
+                    </div>
+                </li>
+                <li class="filter-btn">Category
+                    <div class="filter-options">
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-arts"> Arts</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-sports"> Sports</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-education"> Education</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-social"> Social</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-health"> Health & Wellbeing</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-food"> Food & Drink</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-music"> Music</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-outdoor"> Outdoors</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-perform"> Performance</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-family"> Family</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-hobby"> Hobby</label>
+                        <label><input type="checkbox" name="filter-listing-cat" value="cat-other"> Other</label>
+                    </div>
+                </li>
+                <li class="filter-btn">Price</li>
+                <li class="filter-btn">When</li>
+                <li class="filter-btn">Age</li>
+            </ul>
+        </div>
+    
+        <div id="search-centre">
+            <div id="search-top">
+                <h1>Find your thing in town</h1>
+            </div>
+            <div id="search-results">
+                <h3> Search Results</h3>
+            </div>
+        </div>
     </div>
-    <div id="search-side-bar">
-        <ul id="search-categories">
-            <li class="filter-btn">Type
-                <div class="filter-options">
-                    <label><input type="checkbox" name="filter-listing-type" value="type-group"> Regular groups or clubs</label>
-                    <label><input type="checkbox" name="filter-listing-type" value="type-event"> Events</label>
-                    <label><input type="checkbox" name="filter-listing-type" value="type-course"> Classes or courses</label>
-                    <label><input type="checkbox" name="filter-listing-type" value="type-volunteering"> Volunteering opportunity</label>
-                    <label><input type="checkbox" name="filter-listing-type" value="type-family"> Family & kids activities</label>
-                </div>
-            </li>
-            <li class="filter-btn">Category
-                <div class="filter-options">
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-arts"> Arts</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-sports"> Sports</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-education"> Education</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-social"> Social</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-health"> Health & Wellbeing</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-food"> Food & Drink</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-music"> Music</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-outdoor"> Outdoors</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-perform"> Performance</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-family"> Family</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-hobby"> Hobby</label>
-                    <label><input type="checkbox" name="filter-listing-cat" value="cat-other"> Other</label>
-                </div>
-            </li>
-            <li class="filter-btn">Price</li>
-            <li class="filter-btn">When</li>
-            <li class="filter-btn">Age</li>
-        </ul>
-    </div>
-
     <!--Footer-->
     <footer>
         <ul>

@@ -46,6 +46,7 @@ header {
     align-items: center;
     margin-bottom: 0;
     height: 110px;
+    flex-direction: row;
 }
 
 header input {
@@ -266,6 +267,10 @@ input {
     margin: 0;
 }
 
+#newest-mobile {
+    display: none;
+}
+
 #suggestions-box {
     width: 50%;
     border-right: 1px solid rgb(213, 228, 226);
@@ -279,9 +284,18 @@ input {
 
 .main-head {
     text-align: center;
-    color: rgb(21, 32, 57);
 }
+
+
+#feed {
+    display: block;
+}
+
 /* Side bar logged in */
+
+.tab-bar {
+    display: none;
+}
 
 #side-bar {
     border-right: 2px solid rgb(213, 228, 226);
@@ -299,6 +313,10 @@ input {
     margin-left: 10px;
 }
 
+#li-profile, #li-signin {
+    display: none;
+}
+
 #side-bar li, #main-add-listing a, .section a {
     margin: 20px auto;
     color: rgb(255, 255, 255);
@@ -309,8 +327,8 @@ input {
     text-decoration: none;
 }
 
-#side-bar li:hover, #main-add-listing a:hover, .section a:hover {
-    color: rgb(255, 106, 94);
+#side-bar li:hover, #main-add-listing a:hover, .section a:hover, #search-side-bar li:hover {
+    color: rgb(255, 106, 94) !important;
     cursor: pointer;
 }
 
@@ -328,7 +346,7 @@ input {
 
 #main-right {
     text-align: center;
-    color: rgb(21, 32, 57);
+    font-family: "Nunito", sans-serif;
 }
 
 
@@ -337,6 +355,7 @@ input {
 footer {
     display: flex;
     background-color: rgb(230, 232, 235);
+    height: 100px;
 }
 
 footer ul, #foot-add-listing a {
@@ -361,6 +380,7 @@ footer ul, #foot-add-listing a {
 .event-cards {
     margin: 7px 10px;
     overflow: hidden;
+    max-width: 600px;
 }
 
 .card-even {
@@ -524,7 +544,7 @@ footer ul, #foot-add-listing a {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 500px;
+    max-width: 600px;
     margin: 0;
     background-color: rgb(241, 245, 249);
     border: 1px solid rgb(230, 232, 235);
@@ -771,10 +791,9 @@ button {
     margin-left: 25px;
 }
 
-#listing-type {
+#listing-type-head {
     display: flex;
     flex-direction: column;
-    margin-left: 25px;
     width: 40%;
     padding-bottom: 10px;
 }
@@ -863,7 +882,7 @@ input[type="radio"] {
 }
 
 #profile-top-centre {
-    width: 65%;
+    width: 80%;
 }
 
 #profile-name {
@@ -873,14 +892,33 @@ input[type="radio"] {
     font-size: 3.5rem;
 }
 
-#profile-body {
+#profile-container {
     display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+#profile-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-width: 0;
+}
+
+.sidebar-tag {
+    display: none;
 }
 
 .profile-side-bar {
     border-right: 1px solid rgb(213, 228, 226);
     width: 20%;
+    flex-shrink: 0;
     background-color: rgb(21, 32, 57);
+    position: sticky;
+    bottom: 100px;
+    top: 20px;
+    align-self: flex-start;
 }
 
 .profile-side-bar h2 {
@@ -940,9 +978,11 @@ input[type="radio"] {
 .profile-centre {
     display: none;
     flex-direction: column;
-    width: 65%;
+    width: 100%;
+    height: 100%;
     background-color: white;
 }
+
 
 .profile-centre.is-visible {
     display: block;
@@ -965,20 +1005,102 @@ input[type="radio"] {
 
 .interest-box {
     display: flex;
+    color: rgb(21, 32, 57);
     flex-direction: row;
     margin: 18px 60px;
+    background-color: rgb(241, 245, 249);
+    padding: 20px 30px;
+    align-items: center;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
 }
 
 .interest-headers {
     margin: 0;
-    width: 100%;
+    width: 35%;
     color: rgb(255, 106, 94);
+    margin-top: 0; 
+    flex-shrink: 0; 
+    font-size: 1.3rem;           
+}
+
+.interest-headers i {
+    background-color: rgba(255, 105, 94, 0.173);
+    border-radius: 50%;
+    padding: 15px;
+    margin-right: 10px;
 }
 
 .interest-headers span {
-    font-weight: lighter;
     color: rgb(21, 32, 57);
+    font-weight: 300;
+    
 }
+
+#interest-display {
+    display: flex;
+    flex-wrap: wrap;
+    width: 65%;
+}
+
+.interest-item {
+    padding: 10px;
+    border: 0.5px solid rgb(131, 131, 131);
+    border-radius: 6px;
+    margin-top: 10px;
+    margin-right: 8px;
+    font-family: "Urbanist", sans-serif;
+}
+
+.interest-item i {
+    margin-right: 5px;
+}
+
+#type-display {
+    width: 65%;
+    font-family: "Urbanist", sans-serif;
+}
+
+.type-item {
+    margin-bottom: 8px;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+#hopes-container {
+    display: flex; 
+    flex-direction: row;       
+    align-items: flex-start;
+}
+
+#hope-display {
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px; 
+}
+
+.hope-item {
+    display: flex; 
+    align-items: center;
+    margin-bottom: 12px;
+    width: 100%;
+}
+
+.custom-tick {
+    color: rgb(255, 106, 94);
+    margin-right: 8px;
+    flex-shrink: 0; 
+}
+
+.hope-text {
+    display: block;
+    font-family: "Urbanist", sans-serif;
+    width: 100%;
+    padding-bottom: 8px;
+    border-bottom: 0.5px solid rgb(131, 131, 131);
+}
+
+
 
 
 /* Sign In Page */
@@ -1037,7 +1159,7 @@ input[type="radio"] {
 }
 
 #message-box {
-    width: 15%;
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1057,7 +1179,7 @@ input[type="radio"] {
 #listing-head-centre {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 55%;
 }
 
 #listing-profile-name {
@@ -1082,8 +1204,6 @@ input[type="radio"] {
 }
 
 #listing-side-bar {
-    width: 15%;
-    padding: 20px;
     border-left: 1px solid rgb(213, 228, 226);
     border-right: 1px solid rgb(213, 228, 226);
     border-bottom: 1px solid rgb(213, 228, 226);
@@ -1123,7 +1243,7 @@ input[type="radio"] {
 .listing-main {
     display: flex;
     flex-direction: column;
-    width: 60%;
+    width: 55%;
     background-color: white;
 }
 
@@ -1574,6 +1694,11 @@ input[type=number] {
 
 /* Search page */
 
+#search-page-main {
+    display: flex;
+    flex-direction: row;
+}
+
 #search-top h1 {
     font-size: 3.2rem;
     text-align: center;
@@ -1581,19 +1706,17 @@ input[type=number] {
 
 #search-side-bar {
     background-color: rgb(255, 255, 255);
-    width: 20%;
     border-right: 1px solid rgb(21, 32, 57);
 }
 
 #search-categories {
     width: 100%;
     padding: 30px 0;
-    
 }
 
 #search-categories li {
     list-style: none;
-    font-size: 1.4rem;
+    font-size: 1.6rem;
     margin: 25px auto;
     width: 100%;
     text-align: center;
@@ -1611,15 +1734,29 @@ input[type=number] {
     display: flex;
 }
 
+.filter-btn {
+    color: rgb(21, 32, 57) !important;
+}
+
 .filter-btn:hover {
     color: rgb(255, 106, 94);
     cursor: pointer;
 }
 
 .filter-options label {
-    font-size: 1rem;
+    font-size: 0.9rem;
     text-align: left;
 }
+
+.filter-options input {
+    margin-left: 35px;
+}
+
+#search-centre {
+    padding: 40px;
+    width: 80%;
+}
+
 
 /* Create Profile Page */
 
@@ -1815,6 +1952,7 @@ input[type=number] {
 
 #save-changes {
     color: white;
+    margin-top: 40px;
 }
 
 #right-form h3, #left-form h3 {
@@ -1849,7 +1987,7 @@ input[type=number] {
     font-size: 0.8rem;
     font-weight: 300;
     font-family: "Urbanist", sans-serif;
-    margin: 2px;
+    margin: 5px;
 }
 
 .remove-pill {
@@ -1876,6 +2014,161 @@ input[type=number] {
 }
 
 
+/* Media */
+
+@media (max-width: 767px) {
+
+    /* To hide either log out */
+    .logout {
+        display: none !important;
+    }
+
+    #main-logout.logout {
+        display: none !important;
+    } 
+
+    /*  To hide either log in 
+    .login {
+        display: none !important;
+    }
+
+
+    #main-body-login.login {
+        display: none !important;
+    } */
+
+    /* Home Page */
+
+    header input {
+        font-size: 0.9rem;
+        padding: 6px 25px;
+    }
+
+    #sign-profile h2 {
+        display: none;
+    }
+
+    #side-bar {
+        width: 300px;
+    }
+
+    #li-profile, #li-signin {
+        display: block;
+    }
+
+    .tab-bar {
+        display: flex;
+        width: 100%;
+        border-bottom: 1px solid rgb(131, 131, 131);
+    }
+
+    .tab {
+        flex: 1;
+        padding: 15px 0;
+        background-color: white;
+        border: none;
+        cursor: pointer;
+        border-right: 0.5px solid rgba(131, 131, 131, 0.428);
+    }
+
+    .tab:first-child {
+        border-left: 0.5px solid rgba(131, 131, 131, 0.428);
+    }
+
+    .tab.active {
+        border-bottom: 3px solid rgb(240, 90, 80);
+    }
+
+    #main-login, #suggestions-box, #feed, #newest {
+        width: 100%;
+    }
+
+    #suggestions-box, #feed, #newest {
+        display: none;
+    }
+
+    #newest-mobile {
+        width: 100%;
+    }
+
+    #feed {
+        border: none;
+    }
+
+    .event-cards {
+        margin: 5px auto;
+    }
+
+    #main-right {
+        font-size: 2rem;
+    }
+
+    /* Footer */
+
+    footer {
+        display: none;
+    }
+
+    /* Profile Page */
+
+    .sidebar-tag {
+        display: block;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        padding: 40px 0;
+        z-index: 1001;
+        width: 80px;
+        color: white;
+        background-color: rgb(240, 90, 80);
+        border: 0.5px solid rgb(21, 32, 57);
+    }
+
+    #logo-town {
+        margin-left: 80px;
+    }
+
+    .profile-side-bar {
+        position: fixed;
+        left: -400px;
+        top: 0;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        width: 50%;
+    }
+
+    .profile-side-bar.is-open {
+        left: 0;
+    }
+
+    #profile-body {
+        margin-left: 0;
+    }
+
+    .profile-centre {
+        min-height: 100vh;
+    }
+
+    /* Search Page */
+
+    .profile-side-bar.is-open {
+        width: 350px;
+        overflow: scroll;
+    }
+
+    .filter-options input {
+        margin-left: 100px;
+    }
+
+    
+}
+
+
+
+/* Navy - rgb(21, 32, 57)
+Orange/Salmon - rgb(255,106,94)
+Light Grey - rgb(230, 232, 235) */
 
 /* Header Background
 

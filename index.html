@@ -6,7 +6,7 @@
     
     <title>InTown</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="./resources/style.css">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
@@ -17,6 +17,7 @@
 <body>
     <!--Header-->
     <header>
+        <button class="sidebar-tag"><i class="fa-solid fa-bars"></i></button>
         <div id="logo-town">
             <div id="just-logo">
                 <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
@@ -87,10 +88,18 @@
             </div>
         </div>
     </div>
+    <nav class="tab-bar">
+        <button class="tab">Suggested</button>
+        <button class="tab active">Your InTown</button>
+        <button class="tab">New</button>
+    </nav>
     <div id="main-body-login" class="login">
         <!--Side Bar-->
-        <div id="side-bar">
+        <div id="side-bar" class="profile-side-bar">
             <ul id="nav">
+                <li class="section"><a href="index.html"><i class="fa-regular fa-house fa-lg"></i></a></li>
+                <li class="section login" id="li-profile"><a href="listing.html">Profile</a></li>
+                <li class="section logout" id="li-signin"><a href="profile.html">Sign In</a></li>
                 <li class="section"><a id="main-explore" href="./search.html">Explore</a></li>
                 <li class="section" id="main-this-week">In Town This Week</li>
                 <li class="section" id="main-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
@@ -106,6 +115,9 @@
             <div id="feed">
                 <h1 class="main-head">What's On In Your Town</h1>
 
+            </div>
+            <div id="newest-mobile">
+                <h2 id="main-right">New on InTown</h2>
             </div>
         </div>
         <div id="newest">

@@ -54,45 +54,44 @@ const profileForm = document.getElementById('create-profile-form');
 const profileFormElements = profileForm ? profileForm.elements : [];
 const listingFormElements = listingForm ? listingForm.elements : [];
 
-// Global Mappings
 const profileMappings = {
     types: { 
-        'type-regular': { full: 'Regular groups & clubs', short: 'Groups' }, 
-        'Events': { full: 'Events', short: 'Events' }, 
-        'Classes and Courses': { full: 'Classes & courses', short: 'Classes' }, 
-        'Volunteering': { full: 'Volunteering opportunites', short: 'Volunteer' }, 
-        'Family and Kids': { full: 'Family & kids activities', short: 'Family' }, 
-        'Explore All Options': { full: "I'm open to all options", short: 'All' } 
+        'type-regular': { full: 'Regular groups & clubs', short: 'Groups', icon: 'fas fa-users' }, 
+        'Events': { full: 'Events', short: 'Events', icon: 'fas fa-calendar' }, 
+        'Classes and Courses': { full: 'Classes & courses', short: 'Classes', icon: 'fas fa-chalkboard-teacher' }, 
+        'Volunteering': { full: 'Volunteering opportunites', short: 'Volunteer', icon: 'fas fa-hand-holding-heart' }, 
+        'Family and Kids': { full: 'Family & kids activities', short: 'Family', icon: 'fas fa-child' }, 
+        'Explore All Options': { full: "I'm open to all options", short: 'All', icon: 'fas fa-globe' } 
     },
     interests: { 
-        'cat-arts': { full: 'Arts', short: 'Arts' }, 
-        'cat-sports': { full: 'Sports', short: 'Sports' }, 
-        'cat-education': { full: 'Education', short: 'Education' }, 
-        'cat-social': { full: 'Social', short: 'Social' }, 
-        'cat-health': { full: 'Health & Wellbeing', short: 'Health' }, 
-        'cat-food': { full: 'Food & Drink', short: 'Food' }, 
-        'cat-music': { full: 'Music', short: 'Music' }, 
-        'cat-outdoor': { full: 'Outdoors', short: 'Outdoors' }, 
-        'cat-perform': { full: 'Performance', short: 'Performance' }, 
-        'cat-family': { full: 'Family', short: 'Family' }, 
-        'cat-hobby': { full: 'Hobby', short: 'Hobby' } 
+        'cat-arts': { full: 'Arts', short: 'Arts', icon: 'fas fa-palette' }, 
+        'cat-sports': { full: 'Sports', short: 'Sports', icon: 'fas fa-running' }, 
+        'cat-education': { full: 'Education', short: 'Education', icon: 'fas fa-book' }, 
+        'cat-social': { full: 'Social', short: 'Social', icon: 'fas fa-comments' }, 
+        'cat-health': { full: 'Health & Wellbeing', short: 'Health', icon: 'fas fa-heartbeat' }, 
+        'cat-food': { full: 'Food & Drink', short: 'Food', icon: 'fas fa-utensils' }, 
+        'cat-music': { full: 'Music', short: 'Music', icon: 'fas fa-music' }, 
+        'cat-outdoor': { full: 'Outdoors', short: 'Outdoors', icon: 'fas fa-tree' }, 
+        'cat-perform': { full: 'Performance', short: 'Performance', icon: 'fas fa-theater-masks' }, 
+        'cat-family': { full: 'Family', short: 'Family', icon: 'fas fa-users' }, 
+        'cat-hobby': { full: 'Hobby', short: 'Hobby', icon: 'fas fa-puzzle-piece' } 
     },
     hopes: {
-        'hope-friends': { full: 'Make new friends', short: 'New Friends' },
-        'hope-hobbies': { full: 'Try new hobbies', short: 'New Hobbies' },
-        'hope-health': { full: 'Improve health', short: 'For Health' },
-        'hope-get-out': { full: 'Get out more', short: 'Get Out' },
-        'hope-learn': { full: 'Learn something new', short: 'Learn' },
-        'hope-community': { full: 'Get involved in my community', short: 'Community' },
-        'hope-fun': { full: 'Just have fun and try new experiences', short: 'Fun' }
+        'hope-friends': { full: 'Make new friends', short: 'New Friends', icon: 'fas fa-user-friends' },
+        'hope-hobbies': { full: 'Try new hobbies', short: 'New Hobbies', icon: 'fas fa-paint-brush' },
+        'hope-health': { full: 'Improve health', short: 'For Health', icon: 'fas fa-dumbbell' },
+        'hope-get-out': { full: 'Get out more', short: 'Get Out', icon: 'fas fa-door-open' },
+        'hope-learn': { full: 'Learn something new', short: 'Learn', icon: 'fas fa-graduation-cap' },
+        'hope-community': { full: 'Get involved in my community', short: 'Community', icon: 'fas fa-hands-helping' },
+        'hope-fun': { full: 'Just have fun and try new experiences', short: 'Fun', icon: 'fas fa-smile' }
     },
     ages: { 
-        'age-all': { full: 'All Ages', short: 'All' }, 
-        'age-child': { full: 'Children', short: 'Child' }, 
-        'age-teen': { full: 'Teens', short: 'Teens' }, 
-        'age-adult': { full: 'Adults', short: 'Adults' }, 
-        'age-senior': { full: 'Seniors', short: 'Seniors' }, 
-        'age-family': { full: 'Family', short: 'Family' } 
+        'age-all': { full: 'All Ages', short: 'All', icon: 'fas fa-users' }, 
+        'age-child': { full: 'Children', short: 'Child', icon: 'fas fa-baby' }, 
+        'age-teen': { full: 'Teens', short: 'Teens', icon: 'fas fa-user' }, 
+        'age-adult': { full: 'Adults', short: 'Adults', icon: 'fas fa-user-tie' }, 
+        'age-senior': { full: 'Seniors', short: 'Seniors', icon: 'fas fa-walking' }, 
+        'age-family': { full: 'Family', short: 'Family', icon: 'fas fa-home' } 
     }
 };
 
@@ -228,7 +227,6 @@ if(aboutSection !== null) {
         logoutSection.classList.add('is-visible');
         logoutBtn.classList.add('is-active');
     });
-
 }
 
 function clearAllDateContainers() {
@@ -610,46 +608,137 @@ if (document.getElementById('sign-up-btn')) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    const listingAboutBtn = document.getElementById('listing-about-btn');
-    const membersBtn = document.getElementById('members-btn');
-    const listingPhotoBtn = document.getElementById('listing-photos-btn');
-    const listingContactBtn = document.getElementById('listing-contact-btn');
-    const upcomingBtn = document.getElementById('upcoming-date-btn');
-    const listingFollowerBtn = document.getElementById('listing-follower-btn');
-    const listingAboutSection = document.getElementById('listing-about-sect');
-    const listingMembers = document.getElementById('listing-members');
-    const listingPhotos = document.getElementById('listing-photos');
-    const listingContacts = document.getElementById('listing-contacts');
-    const listingUpcDate = document.getElementById('listing-upcoming-dates');
-    const listingFollowers = document.getElementById('listing-followers');
+    // 1. Initial Profile Setup
+    const userNameHeading = document.getElementById('users-name');
+    const savedName = localStorage.getItem('user-full-name');
+    if (userNameHeading && savedName) userNameHeading.textContent = ` ${savedName.split(' ')[0]}`;
 
-    if(document.getElementById('listing-about-sect')) {
-        const btns = [listingAboutBtn, membersBtn, listingPhotoBtn, listingContactBtn, upcomingBtn, listingFollowerBtn];
-        const sects = [listingAboutSection, listingMembers, listingPhotos, listingContacts, listingUpcDate, listingFollowers];
+    const profileData = JSON.parse(localStorage.getItem('user-profile'));
+
+    if (profileData) {
+        if (document.getElementById('profile-name')) document.getElementById('profile-name').textContent = profileData.user;
+        if (document.getElementById('bio-display')) document.getElementById('bio-display').textContent = profileData.bio || '';
         
-        function hideAllListingSections() {
-            sects.forEach(s => s && s.classList.remove('is-visible'));
+        const interestDisplay = document.getElementById('interest-display');
+        if (interestDisplay && profileData.interests) {
+            interestDisplay.innerHTML = profileData.interests.map(id => {
+                const data = profileMappings.interests[id];
+                return `<span class="interest-item"><i class="${data?.icon || 'fas fa-star'}"></i> ${data?.full || id}</span>`;
+            }).join(' ');
         }
 
-        function deactivateAllListingButtons() {
-            btns.forEach(button => {
-            button.classList.remove('is-active');
-            });
+        if (document.getElementById('hope-display') && profileData.hopes) {
+            document.getElementById('hope-display').innerHTML = profileData.hopes.map(id => 
+                `<span class="hope-item hope-${id}">
+                    <i class="fa-regular fa-circle-check custom-tick"></i> 
+                    <span class="hope-text">${profileMappings.hopes[id]?.full || id}</span>
+                </span>`
+                ).join('');
         }
+        if (document.getElementById('type-display') && profileData.types) {
+            document.getElementById('type-display').innerHTML = profileData.types.map(id => 
+                `<span class="type-item type-${id}">
+                    ${profileMappings.types[id]?.full || id}
+                </span>`
+            ).join('');
+        }
+        if (document.getElementById('age-display') && profileData.ages) document.getElementById('age-display').textContent = profileData.ages.map(id => profileMappings.ages[id]?.full || id).join(', ');
+        
+        if (document.getElementById('profile-pic')) document.getElementById('profile-pic').src = profileData.profPhoto || './resources/images/inTown-logo.png';
+        if (document.getElementById('email')) document.getElementById('email').textContent = profileData.email;
+    }
+
+    // 2. Section Toggles
+    toggleSection('types-container', 'types-container', profileData?.types);
+    toggleSection('interests-container', 'interests-container', profileData?.interests);
+    toggleSection('hopes-container', 'hopes-container', profileData?.hopes);
+    toggleSection('future-events-container', 'future-events-container', profileData?.futureEvents);
+    toggleSection('past-events-container', 'past-events-container', profileData?.pastEvents);
+    toggleSection('group-name-container', 'group-name-container', profileData?.groups);
+
+    // 3. Edit Profile Functionality (The tag selectors and remove buttons)
+    loadProfileData();
+    renderEditPills();
+
+    document.querySelectorAll('.tag-selector').forEach(select => {
+        select.addEventListener('change', (e) => {
+            const value = e.target.value;
+            if (!value) return;
+
+            let data = JSON.parse(localStorage.getItem('user-profile')) || {};
+            const map = { 'type-select': 'types', 'interest-select': 'interests', 'hope-select': 'hopes', 'age-select': 'ages' };
+            const key = map[e.target.id];
+            
+            if (!data[key]) data[key] = [];
+            if (!data[key].includes(value)) {
+                data[key].push(value);
+                localStorage.setItem('user-profile', JSON.stringify(data));
+            }
+            renderEditPills();
+            e.target.value = "";
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (e.target.classList.contains('remove-pill')) {
+            const category = e.target.getAttribute('data-category');
+            const value = e.target.getAttribute('data-value');
+            let data = JSON.parse(localStorage.getItem('user-profile')) || {};
+            if (data[category]) {
+                data[category] = data[category].filter(item => item !== value);
+                localStorage.setItem('user-profile', JSON.stringify(data));
+                renderEditPills();
+            }
+        }
+    });
+
+    // 4. Listing Tabs Initialization
+    const listingAboutBtn = document.getElementById('listing-about-btn');
+    const listingAboutSection = document.getElementById('listing-about-sect');
+    
+    if(listingAboutSection) {
+        const btns = [listingAboutBtn, document.getElementById('members-btn'), document.getElementById('listing-photos-btn'), document.getElementById('listing-contact-btn'), document.getElementById('upcoming-date-btn'), document.getElementById('listing-follower-btn')];
+        const sects = [listingAboutSection, document.getElementById('listing-members'), document.getElementById('listing-photos'), document.getElementById('listing-contacts'), document.getElementById('listing-upcoming-dates'), document.getElementById('listing-followers')];
         
         btns.forEach((btn, i) => {
             if(btn) btn.addEventListener('click', (e) => {
                 e.preventDefault();
-                hideAllListingSections();
-                deactivateAllListingButtons();
+                sects.forEach(s => s && s.classList.remove('is-visible'));
+                btns.forEach(b => b && b.classList.remove('is-active'));
                 if(sects[i]) sects[i].classList.add('is-visible');
                 btn.classList.add('is-active');
             });
-            
         });
         if(listingAboutBtn) listingAboutBtn.click();
-    
     }
+
+    const tabs = document.querySelectorAll('.tab');
+    const sections = {
+        'Suggested': document.getElementById('suggestions-box'),
+        'Your InTown': document.getElementById('feed'),
+        'New': document.getElementById('newest-mobile')
+    };
+
+    const activeTab = document.querySelector('.tab.active').textContent;
+    sections[activeTab].style.display = 'block';
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            
+            tabs.forEach(t => t.classList.remove('active'));
+            tab.classList.add('active');
+
+            Object.values(sections).forEach(sec => {
+                if (sec) sec.style.display = 'none';
+            });
+
+            const targetSection = sections[tab.textContent];
+            if (targetSection) {
+                targetSection.style.display = 'block';
+            }
+        });
+    });
+    
 });
 
 const priceInput = document.getElementById('price-amount');
@@ -667,37 +756,6 @@ document.querySelectorAll('.filter-btn').forEach(item => {
     });
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    const userNameHeading = document.getElementById('users-name');
-    const savedName = localStorage.getItem('user-full-name');
-    if (userNameHeading && savedName) userNameHeading.textContent = ` ${savedName.split(' ')[0]}`;
-
-    const profileData = JSON.parse(localStorage.getItem('user-profile'));
-    const profileTypeMapping = { 'type-regular': 'Regular groups & clubs', 'Events': 'Events', 'Classes and Courses': 'Classes & courses', 'Volunteering': 'Volunteering opportunites', 'Family and Kids': 'Family & kids activities', 'Explore All Options': "I'm open to all options" };
-    const profileInterestMapping = { 'cat-arts': 'Arts', 'cat-sports': 'Sports', 'cat-education': 'Education', 'cat-social': 'Social', 'cat-health': 'Health & Wellbeing', 'cat-food': 'Food & Drink', 'cat-music': 'Music', 'cat-outdoor': 'Outdoors', 'cat-perform': 'Performance', 'cat-family': 'Family', 'cat-hobby': 'Hobby' };
-    const profileHopesMapping = { 'hope-friends': 'Make new friends', 'hope-hobbies': 'Try new hobbies', 'hope-health': 'Improve health', 'hope-get-out': 'Get out more', 'hope-learn': 'Learn something new', 'hope-community': 'Get involved in my community', 'hope-fun': 'Just have fun and try new experiences' };
-    const profileAgesMapping = { 'age-all': 'All Ages', 'age-child': 'Children', 'age-teen': 'Teens', 'age-adult': 'Adults', 'age-senior': 'Seniors', 'age-family': 'Family' };
-
-    if (profileData) {
-        if (document.getElementById('profile-name')) document.getElementById('profile-name').textContent = profileData.user;
-        if (document.getElementById('bio-display')) document.getElementById('bio-display').textContent = profileData.bio || '';
-        if (document.getElementById('type-display') && profileData.types) document.getElementById('type-display').textContent = profileData.types.map(id => profileTypeMapping[id] || id).join(', ');
-        if (document.getElementById('interest-display') && profileData.interests) document.getElementById('interest-display').textContent = profileData.interests.map(id => profileInterestMapping[id] || id).join(', ');
-        if (document.getElementById('hope-display') && profileData.hopes) document.getElementById('hope-display').textContent = profileData.hopes.map(id => profileHopesMapping[id] || id).join(', ');
-        if (document.getElementById('age-display') && profileData.ages) document.getElementById('age-display').textContent = profileData.ages.map(id => profileAgesMapping[id] || id).join(', ');
-        if (document.getElementById('profile-pic')) document.getElementById('profile-pic').src = profileData.profPhoto || './resources/images/inTown-logo.png';
-        if (document.getElementById('email')) document.getElementById('email').textContent = profileData.email;
-        
-    }
-
-    toggleSection('types-container', 'types-container', profileData.types);
-    toggleSection('interests-container', 'interests-container', profileData.interests);
-    toggleSection('hopes-container', 'hopes-container', profileData.hopes);
-    toggleSection('future-events-container', 'future-events-container', profileData.futureEvents);
-    toggleSection('past-events-container', 'past-events-container', profileData.pastEvents);
-    toggleSection('group-name-container', 'group-name-container', profileData.groups);
-
-});
 
 if (profileForm) {
     profileForm.addEventListener('submit', function(event) {
@@ -713,14 +771,13 @@ if (profileSubmitBtn) {
         if (profileForm) profileForm.requestSubmit();
     });
 }
-if ('profile') {
-    for (const input of profileFormElements) {
-        if (input.name) {
-            const savedValue = localStorage.getItem(input.name);
-            if (savedValue) {
-                if (input.type === 'checkbox') input.checked = (savedValue === 'true');
-                else input.value = savedValue;
-            }
+
+for (const input of profileFormElements) {
+    if (input.name) {
+        const savedValue = localStorage.getItem(input.name);
+        if (savedValue) {
+            if (input.type === 'checkbox') input.checked = (savedValue === 'true');
+            else input.value = savedValue;
         }
     }
 }
@@ -749,14 +806,10 @@ function saveNewProfile() {
 function toggleSection(headerId, contentId, data) {
     const header = document.getElementById(headerId);
     const container = document.getElementById(contentId);
-    
     const hasData = (Array.isArray(data) ? data.length > 0 : (data && data.trim() !== ""));
-    
-    if (header) header.style.display = hasData ? 'block' : 'none';
-    if (container) container.style.display = hasData ? 'block' : 'none';
+    if (header) header.style.display = hasData ? 'flex' : 'none';
+    if (container) container.style.display = hasData ? 'flex' : 'none';
 }
-
-// Edit Profile Section //
 
 function loadProfileData() {
     const profileData = JSON.parse(localStorage.getItem('user-profile'));
@@ -772,51 +825,6 @@ function loadProfileData() {
     const photoImg = document.getElementById('profile-pic-edit');
     if (photoImg) photoImg.src = profileData.profPhoto || './resources/images/inTown-logo.png';
 }
-
-document.addEventListener('DOMContentLoaded', () => {
-    loadProfileData();
-    renderEditPills();
-
-    document.querySelectorAll('.tag-selector').forEach(select => {
-        select.addEventListener('change', (e) => {
-            const value = e.target.value;
-            if (!value) return;
-
-            let profileData = JSON.parse(localStorage.getItem('user-profile')) || {};
-            const map = {
-                'type-select': 'types',
-                'interest-select': 'interests',
-                'hope-select': 'hopes',
-                'age-select': 'ages'
-            };
-
-            const key = map[e.target.id];
-            if (!profileData[key]) profileData[key] = [];
-            if (!profileData[key].includes(value)) {
-                profileData[key].push(value);
-                localStorage.setItem('user-profile', JSON.stringify(profileData));
-            }
-            
-            renderEditPills();
-            e.target.value = "";
-        });
-    });
-
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-pill')) {
-            const category = e.target.getAttribute('data-category');
-            const valueToRemove = e.target.getAttribute('data-value');
-            
-            let profileData = JSON.parse(localStorage.getItem('user-profile')) || {};
-            
-            if (profileData[category]) {
-                profileData[category] = profileData[category].filter(item => item !== valueToRemove);
-                localStorage.setItem('user-profile', JSON.stringify(profileData));
-                renderEditPills();
-            }
-        }
-    });
-});
 
 function renderEditPills() {
     const profileData = JSON.parse(localStorage.getItem('user-profile'));
@@ -867,15 +875,21 @@ function saveEditProfile() {
     }
     setTimeout(() => {
         window.location.reload();
-    }, 3000);
+    }, 1500);
 }
 
-function showSaveFeedback() {
-    const msg = document.getElementById('save-success-msg');
-    msg.style.display = 'block';
+const sidebar = document.querySelector('.profile-side-bar');
+const toggleBtn = document.querySelector('.sidebar-tag');
 
-    // Hide it again after 3 seconds
-    setTimeout(() => {
-        msg.style.display = 'none';
-    }, 3000);
+if (toggleBtn && sidebar) {
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('is-open');
+    });
 }
+
+sidebar.addEventListener('click', (event) => {
+    // Check if the clicked element is an <li>
+    if (event.target.tagName === 'LI') {
+        sidebar.classList.remove('is-open');
+    }
+});
