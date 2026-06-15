@@ -16,16 +16,16 @@ body {
     background: rgb(248, 244, 236);
 }
 
-/* To hide either log out 
+/* To hide either log out */
 .logout {
     display: none;
 }
 
 #main-logout.logout {
     display: none;
-} */
+} 
 
-/*  To hide either log in */
+/*  To hide either log in 
 .login {
     display: none;
 }
@@ -33,7 +33,7 @@ body {
 
 #main-body-login.login {
     display: none;
-} 
+} */
 
 
 /* Header */
