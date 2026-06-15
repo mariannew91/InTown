@@ -45,6 +45,7 @@ header {
     border: 2px solid rgb(230, 232, 235);
     align-items: center;
     margin-bottom: 0;
+    height: 110px;
 }
 
 header input {
@@ -104,6 +105,17 @@ input {
     object-fit: cover;
 }
 
+#web-name {
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    margin-top: 10px;
+}
+
+#web-name h1 {
+    margin-bottom: 0;
+}
+
 #title-in {
     font-size: 2.2rem;
     font-weight: 200;
@@ -112,10 +124,16 @@ input {
     text-decoration: none;
 }
 
-
 #town {
     color: rgb(22, 30, 30);
     font-weight: 500; 
+}
+
+#get-involved {
+    margin: 0;  
+    font-size: 0.6rem;
+    margin-top: -10px;
+    margin-left: 1px;
 }
 
 #location {
@@ -160,6 +178,7 @@ input {
     width: fit-content;
     margin: auto;
     margin-bottom: 20px;
+    cursor: pointer;
 }
 
 #sign-up-button {
@@ -813,15 +832,10 @@ input[type="radio"] {
     align-items: center;
 }
 
-#profile h1 {
-    text-align: center;
-    width: 60%;
-}
-
 .profile-head {
     display: flex;
     background-color: rgb(255, 255, 255);
-    width: 25%;
+    width: 20%;
     height: 100px;
     padding: 5px;
 }
@@ -829,27 +843,34 @@ input[type="radio"] {
 .profile-pic {
     width: 90px;
     height: 90px;
-    margin: 0 20px;
+    margin: 0 auto;
     object-fit: cover;
     border: 1px solid black;
     border-radius: 20px;
 }
 
-.name-and-town {
+#hometownn {
     display: flex;
     flex-direction: column;
 }
 
+#hometown h4 {
+    margin: 0;
+}
+
+#hometown p {
+    margin: 0;
+}
+
+#profile-top-centre {
+    width: 65%;
+}
+
 #profile-name {
-    margin-bottom: 5px;
-}
-
-.name-and-town h4 {
-    margin: 0;
-}
-
-.name-and-town p {
-    margin: 0;
+    margin: 2px 0;
+    width: 100%;
+    text-align: center;
+    font-size: 3.5rem;
 }
 
 #profile-body {
@@ -858,7 +879,7 @@ input[type="radio"] {
 
 .profile-side-bar {
     border-right: 1px solid rgb(213, 228, 226);
-    width: 25%;
+    width: 20%;
     background-color: rgb(21, 32, 57);
 }
 
@@ -868,7 +889,7 @@ input[type="radio"] {
 }
 
 .profile-side-bar ul {
-    margin-left: 20px auto;
+    margin: 20px auto;
     padding: 0;
     display: flex;
     flex-direction: column;
@@ -893,6 +914,14 @@ input[type="radio"] {
     font-weight: 600;
 }
 
+#bottom-side-bar {
+    width: 80%;
+}
+
+#bottom-side-bar {
+    border-top: 1px solid rgba(255, 255, 255, 0.471);
+}
+
 #profile-side-right {
     border-left: 1px solid rgb(213, 228, 226);
     background-color: rgb(241, 245, 249);
@@ -911,8 +940,12 @@ input[type="radio"] {
 .profile-centre {
     display: none;
     flex-direction: column;
-    width: 60%;
+    width: 65%;
     background-color: white;
+}
+
+.profile-centre.is-visible {
+    display: block;
 }
 
 .is-visible {
@@ -927,6 +960,23 @@ input[type="radio"] {
     width: 80%;
     margin: 0 auto;
     font-size: 1.1rem;
+    color: rgb(21, 32, 57);
+}
+
+.interest-box {
+    display: flex;
+    flex-direction: row;
+    margin: 18px 60px;
+}
+
+.interest-headers {
+    margin: 0;
+    width: 100%;
+    color: rgb(255, 106, 94);
+}
+
+.interest-headers span {
+    font-weight: lighter;
     color: rgb(21, 32, 57);
 }
 
@@ -1028,6 +1078,7 @@ input[type="radio"] {
 #organiser-head-right {
     justify-content: center;
     border: none;
+    width: 25%;
 }
 
 #listing-side-bar {
@@ -1054,6 +1105,15 @@ input[type="radio"] {
 #listing-side-bar li:hover {
     color: rgb(255, 106, 94);
     cursor: pointer;
+}
+
+#listing-side-bar li.is-active {
+    color: rgb(255, 106, 94);
+    font-weight: 600;
+} 
+
+#upcoming-date-btn {
+    margin: 20px auto 30px auto;
 }
 
 #listing-body {
@@ -1578,6 +1638,12 @@ input[type=number] {
     height: 100px;
 }
 
+#users-name {
+    color: rgb(240,90,80);
+    font-size: 3.5rem;
+    font-weight: 500;
+}
+
 #orange-in {
     color: rgb(255, 106, 94);
     font-weight: 400;
@@ -1629,8 +1695,6 @@ input[type=number] {
     margin-left: 35px;
 }
 
-
-
 #profile-pic-upload input {
     border: 1.5px solid rgb(240, 90, 80);
     border-radius: 20px;
@@ -1640,6 +1704,175 @@ input[type=number] {
 
 #create-profile-btn {
     margin-top: 50px;
+}
+
+/* Edit Profile Page */
+
+#keep-update {
+    text-align: center;
+}
+
+#edit-profile-form {
+    border-radius: 10px;
+    background-color: rgb(241, 245, 249);
+    margin: 10px 30px;
+    padding: 10px;
+    box-shadow:
+        3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
+}
+
+#edit-form-details {
+    display: flex;
+    flex-direction: row;
+}
+
+.edit-containers {
+    border: 1px solid rgb(135, 135, 135);
+    border-radius: 6px;
+    background-color: white;
+    width: 95%;
+}
+
+#left-form, #right-form {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#edit-form-details label {
+    margin-bottom: 10px;
+    margin-top: 20px;
+}
+
+#profile-pic-edit {
+    height: 150px;
+    width: 150px;
+    border: 1px solid rgb(240, 90, 80);
+}
+
+#edit-profile-form h3 {
+    padding-left: 10px;
+}
+
+#photo-edit-container {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+#profile-photo-change {
+    margin: 0;
+    padding-left: 5px;
+    font-size: 0.2rem;
+    width: 100%;
+}
+
+#photo-right {
+    margin-left: 15px;
+    margin-top: 30px;
+}
+
+#photo-right label {
+    border: 1.5px solid black;
+    color: white;
+    padding: 10px 15px;
+}
+
+
+#profile-photo-change {
+    display: none;
+}
+
+#users-name-edit {
+    width: 95%;
+    height: 35px;
+    border-radius: 6px;
+    margin-left: 0;
+    border: 1px solid rgb(240, 90, 80);
+}
+
+#email-edit {
+    border-radius: 6px;
+    width: 95%;
+    height: 35px;
+    margin-left: 0;
+    border: 1px solid rgb(240, 90, 80);
+    padding: 8px 15px;
+}
+
+#profile-bio-edit {
+    resize: none;
+    border-radius: 6px;
+    height: 100px;
+    width: 95%;
+    overflow: scroll;
+    padding: 7px 12px;
+    border: 1px solid rgb(240, 90, 80);
+}
+
+#save-changes {
+    color: white;
+}
+
+#right-form h3, #left-form h3 {
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+#left-form label {
+    font-weight: 500;
+}
+
+.tag-selector {
+    border-radius: 6px;
+    margin: 5px auto;
+    width: 100%;
+    border: 1px solid rgb(240, 90, 80);
+}
+
+.pill-wrapper {
+    background-color: white;
+    padding: 8px 15px;
+    border: 1px solid rgb(240, 90, 80);
+    border-radius: 6px;
+}
+
+.pill {
+    padding: 2px 5px;
+    border: 0.5px solid rgb(131, 131, 131);
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.8rem;
+    font-weight: 300;
+    font-family: "Urbanist", sans-serif;
+    margin: 2px;
+}
+
+.remove-pill {
+    margin-left: 8px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    color: #555;
+    font-size: 1rem;
+    width: 20%;
+}
+
+.remove-pill:hover {
+    color: red;
+}
+
+#save-success-msg {
+    text-align: center;
+    color: rgb(240, 90, 80);
+    margin-top: 20px;
+    font-size: 2rem;
+    font-family: "Urbanist", sans-serif;
 }
 
 

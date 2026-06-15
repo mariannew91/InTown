@@ -21,7 +21,10 @@
             <div id="just-logo">
                 <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
             </div>
-            <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
+            <div id="web-name">
+                <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
+                <p id="get-involved">Go on, get involved</p>
+            </div>
             <div id="location">
                 <h1>Barrow</h1>
                 <!--<h1 class="logout">Find your town
@@ -35,16 +38,17 @@
     <div id="profile">
         <div class="profile-top">
             <div class="profile-head">
-                <img class="profile-pic" src="./resources/images/inTown-logo.png"></img>
-                <div class="name-and-town">
-                    <h2 id="profile-name">Marianne Walsh</h2>
+                <img class="profile-pic" id="profile-pic"></img>
+                <div id="hometown">
                     <!-- <h4>Hometown</h4> 
                     <p>Barrow</p> -->
                 </div>
             </div>
-            <h1></h1>
+            <div id="profile-top-centre">
+                <h1 id="profile-name"></h1>
+            </div>
             <div id="profile-side-right">
-                <h3><i class="fa-solid fa-pen-to-square"></i> Edit Profile</h3>
+                
             </div>
         </div>
         <div id="profile-body">
@@ -53,17 +57,22 @@
                     <h2>My <span>In</span>Town</h2>          
                 </div>
                 <ul>
-                    <li class="is-active" id="about-btn">About Me</li>
-                    <li id="friends-btn">My Friends</li>
-                    <li id="interests-btn">My Interests</li>
-                    <li id="groups-btn">My Groups</li>
-                    <li id="events-btn">My Events</li>
-                    <li id="bookmarks-btn">Bookmarks</li>
+                    <li class="is-active" id="about-btn"><i class="fa-regular fa-user"></i> About Me</li>
+                    <li id="friends-btn"><i class="fa-solid fa-user-group"></i> My Friends</li>
+                    <li id="interests-btn"><i class="fa-regular fa-heart"></i> My Interests</li>
+                    <li id="groups-btn"><i class="fa-solid fa-people-group"></i> My Groups</li>
+                    <li id="events-btn"><i class="fa-regular fa-calendar"></i> My Events</li>
+                    <li id="bookmarks-btn"><i class="fa-regular fa-bookmark"></i> Bookmarks</li>
+                </ul>
+                <ul id="bottom-side-bar">
+                    <li id="edit-profile-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</li>
+                    <li id="profile-setting-btn"><i class="fa-solid fa-gear"></i> Account Settings</li>
+                    <li id="log-out-btn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</li>
                 </ul>
             </div>
             <div class="profile-centre is-visible" id="about-me">
                 <h2>About Me</h2>
-                <p></p>
+                <p id="bio-display"></p>
             </div>
             <div class="profile-centre" id="my-friends">
                 <h2>My Friends</h2>
@@ -71,19 +80,140 @@
             </div>
             <div class="profile-centre" id="my-interests">
                 <h2>My Interests</h2>
-                <p>You haven't added any interests yet. Tell us what you like and we'll show you relevant groups and events in your town.</p>
+                <div class="interest-box" id="types-container">
+                    <h3 class="interest-headers">I'm looking for - <span id="type-display"></span></h3>
+                </div>
+                <div class="interest-box" id="interests-container">
+                    <h3 class="interest-headers">My interests are - <span id="interest-display"></span></h3>
+                </div>
+                <div class="interest-box" id="hopes-container">
+                    <h3 class="interest-headers">I joined InTown to - <span id="hope-display"></span></h3>
+                </div>
             </div>
             <div class="profile-centre" id="my-groups">
                 <h2>My Groups</h2>
-                <p>You haven't joined any groups yet. Find some groups or events to meet people in your town!</p>       
+                <p>You haven't joined any groups yet. Find some groups or events to meet people in your town!</p>
+                <div id="group-name-container">
+                    <h3 id="group-name"></h3>
+                    <p id="member-since">Member Since <span class="member-join-date"></span></p>
+                </div>       
             </div>
             <div class="profile-centre" id="my-events">
                 <h2>My Events</h2>
                 <p>You haven't joined any events yet. Find some groups or events to meet people in your town!</p>
+                <div id="event-name">
+                    <div id="future-events-container">
+                        <h2>Events I'm planning on attending</h2>
+                        <h3 id="future-event"></h3>
+                        <p id="event-date"></p> 
+                    </div>
+                    <div id="past-events-container">
+                        <h2>Past events I attended</h2>
+                        <h3 id="past-event"></h3>
+                        <p id="event-date"></p>
+                    </div>      
+                </div>
             </div>
             <div class="profile-centre" id="bookmarks">
                 <h2>Bookmarks</h2>
                 <p>You haven't bookmarked anything yet. Find some groups or events to meet people in your town!</p>
+            </div>
+            <div class="profile-centre" id="edit-profile">
+                <h2>Edit Profile</h2>
+                <p id="keep-update">Keep your profile up to date.</p>
+                <div id="edit-profile-centre">
+                    <form id="edit-profile-form">
+                        <div id="edit-form-details">
+                            <div id="left-form">
+                                <h3>Profile Photo</h3>
+                                <div id="photo-edit-container">
+                                    <div id="photo-left">
+                                        <img class="profile-pic" id="profile-pic-edit"></img>
+                                    </div>
+                                    <div id="photo-right">
+                                        <label for="profile-photo-change" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i> Change Photo</label>
+                                        <input type="file" id="profile-photo-change" name="profile-photo-change">
+                                    </div>
+                                </div>
+                                <label for="users-name-edit">My Name</label>
+                                <input type="text" id="users-name-edit" name="users-name-edit">
+
+                                <label for="profile-bio-edit">About Me</label>
+                                <textarea type="text" id="profile-bio-edit" name="profile-bio-edit"></textarea>
+
+                                <label for="email-edit">Email Address</label>
+                                <input type="email" id="email-edit" name="email-edit">
+                            </div>
+                            <div id="right-form">
+                                <label for="type-select">I'm looking for</label>
+                                <div id="types-pill-container" class="pill-wrapper"></div>
+                                <select id="type-select" class="tag-selector">
+                                    <option value="">Add a type...</option>
+                                    <option value="type-regular">Regular groups & clubs</option>
+                                    <option value="Events">Events</option>
+                                    <option value="Classes and Courses">Classes & courses</option>
+                                    <option value="Volunteering">Volunteering opportunities</option>
+                                    <option value="Family and Kids">Family & kids activities</option>
+                                    <option value="Explore All Options">I'm open to all options</option>
+                                </select>
+
+                                <label for="interest-select">My Interests</label>
+                                <div id="interests-pill-container" class="pill-wrapper"></div>
+                                <select id="interest-select" class="tag-selector">
+                                    <option value="">Add an interest...</option>
+                                    <option value="cat-arts">Arts</option>
+                                    <option value="cat-sports">Sports</option>
+                                    <option value="cat-education">Education</option>
+                                    <option value="cat-social">Social</option>
+                                    <option value="cat-health">Health & Wellbeing</option>
+                                    <option value="cat-food">Food & Drink</option>
+                                    <option value="cat-music">Music</option>
+                                    <option value="cat-outdoor">Outdoors</option>
+                                    <option value="cat-perform">Performance</option>
+                                    <option value="cat-family">Family</option>
+                                    <option value="cat-hobby">Hobby</option>
+                                </select>
+
+                                <label for="hope-select">I joined InTown to</label>
+                                <div id="hopes-pill-container" class="pill-wrapper"></div>
+                                <select id="hope-select" class="tag-selector">
+                                    <option value="">Add a goal...</option>
+                                    <option value="hope-friends">Make new friends</option>
+                                    <option value="hope-hobbies">Try new hobbies</option>
+                                    <option value="hope-health">Improve health</option>
+                                    <option value="hope-get-out">Get out more</option>
+                                    <option value="hope-learn">Learn something new</option>
+                                    <option value="hope-community">Get involved in my community</option>
+                                    <option value="hope-fun">Just have fun and try new experiences</option>
+                                </select>
+
+                                <label for="age-select">The age groups I'm looking for are</label>
+                                <div id="ages-pill-container" class="pill-wrapper"></div>
+                                <select id="age-select" class="tag-selector">
+                                    <option value="">Add an age group...</option>
+                                    <option value="age-all">All ages</option>
+                                    <option value="age-child">Children</option>
+                                    <option value="age-teen">Teens</option>
+                                    <option value="age-adult">Adults</option>
+                                    <option value="age-senior">Seniors</option>
+                                    <option value="age-family">Family</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button id="save-changes" class="button" type="submit">Save Changes</button>
+                        <div id="save-success-msg" style="display:none;">
+                            Profile updated successfully!
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="profile-centre" id="acc-settings">
+                <h2>Account Settings</h2>
+            </div>
+            <div class="profile-centre" id="log-out-profile">
+                <h2>Log out</h2>
+                <p>Are you sure you want to log out?</p>
+                <button class="button" id="logoutbtn"><i class="fa-solid fa-arrow-right-from-bracket"></i> Log Out</button>
             </div>
         </div>
     </div>
