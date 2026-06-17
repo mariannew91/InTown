@@ -33,8 +33,13 @@
                 </div>
             </div>
         </div>
-        <input type="text" placeholder="Have a look around...">
-        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container">
+            <input type="checkbox" id="search-toggle" class="search-checkbox">
+            <input type="text" id="search-input" placeholder="Have a look around...">
+            <label for="search-toggle" class="search-icon">
+                <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </div>
         <div id="sign-profile">
             <h2 class="logout sign-in">Sign In</h2>
             <h2 class="login sign-in">Profile</h2>
@@ -144,14 +149,14 @@
                         <input type="text" id="listing-price-details" name="listing-price-details" placeholder="E.g. Per session, per ticket, per week">
                     </div>
                     <!-- Address -->
-                    <div class="listing-form-group" style="display: flex; flex-direction: column; width: 52%; gap: 10px;">
+                    <div class="listing-form-group" style="display: flex; flex-direction: column; gap: 10px;">
                         <label>Where is it happening?</label>
                         
                         <input type="text" id="listing-address" name="listing-address" placeholder="Address Line 1 (e.g., 14 High Street)" required>
                         
-                        <div style="display: flex; gap: 10px; width: 100%;">
-                            <input type="text" id="listing-city" name="listing-city" placeholder="Town / City" style="flex: 1;" required>
-                            <input type="text" id="listing-postcode" name="listing-postcode" placeholder="Postcode" style="width: 35%;" required>
+                        <div id="listing-address-group" style="display: flex;">
+                            <input type="text" id="listing-city" name="listing-city" placeholder="Town / City" required>
+                            <input type="text" id="listing-postcode" name="listing-postcode" placeholder="Postcode" required>
                         </div>
                     </div>
                     <!-- Category -->
@@ -246,7 +251,7 @@
 
                     <label for="listing-photo-img">Choose a photo for your listing</label>
                     <input type="text" id="listing-photo-img" name="listing-photo-img" placeholder="Paste image link here">
-
+                    
                     <!-- Just commenting out for now -->
                 <!--<label for="listing-photos">Choose a profile photo</label>-->
                 <!--<input type="file" id="listing-photos" name="listing-photos" accept="image/*" multiple>-->

@@ -1478,11 +1478,22 @@ input[type="radio"] {
     font-size: 0.9rem;
 }
 
-#add-listing-form textarea {
+#add-listing-form label, #create-profile-form p {
+    width: 100%;
+    white-space: nowrap;
+}
+
+#add-listing-form input {
+    margin-right: 25px;
+}
+
+#add-listing-form textarea, #profile-bio-box textarea  {
     padding: 7px 12px;
     font-size: 0.9rem;
     margin-left: 25px;
     height: 100px;
+    width: 350px;
+    resize: none;
 }
 
 #add-listing-form select {
@@ -1515,7 +1526,7 @@ input[type="radio"] {
 }
 
 .listing-form-group {
-    margin: 15px 0;
+    margin: 15px 25px 15px 0;
 }
 
 #listing-description-group {
@@ -1539,6 +1550,10 @@ input[type="radio"] {
 #volunteer-date input,
 #ongoing-multi-date input, #group-name input {
     margin-left: 25px;
+}
+
+#group-name {
+    width: 400px;
 }
 
 #one-event-date input[type="datetime-local"] {
@@ -1568,6 +1583,7 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
 }
+
 
 
 .price-container {
@@ -1620,6 +1636,24 @@ input[type=number] {
 
 #listing-address-container input {
     margin-left: 25px;
+}
+
+#listing-address {
+    width: 450px;
+}
+
+#listing-address-group {
+    width: 450px;
+}
+
+#listing-city {
+    width: 300px;
+}
+
+#listing-postcode {
+    width: 120px;
+    margin-right: 0 !important;
+    padding: 8px 20px;
 }
 
 
@@ -1885,6 +1919,11 @@ input[type=number] {
     margin-top: 26px;
 }
 
+
+#profile-bio-box label {
+    width: 400px;
+}
+
 #profile-bio-box textarea {
     height: 100px;
     margin-left: 25px;
@@ -2105,6 +2144,10 @@ input[type=number] {
 
     #listing-photo {
         width: 50%;
+    }
+
+    #listing-postcode {
+        margin-left: 15px;
     }
 }
 
@@ -2445,9 +2488,31 @@ input[type=number] {
         font-size: 1rem;
     }
 
+    #form-step-one, #form-step-two, #create-profile-form {
+        padding: 0 40px;
+    }
+
+    .type-group input {
+        margin-right: 10px !important;
+    }
+
+    #price-amount {
+        height: 30px;
+    }
     
 }
 
+
+@media (max-width: 675px) {
+
+    #listing-address {
+        width: 400px;
+    }
+
+    #listing-address-group {
+        width: 400px;
+    }
+}
 @media (max-width: 650px) {
 
     #search-input {
@@ -2484,13 +2549,64 @@ input[type=number] {
         margin-top: 10px;
     }
 
+    #add-listing-form textarea, #profile-bio-box textarea  {
+        width: 300px;
+        margin-right: 25px;
+    }
+
+    #listing-address {
+        width: 380px;
+    }
+
+    #listing-address-group {
+        width: 380px;
+    }
+
+    #price-amount {
+        width: 120px;
+    }
+
+    #group-name {
+        width: 300px;
+    }
+
+    #form-step-one h2 {
+        display: flex;
+        flex-direction: column; 
+    }
+    
+}
+
+@media (max-width: 600px) {
+
+    #listing-address {
+        width: auto;
+    }
+
+    #listing-address-group {
+        width: 350px;
+    }
+
+    #listing-address-group {
+        flex-direction: column !important;
+        gap: 10px;
+    }
+
+    #listing-city {
+        width: 230px;
+    }
+
+    #listing-postcode {
+        margin-left: 25px;
+    }
+
     
 }
 
 @media (max-width: 550px) {
 
     .sign-in {
-        font-size: 1.1rem;
+        font-size: 1.5rem;
     }
 
     #search-input {
@@ -2516,7 +2632,7 @@ input[type=number] {
     }
 
     #search-symbol {
-        margin-left: 50px;
+        margin-left: 100px;
         font-size: 1.5rem;
     }
 
@@ -2544,9 +2660,39 @@ input[type=number] {
         width: 90%;
     }
 
+    #add-listing-form textarea, #profile-bio-box textarea  {
+        width: 250px;
+    }
+
+    #form-step-one, #form-step-two, #create-profile-form {
+        padding: 0 30px;
+    }
+
+    #add-listing-form input, #profile-pic-upload input {
+        padding: 8px 20px;
+    }
+    
+    #group-name {
+        width: 250px;
+    }
+
+    #price-amount {
+        padding: 8px 38px !important;
+    }
+
+}
+
+@media (max-width: 525px) {
+    #search-symbol {
+        margin-left: 80px;
+    }
 }
 
 @media (max-width: 500px) {
+
+    #search-symbol {
+        margin-left: 60px;
+    }
 
     #listing-about-sect {
         flex-direction: column;
@@ -2605,6 +2751,28 @@ input[type=number] {
         margin-bottom: 8px;
         margin-top: 8px;
     }
+
+    #form-step-one, #form-step-two, #create-profile-form {
+        padding: 0 20px;
+    }
+
+    #add-listing-form textarea, #profile-bio-box textarea  {
+        width: 230px;
+    }
+
+    #listing-extra-details label, #ages p, #profile-bio label {
+        white-space: wrap;
+        width: 230px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    #search-symbol {
+        margin-left: 30px;
+    }
+
 }
 
 @media (max-width: 450px) {
@@ -2618,11 +2786,11 @@ input[type=number] {
 
     #search-symbol {
         margin-left: 10px;
+        font-size: 1.6rem;
     }
 
-    .icon-circle {
-        height: 35px;
-        width: 35px;
+    .sign-in {
+        font-size: 1.6rem;
     }
 
     #edit-form-details {
@@ -2694,9 +2862,36 @@ input[type=number] {
         padding: 30px 10px;
     }
 
+    #form-step-one, #form-step-two, #create-profile-form {
+        padding: 0 10px;
+    }
+
+    #add-listing-form textarea, #profile-bio-box textarea  {
+        width: 210px;
+    }
+
+    
+    #add-listing-form select {
+        padding: 4px 20px;
+        height: 30px;
+    }
+
+    #category-select, #age-group {
+        width: 180px;
+    }
+
+    #listing-city {
+        width: 200px;
+    }
+
 }
 
 @media (max-width: 425px) {
+
+    #search-symbol {
+        margin-left: 0;
+    }
+
     #head-bottom ul {
         gap: 5px;
         padding: 0 5px;
@@ -2720,6 +2915,19 @@ input[type=number] {
     #event-photo-url {
         left: -200px;
     }
+
+    #form-step-one, #form-step-two, #create-profile-form {
+        padding: 0 5px;
+    }
+
+    #group-name {
+        width: 200px;
+    }
+
+
+    #profile-bio-box label {
+        width: 400px !important;
+    }
 }
 
 @media (max-width: 400px) {
@@ -2729,7 +2937,7 @@ input[type=number] {
     }
 
     #search-symbol {
-        margin-left: 10px;
+        margin-left: -5px;
     }
 
     #search-input {
@@ -2764,6 +2972,10 @@ input[type=number] {
     #event-photo-url {
         left: -190px;
     }
+
+    #listing-city {
+        width: 180px;
+    }
     
 }
 
@@ -2773,8 +2985,12 @@ input[type=number] {
         width: 60px;
     }
 
+    .sign-in {
+        margin-left: -5px;
+    }
+
     #search-symbol {
-        margin-left: -30px;
+        margin-left: -20px;
     }
 
     #search-input {
@@ -2819,6 +3035,30 @@ input[type=number] {
 
     #sign-up-main h1 {
         font-size: 2.8rem;
+    }
+
+    #form-step-one, #form-step-two, #create-profile-form {
+        padding: 0;
+    }
+
+    #add-listing-form textarea, #profile-bio-box textarea  {
+        width: 190px;
+    }
+
+    #listing-city {
+        width: 160px;
+    }
+
+    #group-name {
+        width: 180px;
+    }
+
+    #form-step-one h2 {
+        font-size: 2.1rem; 
+    }
+
+    #form-step-one h2 span {
+        font-size: 2.3rem; 
     }
 }
 
@@ -2865,11 +3105,35 @@ input[type=number] {
     #sign-up-main h1 {
         font-size: 2.6rem;
     }
+
+    #add-listing-form textarea, #profile-bio-box textarea  {
+        width: 170px;
+    }
+
+    .type-group input {
+        margin-right: 0 !important;
+    }
+
+    #group-name {
+        width: 150px;
+    }
+
+    #listing-extra-details label, #ages p  {
+        width: 170px;
+    }
 }
 
 @media (max-width: 330px) {
     #just-logo {
         margin-left: -30px;
+    }
+
+    #listing-city, #listing-address {
+        width: 170px;
+    }
+
+    #category-select, #age-group {
+        width: 150px;
     }
 }
 
