@@ -21,18 +21,29 @@
             <div id="just-logo">
                 <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
             </div>
-            <div id="web-name">
-                <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
-                <p id="get-involved">Go on, get involved</p>
-            </div>
-            <div id="location">
-                <h1>Barrow</h1>
-                <!--<h1 class="logout">Find your town
-                <h3 class="login">Change location</h3></h1>-->
+            <div id="intown-town-name">
+                <div id="web-name">
+                    <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
+                    <p id="get-involved">Go on, get involved</p>
+                </div>
+                <div id="location">
+                    <h1>Barrow</h1>
+                    <!--<h1 class="logout">Find your town
+                    <h3 class="login">Change location</h3></h1>-->
+                </div>
             </div>
         </div>
-        <input type="text" placeholder="Have a look around...">
-        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container">
+            <input type="checkbox" id="search-toggle" class="search-checkbox">
+            <input type="text" id="search-input" placeholder="Have a look around...">
+            <label for="search-toggle" class="search-icon">
+                <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </div>
+        <div id="sign-profile">
+            <h2 class="logout sign-in">Sign In</h2>
+            <h2 class="login sign-in">Profile</h2>
+        </div>
     </header>
     <!--Body-->
     <div id="profile">
@@ -82,13 +93,27 @@
                 <div class="profile-centre" id="my-interests">
                     <h2>My Interests</h2>
                     <div class="interest-box" id="types-container">
-                        <h3 class="interest-headers"><i class="fa-solid fa-magnifying-glass fa-2x"></i> I'm looking for</h3> <span id="type-display"></span>
+                        <h3 class="interest-headers">
+                            <div class="icon-circle"><i class="fa-solid fa-magnifying-glass fa-lg"></i></div> 
+                            I'm looking for
+                        </h3>
+                        <span id="type-display"></span>
                     </div>
+
                     <div class="interest-box" id="interests-container">
-                        <h3 class="interest-headers"><i class="fa-regular fa-heart fa-2x"></i> My interests are</h3><span id="interest-display"></span>
+                        <h3 class="interest-headers">
+                            <div class="icon-circle"><i class="fa-solid fa-heart fa-lg"></i></div> 
+                            My interests are
+                        </h3>
+                        <span id="interest-display"></span>
                     </div>
+
                     <div class="interest-box" id="hopes-container">
-                        <h3 class="interest-headers"><i class="fa-solid fa-city fa-2x"></i> I joined InTown to</h3><span id="hope-display"></span>
+                        <h3 class="interest-headers">
+                            <div class="icon-circle"><i class="fa-solid fa-user-plus fa-lg"></i></div> 
+                            I joined InTown to
+                        </h3>
+                        <span id="hope-display"></span>
                     </div>
                 </div>
                 <div class="profile-centre" id="my-groups">

@@ -21,18 +21,25 @@
             <div id="just-logo">
                 <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
             </div>
-            <div id="web-name">
-                <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
-                <p id="get-involved">Go on, get involved</p>
-            </div>
-            <div id="location">
-                <h1>Barrow</h1>
-                <!--<h1 class="logout">Find your town
-                <h3 class="login">Change location</h3></h1>-->
+            <div id="intown-town-name">
+                <div id="web-name">
+                    <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
+                    <p id="get-involved">Go on, get involved</p>
+                </div>
+                <div id="location">
+                    <h1>Barrow</h1>
+                    <!--<h1 class="logout">Find your town
+                    <h3 class="login">Change location</h3></h1>-->
+                </div>
             </div>
         </div>
-        <input type="text" placeholder="Have a look around...">
-        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container">
+            <input type="checkbox" id="search-toggle" class="search-checkbox">
+            <input type="text" id="search-input" placeholder="Have a look around...">
+            <label for="search-toggle" class="search-icon">
+                <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </div>
         <div id="sign-profile">
             <h2 class="logout sign-in">Sign In</h2>
             <h2 class="login sign-in">Profile</h2>
@@ -42,7 +49,7 @@
     <div class="profile-top" id="listing-top">
         <div id="message-box">
             <h3 id="message">Message Us</h3>
-            <i class="fa-regular fa-message fa-2x"></i>
+            <i class="fa-solid fa-message fa-2x"></i>
         </div>
         <div id="listing-head-centre">
             <h1 id="listing-profile-name"></h1>

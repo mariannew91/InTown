@@ -104,8 +104,8 @@ listingTypeRadios.forEach(function(radio) {
 
 if (document.getElementById('sign-profile')) {
     document.getElementById('sign-profile').innerHTML = `
-        <h2 class="logout sign-in"><a href="signup.html">Sign In</a></h2>
-        <h2 class="login sign-in"><a href="profile.html">Profile</a></h2>
+        <h2 class="logout sign-in"><a href="signup.html"><i class="fa-solid fa-circle-user fa-2x"></i></a></h2>
+        <h2 class="login sign-in"><a href="profile.html"><i class="fa-solid fa-circle-user fa-2x"></i></a></h2>
     `;
 }
 
