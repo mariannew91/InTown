@@ -287,14 +287,17 @@ input {
 
 /* Main logged in */
 
+
 #main-body-login {
     display: flex;
 }
 
 #main-login {
-    width: 70%;
+    width: 55%;
     display: flex;
-    margin: 0;
+    margin: 20px;
+    flex-direction: column;
+    position: relative;
 }
 
 #newest-mobile {
@@ -303,24 +306,96 @@ input {
 
 #suggestions-box {
     width: 50%;
-    border-right: 1px solid rgb(213, 228, 226);
     padding-right: 5px;
 }
 
 #feed {
+    display: block;
     width: 50%;
     border-left: 1px solid rgb(213, 228, 226);
+    height: 100vh;
 }
 
 .main-head {
     text-align: center;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+#main-right {
+    padding-right: 5px;
+    padding-left: 5px;
 }
 
 
-#feed {
+#dynamic-tab-bar { 
+    display: flex; 
+    width: 70%;
+    margin-bottom: -1px; 
+    z-index: 10;
+    justify-content: center;
+    position: relative;
+}
+
+#dynamic-tab-bar button {
+    flex: 1;
+    padding: 15px 10px 30px;
+    border: none;
+    cursor: pointer;
+    background: rgb(21, 32, 57);
+    color: white;
+    margin-right: -30px;
+    position: relative;
+    font-weight: 600;
+    border-top-right-radius: 20px;
+    border-top-left-radius: 20px;
+    transition: background 0.2s, margin 0.3s;
+    height: 80px;
+}
+
+
+#dynamic-tab-bar :last-child {
+    margin-left: -20px;
+}
+
+#suggestions-box, #feed {
+    display: none; 
+    width: 100%;
+    padding: 10px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    z-index: 20;
+    background-color: rgb(250, 248, 247);
+    border: 1px solid rgb(213, 228, 226);
+    box-shadow:
+        0 2px 4px rgba(0,0,0,0.04),
+        0 8px 24px rgba(0,0,0,0.06);
+    position: relative;
+    margin-top: -20px;
+}
+
+
+
+#suggestions-box.is-visible, 
+#feed.is-visible {
     display: block;
 }
 
+.tab-btn {
+    background-color: #e0e0e0;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.tab-btn.active {
+    background-color: rgb(255,106,94) !important;
+    color: white;
+    font-weight: bold;
+    z-index: 10;
+}
 /* Side bar logged in */
 
 .tab-bar {
@@ -331,7 +406,7 @@ input {
     border-right: 2px solid rgb(213, 228, 226);
     border-left: 5px solid rgb(213, 228, 226);
     background: rgb(21, 32, 57);
-    width: 15%;
+    width: 20%;
     padding: 20px;
     height: 800px;
     margin: 0;
@@ -350,7 +425,8 @@ input {
 #side-bar li, #main-add-listing a, .section a {
     margin: 20px auto;
     color: rgb(255, 255, 255);
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+    text-align: center;
 }
 
 .section a {
@@ -369,9 +445,14 @@ input {
 /* New on InTown */
 
 #newest {
-    width: 15%;
+    width: 25%;
     background-color: rgb(255,255,255);
-    border-left: 1px solid rgb(230,232,235);
+    border: 1px solid rgb(213, 228, 226);
+    margin-top: 80px;
+    margin-bottom: 20px;
+    border-top-right-radius: 30px;
+    border-top-left-radius: 30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);;
 }
 
 #main-right {
@@ -454,9 +535,9 @@ footer ul, #foot-add-listing a {
 }
 
 .cat-tag {
-    margin-right: 20px;
+    margin-right: 20px !important;
     font-weight: 500;
-    margin-left: 10px;
+    margin-left: 10px !important;
 }
 
 .card-main {
@@ -490,6 +571,7 @@ footer ul, #foot-add-listing a {
     justify-content: space-between;
     flex: 1;
 }
+
 
 .event-title {
     margin: 3px 15px;
@@ -590,7 +672,7 @@ footer ul, #foot-add-listing a {
 
 .event-address {
     white-space: nowrap;
-    overflow: hidden;
+    overflow: scroll;
     text-overflow: ellipsis;
     max-width: 45%;
 }
@@ -601,6 +683,10 @@ footer ul, #foot-add-listing a {
 
 .event-profile i {
     color: rgb(21, 32, 57);
+}
+
+#profile-link {
+    display: none;
 }
 
 .event-profile i:hover {
@@ -2137,9 +2223,27 @@ input[type=number] {
 
 /* Media */
 @media (max-width: 1040px) {
+
+    header {
+        padding-left: 80px;
+    }
+
+    #main-login {
+        width: 70%;
+    }
+
     #photo-right label {
         font-size: 0.9rem;
         padding: 10px 12px;
+    }
+
+    #side-bar {
+        width: 300px;
+        padding-top: 110px;
+    }
+
+    #side-bar a, #side-bar li {
+        font-size: 1.4rem;
     }
 
     #listing-photo {
@@ -2149,6 +2253,44 @@ input[type=number] {
     #listing-postcode {
         margin-left: 15px;
     }
+
+    .sidebar-tag {
+        display: flex;
+        position: absolute;
+        left: 10px;
+        top: 10px;
+        z-index: 1001;
+        width: 80px;
+        height: 106px;
+        color: rgb(21, 32, 57);
+        background-color: white;
+        border: none;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .sidebar-tag i {
+        font-size: 1.8rem;
+    }
+
+    .profile-side-bar {
+        position: fixed;
+        left: -400px;
+        top: 0;
+        height: 100vh;
+        z-index: 1000;
+        transition: left 0.3s ease;
+        width: 50%;
+    }
+
+    .profile-side-bar.is-open {
+        left: 0;
+    }
+
+    #newest {
+        width: 30%
+    }
+
 }
 
 @media (max-width: 990px) {
@@ -2186,7 +2328,38 @@ input[type=number] {
     }
 }
 
+@media (max-width: 910px) {
+
+    #search-input {
+        margin-left: -20px;
+    }
+
+    .main-head {
+        margin-top: 10px;
+    }
+
+    .event-cards {
+        margin: 7px auto;
+    }
+
+    #newest {
+        width: 30%;
+        font-size: 0.9rem;
+    }
+
+    
+}
+
 @media (max-width: 870px) {
+
+    header {
+        padding-left: 63px;
+    }
+
+    #search-input {
+        width: 220px;
+    }
+
     .interest-headers {
         font-size: 1.1rem;
     }
@@ -2276,6 +2449,10 @@ input[type=number] {
 
     /* Header */
 
+    header {
+        padding-left: 0;
+    }
+
     #intown-town-name {
         flex-direction: column;
     }
@@ -2301,15 +2478,19 @@ input[type=number] {
     }
 
     
-
-
     /* Home Page */
-
-
     
+
+    #dynamic-tab-bar {
+        display: none;
+    }
 
     #side-bar {
         width: 300px;
+    }
+
+    #side-bar li, #side-bar a {
+        font-size: 1.6rem;
     }
 
     #li-profile, #li-signin {
@@ -2320,15 +2501,21 @@ input[type=number] {
         display: flex;
         width: 100%;
         border-bottom: 1px solid rgb(131, 131, 131);
+        position: sticky;
+        position: -webkit-sticky;
+        z-index: 1000;
+        top: 0;
     }
 
     .tab {
         flex: 1;
-        padding: 15px 0;
-        background-color: white;
+        padding: 13px 0;
+        font-size: 1.5rem;
+        color: white;
         border: none;
         cursor: pointer;
         border-right: 0.5px solid rgba(131, 131, 131, 0.428);
+        background-color: rgb(21, 32, 57);
     }
 
     .tab:first-child {
@@ -2341,10 +2528,16 @@ input[type=number] {
 
     #main-login, #suggestions-box, #feed, #newest {
         width: 100%;
+        margin: 10px 0;
     }
 
     #suggestions-box, #feed, #newest {
         display: none;
+        border: none;
+        background-color: rgb(248, 244, 236);
+        padding: 0;
+        box-shadow: none;
+        width: 100%;
     }
 
     #newest-mobile {
@@ -2357,10 +2550,20 @@ input[type=number] {
 
     .event-cards {
         margin: 5px auto;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 7%), 0 8px 24px rgba(0, 0, 0, 0.06);
     }
 
     #main-right {
         font-size: 2rem;
+    }
+
+    #suggestions-box {
+        border-right: none;
+        padding-right: 0;
+    }
+
+    .event-cards h4, .age, .date {
+        font-size: 1.2rem;
     }
 
     /* Footer */
@@ -2371,36 +2574,8 @@ input[type=number] {
 
     /* Profile Page */
 
-    .sidebar-tag {
-        display: block;
-        position: absolute;
-        left: 10px;
-        top: 10px;
-        padding: 40px 0;
-        z-index: 1001;
-        width: 80px;
-        height: 107px;
-        color: white;
-        background-color: rgb(240, 90, 80);
-        border: 0.5px solid rgb(21, 32, 57);
-    }
-
     #logo-town {
         margin-left: 80px;
-    }
-
-    .profile-side-bar {
-        position: fixed;
-        left: -400px;
-        top: 0;
-        height: 100vh;
-        z-index: 1000;
-        transition: left 0.3s ease;
-        width: 50%;
-    }
-
-    .profile-side-bar.is-open {
-        left: 0;
     }
 
     #profile-body {
@@ -2604,6 +2779,24 @@ input[type=number] {
 }
 
 @media (max-width: 550px) {
+
+    body {
+        margin: 0;
+    }
+
+    header {
+        height: 90px;
+    }
+
+    #logo {
+        height: 80px;
+        width: 80px;
+    }
+
+    .sidebar-tag {
+        height: 86px;
+        top: 2px;
+    }
 
     .sign-in {
         font-size: 1.5rem;
@@ -2826,6 +3019,19 @@ input[type=number] {
         height: 60px;
     }
 
+    .event-photo {
+        height: 130px;
+        width: 130px;
+    }
+
+    .event-info {
+        font-size: 1.1rem;
+    }
+
+    .card-header, .card-footer {
+        height: 30px;
+    }
+
     #event-photo-url {
         height: 35px;
         width: 35px;
@@ -2882,6 +3088,22 @@ input[type=number] {
 
     #listing-city {
         width: 200px;
+    }
+
+    .just-date {
+        left: 15px;
+        position: absolute;
+        margin-bottom: 30px;
+    }
+
+    .age {
+        position: absolute;
+        right: 20px;
+        margin-bottom: 30px;
+    }
+
+    #side-bar li, #side-bar a {
+        font-size: 1.8rem;
     }
 
 }
@@ -2981,6 +3203,10 @@ input[type=number] {
 
 @media (max-width: 375px) {
 
+    .tab {
+        font-size: 1.4rem;
+    }
+
     .sidebar-tag {
         width: 60px;
     }
@@ -3059,6 +3285,19 @@ input[type=number] {
 
     #form-step-one h2 span {
         font-size: 2.3rem; 
+    }
+
+    .event-photo {
+        height: 100px;
+        width: 100px;
+    }
+
+    #event-profile-link {
+        display: none;
+    }
+
+    #profile-link {
+        display: block;
     }
 }
 

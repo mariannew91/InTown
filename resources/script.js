@@ -143,7 +143,8 @@ function eventCardTemplate(event, index) {
                 </div>
             </div>
             <div class="card-footer">
-                <h4 class="event-profile"></i><i class="fa-solid fa-arrow-right"></i><a href="listing.html?id=${index}"> Event Profile</a></h4>
+                <h4 id="event-profile-link" class="event-profile"></i><i class="fa-solid fa-arrow-right"></i><a href="listing.html?id=${index}"> Event Profile</a></h4>
+                <h4 id="profile-link" class="event-profile"></i><i class="fa-solid fa-arrow-right"></i><a href="listing.html?id=${index}"> Profile</a></h4>
                 <h4 class="event-address">📍 ${event['address'] || ''}</h4>
                 <h4 class="follow">Follow</h4>
             </div>
@@ -648,7 +649,6 @@ document.addEventListener('DOMContentLoaded', () => {
         if (document.getElementById('email')) document.getElementById('email').textContent = profileData.email;
     }
 
-    // 2. Section Toggles
     toggleSection('types-container', 'types-container', profileData?.types);
     toggleSection('interests-container', 'interests-container', profileData?.interests);
     toggleSection('hopes-container', 'hopes-container', profileData?.hopes);
@@ -656,89 +656,80 @@ document.addEventListener('DOMContentLoaded', () => {
     toggleSection('past-events-container', 'past-events-container', profileData?.pastEvents);
     toggleSection('group-name-container', 'group-name-container', profileData?.groups);
 
-    // 3. Edit Profile Functionality (The tag selectors and remove buttons)
     loadProfileData();
     renderEditPills();
 
-    document.querySelectorAll('.tag-selector').forEach(select => {
-        select.addEventListener('change', (e) => {
-            const value = e.target.value;
-            if (!value) return;
-
-            let data = JSON.parse(localStorage.getItem('user-profile')) || {};
-            const map = { 'type-select': 'types', 'interest-select': 'interests', 'hope-select': 'hopes', 'age-select': 'ages' };
-            const key = map[e.target.id];
-            
-            if (!data[key]) data[key] = [];
-            if (!data[key].includes(value)) {
-                data[key].push(value);
-                localStorage.setItem('user-profile', JSON.stringify(data));
-            }
-            renderEditPills();
-            e.target.value = "";
-        });
-    });
-
-    document.addEventListener('click', (e) => {
-        if (e.target.classList.contains('remove-pill')) {
-            const category = e.target.getAttribute('data-category');
-            const value = e.target.getAttribute('data-value');
-            let data = JSON.parse(localStorage.getItem('user-profile')) || {};
-            if (data[category]) {
-                data[category] = data[category].filter(item => item !== value);
-                localStorage.setItem('user-profile', JSON.stringify(data));
-                renderEditPills();
-            }
-        }
-    });
-
-    // 4. Listing Tabs Initialization
-    const listingAboutBtn = document.getElementById('listing-about-btn');
-    const listingAboutSection = document.getElementById('listing-about-sect');
-    
-    if(listingAboutSection) {
-        const btns = [listingAboutBtn, document.getElementById('members-btn'), document.getElementById('listing-photos-btn'), document.getElementById('listing-contact-btn'), document.getElementById('upcoming-date-btn'), document.getElementById('listing-follower-btn')];
-        const sects = [listingAboutSection, document.getElementById('listing-members'), document.getElementById('listing-photos'), document.getElementById('listing-contacts'), document.getElementById('listing-upcoming-dates'), document.getElementById('listing-followers')];
-        
-        btns.forEach((btn, i) => {
-            if(btn) btn.addEventListener('click', (e) => {
-                e.preventDefault();
-                sects.forEach(s => s && s.classList.remove('is-visible'));
-                btns.forEach(b => b && b.classList.remove('is-active'));
-                if(sects[i]) sects[i].classList.add('is-visible');
-                btn.classList.add('is-active');
-            });
-        });
-        if(listingAboutBtn) listingAboutBtn.click();
-    }
-
-    const tabs = document.querySelectorAll('.tab');
     const sections = {
         'Suggested': document.getElementById('suggestions-box'),
-        'Your InTown': document.getElementById('feed'),
-        'New': document.getElementById('newest-mobile')
+        'Your InTown': document.getElementById('feed')
     };
 
-    const activeTab = document.querySelector('.tab.active').textContent;
-    sections[activeTab].style.display = 'block';
+    const activateTab = (tabElement, sectionName) => {
+        document.querySelectorAll('.tab, .tab-btn').forEach(b => b.classList.remove('active'));
+        Object.values(sections).forEach(s => s?.classList.remove('is-visible'));
 
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
+        tabElement.classList.add('active');
+        sections[sectionName]?.classList.add('is-visible');
+    };
 
-            Object.values(sections).forEach(sec => {
-                if (sec) sec.style.display = 'none';
+    const mobileTabs = document.querySelectorAll('.tab');
+    mobileTabs.forEach(tab => {
+        tab.addEventListener('click', () => activateTab(tab, tab.textContent.trim()));
+    });
+
+    const mainLogin = document.getElementById('main-login');
+    const manageDesktopTabs = () => {
+        const existing = document.getElementById('dynamic-tab-bar');
+        
+        if (window.innerWidth > 767 && !existing && mainLogin) {
+            const bar = document.createElement('div');
+            bar.id = 'dynamic-tab-bar';
+            bar.innerHTML = `
+                <button type="button" class="tab-btn active tab-first">Suggested</button>
+                <button type="button" class="tab-btn tab-last">Your InTown</button>
+            `;
+            mainLogin.insertBefore(bar, mainLogin.firstChild);
+
+            bar.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.addEventListener('click', () => activateTab(btn, btn.textContent.trim()));
             });
 
-            const targetSection = sections[tab.textContent];
-            if (targetSection) {
-                targetSection.style.display = 'block';
+            activateTab(bar.querySelector('.tab-first'), 'Suggested');
+        } else if (window.innerWidth <= 767 && existing) {
+            existing.remove();
+        }
+    };
+
+    // Ensure one tab is always active on page load
+    const initializeDefaultTab = () => {
+        const activeDesktop = document.querySelector('#dynamic-tab-bar .tab-btn.active');
+        const activeMobile = document.querySelector('.tab.active');
+
+        if (window.innerWidth > 767) {
+            // Desktop: If no tab is active, default to first
+            if (!activeDesktop) {
+                const firstBtn = document.querySelector('.tab-btn');
+                if (firstBtn) activateTab(firstBtn, 'Suggested');
+            } else {
+                // If one is active, ensure its content is visible
+                activateTab(activeDesktop, activeDesktop.textContent.trim());
             }
-        });
-    });
-    
+        } else {
+            // Mobile: If no tab is active, default to first
+            if (!activeMobile) {
+                const firstTab = document.querySelector('.tab');
+                if (firstTab) activateTab(firstTab, 'Suggested');
+            } else {
+                // If one is active, ensure its content is visible
+                activateTab(activeMobile, activeMobile.textContent.trim());
+            }
+        }
+    };
+
+    initializeDefaultTab();
+    window.addEventListener('resize', manageDesktopTabs);
+    manageDesktopTabs();
+
 });
 
 const priceInput = document.getElementById('price-amount');
