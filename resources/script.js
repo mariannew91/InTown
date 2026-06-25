@@ -886,13 +886,34 @@ const toggleBtn = document.querySelector('.sidebar-tag');
 
 if (toggleBtn && sidebar) {
     toggleBtn.addEventListener('click', () => {
+        event.stopPropagation();
         sidebar.classList.toggle('is-open');
     });
 }
 
-sidebar.addEventListener('click', (event) => {
-    // Check if the clicked element is an <li>
-    if (event.target.tagName === 'LI') {
+document.addEventListener('click', (event) => {
+    if (sidebar.classList.contains('is-open') && 
+        !sidebar.contains(event.target) && 
+        event.target !== toggleBtn) {
+        
         sidebar.classList.remove('is-open');
     }
 });
+
+window.addEventListener("scroll", () => {
+    const sidebar = document.getElementById("search-side-bar");
+    const header = document.querySelector("header");
+
+    const headerHeight = header.offsetHeight;
+
+    if (window.scrollY >= headerHeight) {
+        sidebar.style.top = "0";
+        sidebar.style.height = "100vh";
+    } else {
+        const remaining = headerHeight - window.scrollY;
+
+        sidebar.style.top = `${remaining}px`;
+        sidebar.style.height = `calc(100vh - ${remaining}px)`;
+    }
+});
+

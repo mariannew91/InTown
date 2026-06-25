@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta name="viewport"
-    content="width=device-width, initial-scale=1.0">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>InTown</title>
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
     <link rel="stylesheet" href="./resources/style.css">
     <meta charset="UTF-8">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="./resources/script.js" defer></script>
 </head>
 <body>
-     <!--Header-->
+
+
     <header>
         <div id="logo-town">
             <div id="just-logo">
@@ -23,13 +20,11 @@
             </div>
             <div id="intown-town-name">
                 <div id="web-name">
-                    <h1><a href='./index.html'id="title-in">In<span id="town">Town</span></a></h1>
+                    <h1><a href='./index.html' id="title-in">In<span id="town">Town</span></a></h1>
                     <p id="get-involved">Go on, get involved</p>
                 </div>
                 <div id="location">
                     <h1>Barrow</h1>
-                    <!--<h1 class="logout">Find your town
-                    <h3 class="login">Change location</h3></h1>-->
                 </div>
             </div>
         </div>
@@ -45,10 +40,9 @@
             <h2 class="login sign-in">Profile</h2>
         </div>
     </header>
-    <!--Body-->
+
     <div id="search-page-main">
-        <button class="sidebar-tag" id="search-filter-tag"><i class="fa-solid fa-sliders"></i></button>
-        <div id="search-side-bar" class="profile-side-bar">
+        <aside id="search-side-bar" class="profile-side-bar">
             <ul id="search-categories">
                 <li class="filter-btn">Type
                     <div class="filter-options">
@@ -79,18 +73,20 @@
                 <li class="filter-btn">When</li>
                 <li class="filter-btn">Age</li>
             </ul>
-        </div>
-        <div id="search-top">
-            <h1>Find your thing in town</h1>
-        
-            <div id="search-centre">
+        </aside>
+        <button class="sidebar-tag" id="search-filter-tag"><i class="fa-solid fa-sliders"></i></button>
+        <div id="search-centre">
+            <div id="search-top">
+                <h1>Find your thing in town</h1>
+            </div>
+            <div id="search-centre-body">
                 <div id="search-results">
                     <h3> Search Results</h3>
                 </div>
             </div>
         </div>
     </div>
-    <!--Footer-->
+
     <footer>
         <ul>
             <li>About</li>
@@ -98,4 +94,6 @@
             <li>Privacy Policy</li>
         </ul>
     </footer>
+
 </body>
+</html>

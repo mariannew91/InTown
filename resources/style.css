@@ -1340,6 +1340,10 @@ input[type="radio"] {
     padding-left: 5px;
 }
 
+#organiser-name-box p {
+    font-size: 0.9rem;
+}
+
 #organiser-name-box h3 {
     margin: 0;
     padding-bottom: 10px;
@@ -1913,6 +1917,7 @@ input[type=number] {
 #search-page-main {
     display: flex;
     flex-direction: row;
+    height: 100vh;
 }
 
 #search-top {
@@ -1921,9 +1926,10 @@ input[type=number] {
 }
 
 #search-top h1 {
-    font-size: 3.2rem;
+    font-size: clamp(1.9rem, 4vw, 3.2rem);
     text-align: center;
     margin: 10px auto;
+    padding: 0 40px;
 }
 
 #search-filter-tag {
@@ -1936,6 +1942,7 @@ input[type=number] {
 #search-side-bar {
     background-color: rgb(255, 255, 255);
     border-right: 1px solid rgb(21, 32, 57);
+    width: 25%;
 }
 
 #search-categories {
@@ -1945,7 +1952,7 @@ input[type=number] {
 
 #search-categories li {
     list-style: none;
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     margin: 25px auto;
     width: 100%;
     text-align: center;
@@ -1982,7 +1989,7 @@ input[type=number] {
 }
 
 #search-centre {
-    padding: 40px;
+    padding: 10px 40px;
     width: 80%;
     height: 100vh;
 }
@@ -2281,6 +2288,24 @@ input[type=number] {
 /* Media */
 @media (max-width: 1040px) {
 
+
+    #search-page-main {
+        display: flex;
+    }
+
+    #search-side-bar {
+        position: fixed;
+        top: 117px;
+        height: calc(100vh - 117px);
+        left: -550px;
+        width: 300px;
+    }
+
+    #search-side-bar.is-open {
+        left: 0;
+        margin-left: 10px;
+    }
+
     header {
         padding-left: 80px;
     }
@@ -2301,6 +2326,14 @@ input[type=number] {
 
     #side-bar a, #side-bar li {
         font-size: 1.4rem;
+    }
+
+    #listing-side-bar {
+        width: 300px;
+    }
+
+    #listing-side-bar ul {
+       padding-top: 80px;
     }
 
     .listing-main {
@@ -2342,6 +2375,10 @@ input[type=number] {
         z-index: 1000;
         transition: left 0.3s ease;
         width: 50%;
+    }
+
+    #search-categories li {
+        font-size: 1.4rem;
     }
 
     .profile-side-bar.is-open {
@@ -2389,7 +2426,7 @@ input[type=number] {
     }
 
     #head-bottom li {
-        font-size: 0.8rem;
+        font-size: 0.9rem;
     }
 }
 
@@ -2465,7 +2502,7 @@ input[type=number] {
     }
 
     #head-bottom li {
-        font-size: 0.7rem;
+        font-size: 0.8rem;
     }
 
     #sign-up-form, #sign-up-main h1, #sign-up-main h2 {
@@ -2484,6 +2521,10 @@ input[type=number] {
 
     #follow-button {
         padding: 6px 30px !important;
+    }
+
+    #organiser-name-box p {
+        font-size: 0.8rem;
     }
 }
 
@@ -2677,10 +2718,27 @@ input[type=number] {
     }
 
     .filter-options input {
-        margin-left: 100px;
+        margin-left: 50px;
     }
 
+    .filter-options label {
+        font-size: 1.1rem;
+    }
+
+    #search-categories li {
+        font-size: 1.5rem;
+    }
+    
+
     /* Listing Page */
+
+    #organiser-name-box p {
+        font-size: 1rem;
+    }
+
+    #listing-side-bar li {
+       font-size: 1.4rem;
+    }
 
     .listing-main {
         width: 100%
@@ -2735,7 +2793,7 @@ input[type=number] {
     }
 
     #head-bottom li {
-        font-size: 1rem;
+        font-size: 1.1rem;
     }
 
     /* Add Listing Page */
@@ -2776,6 +2834,11 @@ input[type=number] {
 
     #listing-address-group {
         width: 400px;
+    }
+
+    #search-top h1 {
+        padding-left: 60px;
+        padding-right: 20px;
     }
 }
 @media (max-width: 650px) {
@@ -2992,6 +3055,20 @@ input[type=number] {
         left: 0;
     }
 
+    #organiser-head-right {
+        right: 0;
+    }
+
+    #search-side-bar {
+        top: 90px;
+        height: calc(100vh - 90px);
+    }
+
+    #search-side-bar.is-open {
+        margin-left: 0;
+
+    }
+
 }
 
 @media (max-width: 525px) {
@@ -3004,6 +3081,10 @@ input[type=number] {
         margin-right: 15px;
         white-space: wrap;
         width: 330px;
+    }
+
+    #search-top h1 {
+        padding-right: 0;
     }
 }
 
@@ -3184,8 +3265,12 @@ input[type=number] {
         padding: 6px 15px !important;
     }
 
+    #head-bottom ul {
+        gap: 10px;
+    }
+
     #head-bottom li {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     #organiser-name-box p {
@@ -3209,7 +3294,6 @@ input[type=number] {
         width: 210px;
     }
 
-    
     #add-listing-form select {
         padding: 4px 20px;
         height: 30px;
@@ -3256,6 +3340,14 @@ input[type=number] {
         font-size: 1.1rem;
     }
 
+    .filter-options label {
+        font-size: 1.2rem;
+    }
+
+    #search-categories li {
+        font-size: 1.8rem;
+    }
+
 }
 
 @media (max-width: 425px) {
@@ -3284,9 +3376,6 @@ input[type=number] {
     #organiser-name-box {
         left: 30px;
     }
-    #event-photo-url {
-        left: -200px;
-    }
 
     #form-step-one, #form-step-two, #create-profile-form {
         padding: 0 5px;
@@ -3304,6 +3393,11 @@ input[type=number] {
     #profile-bio-box label {
         width: 400px !important;
     }
+
+    #search-top h1 {
+        padding-left: 50px;
+    }
+
 }
 
 @media (max-width: 400px) {
@@ -3346,7 +3440,7 @@ input[type=number] {
     }
 
     #event-photo-url {
-        left: -190px;
+        left: -200px;
     }
 
     #listing-city {
@@ -3364,6 +3458,11 @@ input[type=number] {
     #create {
         font-size: 2.2rem;
     }
+
+    #search-top h1 {
+        padding-left: 40px;
+    }
+
 
 }
 
@@ -3418,7 +3517,7 @@ input[type=number] {
     }
 
     #event-photo-url {
-        left: -150px;
+        left: -160px;
     }
 
     #organiser-name-box {
@@ -3513,7 +3612,7 @@ input[type=number] {
     }
 
     #event-photo-url {
-        left: -130px;
+        left: -140px;
     }
 
     #sign-up-main h1 {
