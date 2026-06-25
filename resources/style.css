@@ -16,24 +16,24 @@ body {
     background: rgb(248, 244, 236);
 }
 
-/* To hide either log out */
+/* To hide either log out 
 .logout {
     display: none;
 }
 
 #main-logout.logout {
     display: none;
-} 
+} */
 
-/*  To hide either log in 
-.login {
+/*  To hide either log in */
+.login { 
     display: none;
 }
 
 
 #main-body-login.login {
     display: none;
-} */
+}
 
 
 /* Header */
@@ -202,6 +202,7 @@ input {
 
 .button {
     background-color: rgb(255, 106, 94);
+    color: white;
     border-radius: 30px;
     padding: 10px 50px;
     box-sizing: border-box;
@@ -1356,6 +1357,7 @@ input[type="radio"] {
     border-right: 1px solid rgb(213, 228, 226);
     border-bottom: 1px solid rgb(213, 228, 226);
     background-color: rgb(255, 255, 255);
+    height: 100vh;
 }
 
 #listing-side-bar ul {
@@ -1392,6 +1394,7 @@ input[type="radio"] {
     display: flex;
     flex-direction: column;
     width: 55%;
+    height: 100vh;
     background-color: white;
 }
 
@@ -1561,16 +1564,12 @@ input[type="radio"] {
 #add-listing-form input, #add-listing-form textarea, #add-listing-form select, #listing-name input {
     border: 1.5px solid rgb(240,90,80);
     border-radius: 20px;
-    font-size: 0.9rem;
+    font-size: 1rem;
 }
 
 #add-listing-form label, #create-profile-form p {
     width: 100%;
     white-space: nowrap;
-}
-
-#add-listing-form input {
-    margin-right: 25px;
 }
 
 #add-listing-form textarea, #profile-bio-box textarea  {
@@ -1630,15 +1629,12 @@ input[type="radio"] {
     flex-direction: column;
 }
 
-#one-event-date input,
-#regular-date-container input,
-#short-course-container input,
-#volunteer-date input,
-#ongoing-multi-date input, #group-name input {
+#add-listing-form input {
     margin-left: 25px;
+    margin-right: 25px;
 }
 
-#group-name {
+#group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
     width: 400px;
 }
 
@@ -1646,7 +1642,6 @@ input[type="radio"] {
     width: 30%;
 }
 
-#regular-date-container input,
 #short-course-container input,
 #volunteer-date input,
 #ongoing-multi-date input, #listing-name {
@@ -1696,7 +1691,7 @@ input[type="radio"] {
 
 #price-amount {
     width: 100%;
-    margin-left: 0;
+    margin-left: 0 !important;
     padding-left: 38px;
     height: 40px;
     position: relative;
@@ -1788,7 +1783,12 @@ input[type=number] {
     display: none;
 }
 
-#organiser-name-container, #business-desc-container, #organiser-desc-container {
+#business-fields, #organiser-name-container, #business-desc-container {
+    display: none;
+    flex-direction: column;
+}
+#organiser-desc-container {
+    display: none;
     flex-direction: column;
 }
 
@@ -1803,7 +1803,11 @@ input[type=number] {
 
 #organiser-details input, #organiser-details textarea {
     margin-left: 25px;
-    width: 40%;
+}
+
+#organiser-details label {
+    margin-bottom: 10px;
+    margin-top: 15px;
 }
 
 #organiser-details textarea {
@@ -1818,31 +1822,44 @@ input[type=number] {
     flex-direction: column;
 }
 
-#contact-details input {
-    width: 40%;
-}
-
 #only-intown-group {
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
     margin-top: 30px;
-    width: 70%;
+    width: 100%;
     align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
 }
 
 #only-intown-group label {
     font-weight: 500;
     font-size: 1.1rem;
+    flex: 0 0 auto;
+    width: auto;
 }
 
 #only-intown-group input {
-    margin-left: 10px;
-    width: 20px; 
+    margin: 0;
+    transform: scale(1.3);
+    width: 10% !important;
 }
 
 #photo-upload {
     display: flex;
     flex-direction: column;
+}
+
+#photo-upload-container {
+    margin-top: 30px;
+}
+
+#photo-upload-container label {
+    margin-left: 25px;
+}
+
+#photo-upload-container input {
+    display: none;
 }
 
 #listing-photos {
@@ -1852,6 +1869,7 @@ input[type=number] {
 #back-and-submit-btn {
     margin: 40px auto;
 }
+
 
 /* Listing Contact Section */
 
@@ -1897,9 +1915,22 @@ input[type=number] {
     flex-direction: row;
 }
 
+#search-top {
+    height: 100px;
+    width: 100%;
+}
+
 #search-top h1 {
     font-size: 3.2rem;
     text-align: center;
+    margin: 10px auto;
+}
+
+#search-filter-tag {
+    top: 117px;
+    left: 8px;
+    color: rgb(255,106,94);
+    border: 1px solid rgb(230, 232, 235);
 }
 
 #search-side-bar {
@@ -1953,6 +1984,7 @@ input[type=number] {
 #search-centre {
     padding: 40px;
     width: 80%;
+    height: 100vh;
 }
 
 
@@ -1962,26 +1994,33 @@ input[type=number] {
     width: 100%;
     height: 100px;
     background-color: rgb(241, 245, 249);
-
 }
 
 #create-profile-top h1 {
-    font-size: 3rem;
-    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+    font-size: clamp(1rem, 4vw, 3rem);
     margin: 0;
-    padding: 15px 0;
-    height: 100px;
+    padding: 15px;
+    height: auto;
+}
+
+.welcome-text {
+    margin-right: 0.3em;
+}
+
+#orange-in {
+    color: rgb(255, 106, 94);
+    font-weight: 400;
 }
 
 #users-name {
     color: rgb(240,90,80);
     font-size: 3.5rem;
     font-weight: 500;
-}
-
-#orange-in {
-    color: rgb(255, 106, 94);
-    font-weight: 400;
+    margin-left: 0.3em;
 }
 
 #create {
@@ -2022,6 +2061,23 @@ input[type=number] {
     font-family: "Urbanist", sans-serif;
 }
 
+.checkbox-row {
+    display: flex !important;
+    align-items: flex-start !important; /* Anchors the checkbox to the top */
+    gap: 10px !important;               /* Space between checkbox and text */
+    margin-bottom: 10px !important;
+    width: 100% !important;
+    padding-right: 25px !important;
+}
+
+.checkbox-row label {
+    cursor: pointer;
+    font-size: 1rem;
+    line-height: 1.4;
+    white-space: normal !important;
+    margin: 0 !important;
+}
+
 #profile-bio-box, #choose-type, #choose-interest, #choose-hope, #choose-age, #profile-pic-upload {
     display: flex;
     flex-direction: column;
@@ -2044,6 +2100,7 @@ input[type=number] {
 
 #create-profile-btn {
     margin-top: 50px;
+    font-size: 1.5rem;
 }
 
 /* Edit Profile Page */
@@ -2246,6 +2303,10 @@ input[type=number] {
         font-size: 1.4rem;
     }
 
+    .listing-main {
+        width: 75%;
+    }
+
     #listing-photo {
         width: 50%;
     }
@@ -2275,7 +2336,7 @@ input[type=number] {
 
     .profile-side-bar {
         position: fixed;
-        left: -400px;
+        left: -550px;
         top: 0;
         height: 100vh;
         z-index: 1000;
@@ -2289,6 +2350,10 @@ input[type=number] {
 
     #newest {
         width: 30%
+    }
+
+    #search-centre {
+        width: 100%;
     }
 
 }
@@ -2594,6 +2659,16 @@ input[type=number] {
         margin: 20px 40px;
     }
 
+    /* Create Profile Page */
+
+    #create-profile-form p, #create-profile-form label {
+        font-size: 1.2rem;
+    }
+
+    #profile-bio-box textarea {
+        font-size: 1rem;
+    }
+
     /* Search Page */
 
     .profile-side-bar.is-open {
@@ -2663,6 +2738,12 @@ input[type=number] {
         font-size: 1rem;
     }
 
+    /* Add Listing Page */
+
+    #add-listing-form label, #add-listing-form p, #create-profile-form p, #create-profile-form label {
+        font-size: 1.2rem;
+    }
+
     #form-step-one, #form-step-two, #create-profile-form {
         padding: 0 40px;
     }
@@ -2673,6 +2754,15 @@ input[type=number] {
 
     #price-amount {
         height: 30px;
+    }
+
+    #only-intown-group input {
+        transform: scale(1);
+        width: 5% !important;
+    }
+
+    #zero {
+        font-size: 1rem;
     }
     
 }
@@ -2724,7 +2814,7 @@ input[type=number] {
         margin-top: 10px;
     }
 
-    #add-listing-form textarea, #profile-bio-box textarea  {
+    #form-step-one textarea, #profile-bio-box textarea  {
         width: 300px;
         margin-right: 25px;
     }
@@ -2741,7 +2831,7 @@ input[type=number] {
         width: 120px;
     }
 
-    #group-name {
+    #group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
         width: 300px;
     }
 
@@ -2749,6 +2839,13 @@ input[type=number] {
         display: flex;
         flex-direction: column; 
     }
+
+    #only-intown-group {
+        flex-direction: column;
+        align-items: baseline;
+    }
+
+    
     
 }
 
@@ -2773,6 +2870,14 @@ input[type=number] {
 
     #listing-postcode {
         margin-left: 25px;
+    }
+
+    #only-intown-group label {
+        word-wrap: break-word;
+        white-space: normal;
+        display: block;
+        flex: 1 1 100%;
+        margin-right: 20px;
     }
 
     
@@ -2853,7 +2958,7 @@ input[type=number] {
         width: 90%;
     }
 
-    #add-listing-form textarea, #profile-bio-box textarea  {
+    #form-step-one textarea, #profile-bio-box textarea  {
         width: 250px;
     }
 
@@ -2863,9 +2968,10 @@ input[type=number] {
 
     #add-listing-form input, #profile-pic-upload input {
         padding: 8px 20px;
+        margin-right: 25px;
     }
     
-    #group-name {
+    #group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
         width: 250px;
     }
 
@@ -2873,11 +2979,31 @@ input[type=number] {
         padding: 8px 38px !important;
     }
 
+    #only-intown-group input {
+        transform: scale(1.2);
+    }
+
+    #regular-date-container label {
+        width: 170px;
+    }
+
+    #search-filter-tag {
+        top: 90px;
+        left: 0;
+    }
+
 }
 
 @media (max-width: 525px) {
     #search-symbol {
         margin-left: 80px;
+    }
+
+    #add-listing-form label, #add-listing-form p, #create-profile-form p, #create-profile-form label {
+        font-size: 1.2rem;
+        margin-right: 15px;
+        white-space: wrap;
+        width: 330px;
     }
 }
 
@@ -2949,12 +3075,12 @@ input[type=number] {
         padding: 0 20px;
     }
 
-    #add-listing-form textarea, #profile-bio-box textarea  {
+    #form-step-one textarea, #profile-bio-box textarea  {
         width: 230px;
     }
 
-    #listing-extra-details label, #ages p, #profile-bio label {
-        white-space: wrap;
+    #listing-extra-details label, #profile-bio label {
+        flex-wrap: wrap;
         width: 230px;
     }
 
@@ -2964,6 +3090,14 @@ input[type=number] {
 
     #search-symbol {
         margin-left: 30px;
+    }
+
+    #add-listing-form label, #add-listing-form p, #create-profile-form p, #create-profile-form label {
+        width: 300px;
+    }
+
+    #only-intown-group input {
+        transform: scale(1.3);
     }
 
 }
@@ -2999,12 +3133,11 @@ input[type=number] {
     }
 
     #photo-edit-container {
-        /* Ensure this targets your green container */
         display: flex;
-        flex-direction: column;   /* Stacks the image and button vertically */
-        align-items: center;      /* Centers them horizontally */
-        justify-content: center;  /* Centers them vertically */
-        gap: 15px;                /* Adds space between the image and the button */
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
     }
 
     .pill {
@@ -3072,7 +3205,7 @@ input[type=number] {
         padding: 0 10px;
     }
 
-    #add-listing-form textarea, #profile-bio-box textarea  {
+    #form-step-one textarea, #profile-bio-box textarea  {
         width: 210px;
     }
 
@@ -3104,6 +3237,23 @@ input[type=number] {
 
     #side-bar li, #side-bar a {
         font-size: 1.8rem;
+    }
+
+    #add-listing-form label, #add-listing-form p, #create-profile-form p, #create-profile-form label {
+        font-size: 1.3rem;
+        width: 280px;
+    }
+
+    #add-listing-form input, #add-listing-form textarea, #add-listing-form select, #listing-name input {
+        font-size: 1.2rem;
+    }
+
+    #create-profile-form p, #create-profile-form label {
+        font-size: 1.3rem;
+    }
+
+    #profile-bio-box textarea {
+        font-size: 1.1rem;
     }
 
 }
@@ -3142,8 +3292,12 @@ input[type=number] {
         padding: 0 5px;
     }
 
-    #group-name {
-        width: 200px;
+    #group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
+        width: 240px;
+    }
+
+    #add-listing-form label, #add-listing-form p, #create-profile-form p, #create-profile-form label {
+        width: 240px;
     }
 
 
@@ -3198,7 +3352,19 @@ input[type=number] {
     #listing-city {
         width: 180px;
     }
+
+    #only-intown-group input {
+        transform: scale(1.3);
+    }
+
+    #group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
+        width: 220px;
+    }
     
+    #create {
+        font-size: 2.2rem;
+    }
+
 }
 
 @media (max-width: 375px) {
@@ -3267,7 +3433,7 @@ input[type=number] {
         padding: 0;
     }
 
-    #add-listing-form textarea, #profile-bio-box textarea  {
+    #form-step-one textarea, #profile-bio-box textarea  {
         width: 190px;
     }
 
@@ -3275,8 +3441,12 @@ input[type=number] {
         width: 160px;
     }
 
-    #group-name {
-        width: 180px;
+    #group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
+        width: 200px;
+    }
+
+    #add-listing-form label, #add-listing-form p, #create-profile-form p, #create-profile-form label {
+        width: 200px;
     }
 
     #form-step-one h2 {
@@ -3299,6 +3469,11 @@ input[type=number] {
     #profile-link {
         display: block;
     }
+
+    #only-intown-group input {
+        transform: scale(1.4);
+    }
+
 }
 
 @media (max-width: 340px) {
@@ -3345,7 +3520,7 @@ input[type=number] {
         font-size: 2.6rem;
     }
 
-    #add-listing-form textarea, #profile-bio-box textarea  {
+    #form-step-one textarea, #profile-bio-box textarea  {
         width: 170px;
     }
 
@@ -3353,11 +3528,11 @@ input[type=number] {
         margin-right: 0 !important;
     }
 
-    #group-name {
-        width: 150px;
+    #group-name, #organiser-details input, #organiser-details textarea, #regular-date-container input, #contact-details input {
+        width: 190px;
     }
 
-    #listing-extra-details label, #ages p  {
+    #listing-extra-details label {
         width: 170px;
     }
 }

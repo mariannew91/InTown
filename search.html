@@ -33,8 +33,13 @@
                 </div>
             </div>
         </div>
-        <input type="text" placeholder="Have a look around...">
-        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container">
+            <input type="checkbox" id="search-toggle" class="search-checkbox">
+            <input type="text" id="search-input" placeholder="Have a look around...">
+            <label for="search-toggle" class="search-icon">
+                <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </div>
         <div id="sign-profile">
             <h2 class="logout sign-in">Sign In</h2>
             <h2 class="login sign-in">Profile</h2>
@@ -42,7 +47,7 @@
     </header>
     <!--Body-->
     <div id="search-page-main">
-        <button class="sidebar-tag"><i class="fa-solid fa-sliders"></i></button>
+        <button class="sidebar-tag" id="search-filter-tag"><i class="fa-solid fa-sliders"></i></button>
         <div id="search-side-bar" class="profile-side-bar">
             <ul id="search-categories">
                 <li class="filter-btn">Type
@@ -75,13 +80,13 @@
                 <li class="filter-btn">Age</li>
             </ul>
         </div>
-    
-        <div id="search-centre">
-            <div id="search-top">
-                <h1>Find your thing in town</h1>
-            </div>
-            <div id="search-results">
-                <h3> Search Results</h3>
+        <div id="search-top">
+            <h1>Find your thing in town</h1>
+        
+            <div id="search-centre">
+                <div id="search-results">
+                    <h3> Search Results</h3>
+                </div>
             </div>
         </div>
     </div>

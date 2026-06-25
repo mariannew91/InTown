@@ -33,8 +33,13 @@
                 </div>
             </div>
         </div>
-        <input type="text" placeholder="Have a look around...">
-        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container">
+            <input type="checkbox" id="search-toggle" class="search-checkbox">
+            <input type="text" id="search-input" placeholder="Have a look around...">
+            <label for="search-toggle" class="search-icon">
+                <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </div>
         <div id="sign-profile">
             <h2 class="logout sign-in">Sign In</h2>
             <h2 class="login sign-in">Profile</h2>
@@ -43,7 +48,10 @@
     <!--Body-->
     <div>
         <div id="create-profile-top">
-            <h1>Welcome to <span id="orange-in">In</span>Town<span id="users-name"></span></h1>
+            <h1>
+                <span class="welcome-text">Welcome to</span>
+                <span id="orange-in">In</span>Town<span id="users-name"></span>
+            </h1>
         </div>
         <div>
             <form id="create-profile-form">
@@ -55,12 +63,30 @@
                 <div id="types">
                     <p>What type of thing are you looking for?</p>
                     <div id="choose-type">
-                        <label><input type="checkbox" name="type-choice" value="type-regular"> Regular groups & clubs</label>
-                        <label><input type="checkbox" name="type-choice" value="Events"> Events</label>
-                        <label><input type="checkbox" name="type-choice" value="Classes and Courses"> Classes & courses</label>
-                        <label><input type="checkbox" name="type-choice" value="Volunteering"> Volunteering opportunites</label>
-                        <label><input type="checkbox" name="type-choice" value="Family and Kids"> Family & kids activities</label>
-                        <label><input type="checkbox" name="type-choice" value="Explore All Options"> I'm open to all options</label>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="type-regular" name="type-choice" value="type-regular">
+                            <label for="type-regular">Regular groups & clubs</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="type-events" name="type-choice" value="Events">
+                            <label for="type-events">Events</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="type-classes" name="type-choice" value="Classes and Courses">
+                            <label for="type-classes">Classes & courses</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="type-volunteering" name="type-choice" value="Volunteering">
+                            <label for="type-volunteering">Volunteering opportunities</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="type-family" name="type-choice" value="Family and Kids">
+                            <label for="type-family">Family & kids activities</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="type-open" name="type-choice" value="Explore All Options">
+                            <label for="type-open">I'm open to all options</label>
+                        </div>
                     </div>
                 </div>
                 <div id="interests">
@@ -82,13 +108,34 @@
                 <div id="hopes">
                     <p>What are you hoping to get out of this?</p>
                     <div id="choose-hope">
-                        <label><input type="checkbox" name="hope-choice" value="hope-friends"> Make new friends</label>
-                        <label><input type="checkbox" name="hope-choice" value="hope-hobbies"> Try new hobbies</label>
-                        <label><input type="checkbox" name="hope-choice" value="hope-health"> Improve health</label>
-                        <label><input type="checkbox" name="hope-choice" value="hope-get-out"> Get out more</label>
-                        <label><input type="checkbox" name="hope-choice" value="hope-learn"> Learn something new</label>
-                        <label><input type="checkbox" name="hope-choice" value="hope-community"> Get involved in my community</label>
-                        <label><input type="checkbox" name="hope-choice" value="hope-fun"> Just have fun and try new experiences</label>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-friends" name="hope-choice" value="hope-friends">
+                            <label for="hope-friends">Make new friends</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-hobbies" name="hope-choice" value="hope-hobbies">
+                            <label for="hope-hobbies">Try new hobbies</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-health" name="hope-choice" value="hope-health">
+                            <label for="hope-health">Improve health</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-out" name="hope-choice" value="hope-get-out">
+                            <label for="hope-out">Get out more</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-learn" name="hope-choice" value="hope-learn">
+                            <label for="hope-learn">Learn something new</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-community" name="hope-choice" value="hope-community">
+                            <label for="hope-community">Get involved in my community</label>
+                        </div>
+                        <div class="checkbox-row">
+                            <input type="checkbox" id="hope-fun" name="hope-choice" value="hope-fun">
+                            <label for="hope-fun">Just have fun and try new experiences</label>
+                        </div>
                     </div>
                 </div>
                 <div id="ages">
@@ -103,7 +150,8 @@
                     </div>
                 </div>
                 <div id="photo-upload-container">
-                    <label for="profile-photo-upload" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i> Choose your profile picture</label>
+                    <p>Choose your profile picture</p>
+                    <label for="profile-photo-upload" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i> Upload</label>
                     <input type="file" id="profile-photo-upload" name="profile-photo-upload">
                 </div>
                 <button id="create-profile-btn" class="button" type="submit">Create Profile</button>

@@ -348,6 +348,7 @@ if (signupForm) {
             localStorage.setItem('email', email.value.trim());
         }
         const selectedOption = document.querySelector('input[name="user-type"]:checked')?.value;
+        localStorage.setItem('user-type', selectedOption);
         if (selectedOption === 'public') window.location.href = 'create-profile.html';
         else window.location.href = 'add-listing.html'; 
     });
@@ -613,6 +614,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const userNameHeading = document.getElementById('users-name');
     const savedName = localStorage.getItem('user-full-name');
     if (userNameHeading && savedName) userNameHeading.textContent = ` ${savedName.split(' ')[0]}`;
+
+    const userType = localStorage.getItem('user-type');
+    const businessFields = document.getElementById('business-fields');
+    const organiserFields = document.getElementById('organiser-desc-container');
+    if (userType === 'business') {
+        businessFields.style.display = 'block';
+        organiserFields.style.display = 'none';
+    } else {
+        businessFields.style.display = 'none';
+        organiserFields.style.display = 'block';
+    }
 
     const profileData = JSON.parse(localStorage.getItem('user-profile'));
 
