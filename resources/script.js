@@ -622,8 +622,12 @@ document.addEventListener('DOMContentLoaded', () => {
         businessFields.style.display = 'block';
         organiserFields.style.display = 'none';
     } else {
-        businessFields.style.display = 'none';
-        organiserFields.style.display = 'block';
+        if (businessFields) {
+            businessFields.style.display = 'block';
+        }
+        if (organiserFields) {
+            organiserFields.style.display = 'none';
+        }
     }
 
     const profileData = JSON.parse(localStorage.getItem('user-profile'));
@@ -712,13 +716,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Ensure one tab is always active on page load
     const initializeDefaultTab = () => {
         const activeDesktop = document.querySelector('#dynamic-tab-bar .tab-btn.active');
         const activeMobile = document.querySelector('.tab.active');
 
         if (window.innerWidth > 767) {
-            // Desktop: If no tab is active, default to first
             if (!activeDesktop) {
                 const firstBtn = document.querySelector('.tab-btn');
                 if (firstBtn) activateTab(firstBtn, 'Suggested');
@@ -727,12 +729,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 activateTab(activeDesktop, activeDesktop.textContent.trim());
             }
         } else {
-            // Mobile: If no tab is active, default to first
             if (!activeMobile) {
                 const firstTab = document.querySelector('.tab');
                 if (firstTab) activateTab(firstTab, 'Suggested');
             } else {
-                // If one is active, ensure its content is visible
                 activateTab(activeMobile, activeMobile.textContent.trim());
             }
         }
@@ -900,20 +900,22 @@ document.addEventListener('click', (event) => {
     }
 });
 
-window.addEventListener("scroll", () => {
-    const sidebar = document.getElementById("search-side-bar");
-    const header = document.querySelector("header");
 
+window.addEventListener("scroll", () => {
+    const searchSidebar = document.getElementById("search-side-bar");
+    const header = document.querySelector("header");
+    if (!searchSidebar || !header) return; 
     const headerHeight = header.offsetHeight;
 
     if (window.scrollY >= headerHeight) {
-        sidebar.style.top = "0";
-        sidebar.style.height = "100vh";
+        searchSidebar.style.top = "0";
+        searchSidebar.style.height = "100vh";
     } else {
         const remaining = headerHeight - window.scrollY;
 
-        sidebar.style.top = `${remaining}px`;
-        sidebar.style.height = `calc(100vh - ${remaining}px)`;
+        searchSidebar.style.top = `${remaining}px`;
+        searchSidebar.style.height = `calc(100vh - ${remaining}px)`;
     }
+    
 });
 
