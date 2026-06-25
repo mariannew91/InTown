@@ -909,12 +909,12 @@ window.addEventListener("scroll", () => {
 
     if (window.scrollY >= headerHeight) {
         searchSidebar.style.top = "0";
-        searchSidebar.style.height = "100vh";
+        searchSidebar.style.height = "100dvh";
     } else {
         const remaining = headerHeight - window.scrollY;
 
         searchSidebar.style.top = `${remaining}px`;
-        searchSidebar.style.height = `calc(100vh - ${remaining}px)`;
+        searchSidebar.style.height = `calc(100dvh - ${remaining}px)`;
     }
     
 });
