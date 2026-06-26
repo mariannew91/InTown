@@ -675,6 +675,51 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProfileData();
     renderEditPills();
 
+if (!window._inTownPillHandlersAdded) {
+    window._inTownPillHandlersAdded = true;
+
+    document.querySelectorAll('.tag-selector').forEach(select => {
+        select.addEventListener('change', (e) => {
+            const value = e.target.value;
+            if (!value) return;
+
+            const map = {
+                'type-select': 'types',
+                'interest-select': 'interests',
+                'hope-select': 'hopes',
+                'age-select': 'ages'
+            };
+            const key = map[e.target.id];
+            if (!key) return;
+
+            const profileData = JSON.parse(localStorage.getItem('user-profile')) || {};
+            if (!Array.isArray(profileData[key])) profileData[key] = [];
+            if (!profileData[key].includes(value)) {
+                profileData[key].push(value);
+                localStorage.setItem('user-profile', JSON.stringify(profileData));
+                if (typeof renderEditPills === 'function') renderEditPills();
+            }
+
+            e.target.value = '';
+        });
+    });
+
+    document.addEventListener('click', (e) => {
+        if (!e.target.classList.contains('remove-pill')) return;
+
+        const category = e.target.getAttribute('data-category');
+        const valueToRemove = e.target.getAttribute('data-value');
+        if (!category || !valueToRemove) return;
+
+        const profileData = JSON.parse(localStorage.getItem('user-profile')) || {};
+        if (!Array.isArray(profileData[category])) return;
+
+        profileData[category] = profileData[category].filter(item => item !== valueToRemove);
+        localStorage.setItem('user-profile', JSON.stringify(profileData));
+        if (typeof renderEditPills === 'function') renderEditPills();
+    });
+}
+
     const sections = {
         'Suggested': document.getElementById('suggestions-box'),
         'Your InTown': document.getElementById('feed')
@@ -755,7 +800,10 @@ if (priceInput) {
 
 document.querySelectorAll('.filter-btn').forEach(item => {
     item.addEventListener('click', function(event) {
-        if (event.target.tagName !== 'INPUT') this.querySelector('.filter-options').classList.toggle('is-visible');
+        const options = this.querySelector('.filter-options');
+        if (options) {
+            options.classList.toggle('is-visible');
+        }
     });
 });
 
@@ -892,11 +940,26 @@ if (toggleBtn && sidebar) {
 }
 
 document.addEventListener('click', (event) => {
-    if (sidebar.classList.contains('is-open') && 
-        !sidebar.contains(event.target) && 
-        event.target !== toggleBtn) {
-        
+    if (!sidebar.classList.contains('is-open')) return;
+    if (event.target === toggleBtn || toggleBtn.contains(event.target)) return;
+
+    const clickedInside = sidebar.contains(event.target);
+    if (!clickedInside) {
         sidebar.classList.remove('is-open');
+        return;
+    }
+
+    const isSearchPage = window.location.pathname.includes('search.html');
+    const clickedListItem = event.target.closest('li');
+
+    if (clickedListItem) {
+        if (isSearchPage) {
+            if (clickedListItem.classList.contains('filter-btn')) return;
+            return; 
+        } 
+        if (!clickedListItem.classList.contains('filter-btn')) {
+            sidebar.classList.remove('is-open');
+        }
     }
 });
 

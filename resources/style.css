@@ -969,8 +969,6 @@ input[type="radio"] {
 
 .profile-head {
     display: flex;
-    background-color: rgb(255, 255, 255);
-    width: 20%;
     height: 100px;
     padding: 5px;
 }
@@ -997,15 +995,16 @@ input[type="radio"] {
     margin: 0;
 }
 
-#profile-top-centre {
-    width: 80%;
+#profile-top-centre, #listing-head-centre {
+    flex-grow: 1;
+    width: auto;
 }
 
-#profile-name {
+#profile-name, #listing-profile-name {
     margin: 2px 0;
     width: 100%;
     text-align: center;
-    font-size: 3.5rem;
+    font-size: clamp(0.9rem, 8vw, 3.5rem);
 }
 
 #profile-container {
@@ -1096,7 +1095,7 @@ input[type="radio"] {
     display: none;
     flex-direction: column;
     width: 100%;
-    height: 100%;
+    height: 100dvh;
     background-color: white;
 }
 
@@ -1298,14 +1297,19 @@ input[type="radio"] {
     border-right: 1px solid rgb(213, 228, 226);
 }
 
+#listing-top-left {
+    width: 75%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 #message-box {
     width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100px;
-    background-color: rgb(241, 245, 249);
-    border-right: 1px solid rgb(213, 228, 226);
 }
 
 #message {
@@ -1330,7 +1334,6 @@ input[type="radio"] {
 
 #listing-profile-name {
     margin: 0 auto;
-    font-size: 3.5rem;
 }
 
 #organiser-name-box {
@@ -2157,6 +2160,7 @@ input[type=number] {
 #edit-form-details label {
     margin-bottom: 10px;
     margin-top: 20px;
+    font-size: 1.2rem;
 }
 
 #profile-pic-edit {
@@ -2229,6 +2233,7 @@ input[type=number] {
     overflow: scroll;
     padding: 7px 12px;
     border: 1px solid rgb(240, 90, 80);
+    font-size: 1rem;
 }
 
 #save-changes {
@@ -2236,9 +2241,9 @@ input[type=number] {
     margin-top: 40px;
 }
 
-#right-form h3, #left-form h3 {
+#right-form h3, #left-form h3, #keep-update {
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.2rem;
 }
 
 #left-form label {
@@ -2250,6 +2255,7 @@ input[type=number] {
     margin: 5px auto;
     width: 100%;
     border: 1px solid rgb(240, 90, 80);
+    font-size: 0.9rem;
 }
 
 .pill-wrapper {
@@ -2265,7 +2271,7 @@ input[type=number] {
     border-radius: 6px;
     display: inline-flex;
     align-items: center;
-    font-size: 0.8rem;
+    font-size: 1rem;
     font-weight: 300;
     font-family: "Urbanist", sans-serif;
     margin: 5px;
@@ -2384,7 +2390,7 @@ input[type=number] {
         height: 100vh;
         z-index: 1000;
         transition: left 0.3s ease;
-        width: 50%;
+        width: 350px;
     }
 
     #search-categories li {
@@ -2539,6 +2545,7 @@ input[type=number] {
 }
 
 @media (max-width: 767px) {
+    
 
     /* To hide either log out */
     .logout {
@@ -2711,7 +2718,7 @@ input[type=number] {
     }
 
     .profile-centre {
-        min-height: 100vh;
+        min-height: 100dvh;
     }
 
     .interest-headers {
@@ -2720,6 +2727,42 @@ input[type=number] {
 
     .interest-box {
         margin: 20px 40px;
+    }
+
+    .profile-side-bar h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-side-bar li {
+        font-size: 1.3rem;
+    }
+
+    form input {
+        font-size: 1.2rem;
+    }
+
+    .tag-selector {
+        font-size: 1.2rem;
+    }
+
+    #right-form h3, #left-form h3, #keep-update {
+        font-size: 1.4rem;
+    }
+
+    #edit-form-details label {
+        font-size: 1.4rem;
+    }
+
+    #users-name-edit {
+        padding: 8px 20px;
+    }
+
+    .pill {
+        font-size: 1.1rem;
+    }
+
+    #profile-bio-edit {
+        font-size: 1.2rem;
     }
 
     /* Create Profile Page */
@@ -3027,10 +3070,6 @@ input[type=number] {
         font-size: 1.5rem;
     }
 
-    .profile-head {
-        background-color: rgb(248, 244, 236);
-    }
-
     .interest-headers {
         font-size: 1rem;
         width: 50%;
@@ -3143,10 +3182,12 @@ input[type=number] {
 
     #listing-top {
         flex-direction: column;
+        align-items: center;
+        position: relative;
     }
 
     #message-box {
-        position: absolute;
+        position: static;
         left: 10px;
         height: 80px;
         background-color: rgb(248, 244, 236);
@@ -3154,7 +3195,8 @@ input[type=number] {
     }
 
     #listing-head-centre {
-        height: 80px;
+        height: auto;
+        text-align: center;
     }
 
     #organiser-head-right {
@@ -3193,6 +3235,10 @@ input[type=number] {
     #listing-extra-details label, #profile-bio label {
         flex-wrap: wrap;
         width: 230px;
+    }
+
+    #listing-top-left {
+        width: 100%;
     }
 
 }
@@ -3271,14 +3317,10 @@ input[type=number] {
     }
 
     .pill {
-        font-size: 0.9rem;
+        font-size: 1.2rem;
     }
 
     #message-box {
-        height: 60px;
-    }
-    
-    #listing-head-centre {
         height: 60px;
     }
 
@@ -3397,6 +3439,25 @@ input[type=number] {
         font-size: 1.8rem;
     }
 
+    .profile-side-bar h2 {
+        font-size: 1.8rem;
+    }
+
+    .profile-side-bar li {
+        font-size: 1.5rem;
+    }
+
+    form input {
+        font-size: 1.4rem;
+    }
+
+    #profile-bio-edit {
+        font-size: 1.3rem;
+    }
+
+    .tag-selector {
+        font-size: 1.3rem;
+    }
 }
 
 @media (max-width: 425px) {
@@ -3546,10 +3607,6 @@ input[type=number] {
         margin-left: -20px;
     }
 
-    #profile-name {
-        font-size: 3rem;
-    }
-
     #message-box {
         width: 50px;
         background-color: rgb(248, 244, 236);
@@ -3626,6 +3683,10 @@ input[type=number] {
         transform: scale(1.4);
     }
 
+    .profile-side-bar.is-open {
+        width: 300px;
+    }
+
 }
 
 @media (max-width: 340px) {
@@ -3640,10 +3701,6 @@ input[type=number] {
 
     #just-logo {
         margin-left: -25px;
-    }
-
-    #profile-name {
-        font-size: 2.6rem;
     }
 
     .interest-box {
