@@ -33,8 +33,13 @@
                 </div>
             </div>
         </div>
-        <input type="text" placeholder="Have a look around...">
-        <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+        <div class="search-container">
+            <input type="checkbox" id="search-toggle" class="search-checkbox">
+            <input type="text" id="search-input" placeholder="Have a look around...">
+            <label for="search-toggle" class="search-icon">
+                <i id="search-symbol" class="fa-solid fa-magnifying-glass"></i>
+            </label>
+        </div>
         <div id="sign-profile">
             <h2 class="logout sign-in">Sign In</h2>
             <h2 class="login sign-in">Profile</h2>

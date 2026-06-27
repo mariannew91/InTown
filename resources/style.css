@@ -16,16 +16,16 @@ body {
     background: rgb(248, 244, 236);
 }
 
-/* To hide either log out */
+/* To hide either log out 
 .logout { 
     display: none;
 }
 
 #main-logout.logout {
     display: none;
-} 
+}  */
 
-/*  To hide either log in 
+/*  To hide either log in  */
 .login { 
     display: none;
 }
@@ -33,7 +33,7 @@ body {
 
 #main-body-login.login {
     display: none;
-} */
+} 
 
 
 /* Header */
@@ -197,7 +197,7 @@ input {
 #main-logout {
     display: flex;
     flex-direction: column;
-    padding: 30px 0;
+    padding: 10px 0 30px 0;
 }
 
 .button {
@@ -224,17 +224,43 @@ input {
 
 #main-logout h1 {
     text-align: center;
-    margin-top: 20px;
+    margin: 20px;
+    font-size: clamp(1.5rem, 5vw, 2.5rem);
+}
+
+#logout-top {
+    max-width: 90ch;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 #top-sub {
     text-align: center;
     font-size: 1.2rem;
+    line-height: 1.2;
     margin-bottom: 20px;
+    font-weight: bolder;
+}
+
+#sub-description {
+    margin-bottom: 30px;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-top: 1rem;
+}
+
+.logout-details {
+    margin: 15px;
+    font-weight: 400;
 }
 
 #how h1 {
     margin-top: 20px;
+}
+
+#how button {
+    font-size: 1.8rem;
 }
 
 #gen-and-group {
@@ -245,11 +271,11 @@ input {
 
 .boxes {
     background: rgb(255, 255, 255);
-    border: 1px solid rgb(15,23,42);
+    border: 1px solid rgb(21, 32, 57);
 }
 
 .boxes h2 {
-    background-color: rgb(15,23,42);
+    background-color: rgb(21, 32, 57);
     color: white;
 }
 
@@ -257,9 +283,17 @@ input {
     list-style: none;
 }
 
+#general.is-visible, #groups.is-visible {
+    display: block;
+}
+
+#general , #groups {
+    display: none;
+}
+
 #general {
     width: 50%;
-    border: 1px solid rgb(15,23,42);
+    border: 1px solid rgb(21, 32, 57);
 }
 
 .boxes h2 {
@@ -278,7 +312,7 @@ input {
 
 #groups {
     width: 50%;
-    border: 1px solid rgb(15,23,42);
+    border: 1px solid rgb(21, 32, 57);
 }
 
 .how-head {
@@ -347,7 +381,7 @@ input {
     color: white;
     margin-right: -30px;
     position: relative;
-    font-weight: 600;
+    font-weight: 400;
     border-top-right-radius: 20px;
     border-top-left-radius: 20px;
     transition: background 0.2s, margin 0.3s;
@@ -394,7 +428,7 @@ input {
 .tab-btn.active {
     background-color: rgb(255,106,94) !important;
     color: white;
-    font-weight: bold;
+    font-weight: bold !important;
     z-index: 10;
 }
 /* Side bar logged in */
@@ -714,8 +748,7 @@ footer ul, #foot-add-listing a {
 /* Main logged out */
 
 #how {
-    padding-left: 40px;
-    padding-right: 40px;
+    padding: 0 40px;
 }
 
 #how h1 {
@@ -730,7 +763,7 @@ footer ul, #foot-add-listing a {
 }
 
 #how h2 {
-    padding: 5px 0;
+    padding: 10px 0;
 }
 
 .subhead {
@@ -742,8 +775,9 @@ footer ul, #foot-add-listing a {
     font-weight: 500;
 }
 
-#how ul {
+.logout-list {
     margin-bottom: 20px;
+    padding: 0 40px;
 }
 
 #how li {
@@ -793,9 +827,10 @@ footer ul, #foot-add-listing a {
     padding: 30px;
     width: 60%;
     margin: 0 auto 30px auto;
-    border-radius: 6px;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
     font-size: 1.1rem;
-    border: 1px solid rgb(32, 178, 158);   
+    border: 1px solid rgb(21, 32, 57);   
 }
 
 .sign-up-form-group {
@@ -809,6 +844,11 @@ form input {
     font-size: 1rem;
 }
 
+#your-details {
+    display: flex;
+    flex-direction: column;
+}
+
 #your-details label {
     margin-left: 15px;
     margin-bottom: 5px;
@@ -818,6 +858,7 @@ form input {
 
 #your-details input {
     width: 100%;
+    min-width: 200px;
     padding: 6px 20px;
     margin: 0;
 }
@@ -834,7 +875,8 @@ form input {
 }
 
 #password {
-    max-width: 400px;
+    max-width: 300px;
+    width: 60% !important;
 }
 
 #sign-up-form p {
@@ -945,6 +987,7 @@ button {
 #why-here label {
     padding: 10px;
     margin: 0;
+    font-size: 1.1rem !important;
 }
 
 #why-here input {
@@ -1982,7 +2025,7 @@ input[type=number] {
     cursor: pointer;
 }
 
-.filter-options label {
+.filter-options label, #why-here label {
     display: inline-flex !important;
     font-size: 0.9rem;
     text-align: left;
@@ -2302,6 +2345,13 @@ input[type=number] {
 
 
 /* Media */
+
+@media (min-width: 768px) {
+    #general, #groups {
+        display: block !important;
+    }
+}
+
 @media (max-width: 1040px) {
 
 
@@ -2421,7 +2471,7 @@ input[type=number] {
         padding: 6px 20px !important;
     }
 
-    #sign-up-form, #sign-up-main h1, #sign-up-main h2 {
+    #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
         width: 70%;
     }
 }
@@ -2444,6 +2494,7 @@ input[type=number] {
     #head-bottom li {
         font-size: 0.9rem;
     }
+    
 }
 
 @media (max-width: 910px) {
@@ -2521,7 +2572,7 @@ input[type=number] {
         font-size: 0.8rem;
     }
 
-    #sign-up-form, #sign-up-main h1, #sign-up-main h2 {
+    #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
         width: 80%;
     }
 }
@@ -2547,16 +2598,16 @@ input[type=number] {
 @media (max-width: 767px) {
     
 
-    /* To hide either log out */
+    /* To hide either log out
     .logout {
         display: none !important;
     }
 
     #main-logout.logout {
         display: none !important;
-    } 
+    }  */
 
-    /*  To hide either log in 
+    /*  To hide either log in  */
     .login {
         display: none !important;
     }
@@ -2564,7 +2615,7 @@ input[type=number] {
 
     #main-body-login.login {
         display: none !important;
-    } */
+    } 
 
     html {
         font-size: 13px;
@@ -2615,9 +2666,29 @@ input[type=number] {
     
     /* Home Page */
     
+    .tab-bar-home {
+        display: none;
+    }
+
+    #how h1 {
+        margin-top: 0;
+        margin-bottom: 10px;
+    }
 
     #dynamic-tab-bar {
         display: none;
+    }
+
+    #how h2 {
+        display: none;
+    }
+
+    #general, #groups {
+        width: 100%;
+    }
+
+    .subhead {
+        font-size: 1.4rem;
     }
 
     #side-bar {
@@ -2649,6 +2720,7 @@ input[type=number] {
         color: white;
         border: none;
         cursor: pointer;
+        font-weight: 400;
         border-right: 0.5px solid rgba(131, 131, 131, 0.428);
         background-color: rgb(21, 32, 57);
     }
@@ -2659,6 +2731,7 @@ input[type=number] {
 
     .tab.active {
         border-bottom: 3px solid rgb(240, 90, 80);
+        font-weight: bold;
     }
 
     #main-login, #suggestions-box, #feed, #newest {
@@ -2698,6 +2771,14 @@ input[type=number] {
     }
 
     .event-cards h4, .age, .date {
+        font-size: 1.2rem;
+    }
+
+    #top-sub {
+        font-size: 1.4rem;
+    }
+
+    .inside-box p, #sub-description {
         font-size: 1.2rem;
     }
 
@@ -2887,6 +2968,42 @@ input[type=number] {
     #zero {
         font-size: 1rem;
     }
+
+    /* Sign Up Page */
+
+    #your-details label, #why-here label {
+        font-size: 1.3rem !important;
+    }
+    
+    #sign-up-form {
+        padding: 30px 70px;
+    }
+
+    /* 2. Force the groups and the name row to the left */
+    .sign-up-form-group, #full-name {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+    }
+
+    #full-name {
+        flex-direction: column;
+        gap: 0;
+        justify-content: flex-start;
+    }
+
+    .full-name-line {
+        width: 80%;
+    }
+
+    #password-signup, #email-signup {
+        width: 100%;
+    }
+
+
+    #sign-up-form p {
+        font-size: 1.4rem;
+    }
+
     
 }
 
@@ -3012,6 +3129,10 @@ input[type=number] {
         font-size: 0.95rem;
     }
 
+    #already {
+        padding: 10px 30px;
+    }
+
     
 }
 
@@ -3086,7 +3207,7 @@ input[type=number] {
         margin-top: 13px;
     }
 
-    #sign-up-form, #sign-up-main h1, #sign-up-main h2 {
+    #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
         width: 90%;
     }
 
@@ -3369,12 +3490,16 @@ input[type=number] {
         margin-top: 4px;
     }
 
-    #sign-up-form, #sign-up-main h1, #sign-up-main h2 {
+    #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
         width: 95%;
     }
 
     #sign-up-form {
-        padding: 30px 10px;
+        padding: 30px 30px;
+    }
+
+    #your-details input {
+        font-size: 1.3rem;
     }
 
     #form-step-one, #form-step-two, #create-profile-form {
@@ -3457,6 +3582,23 @@ input[type=number] {
 
     .tag-selector {
         font-size: 1.3rem;
+    }
+
+    .logout-details {
+        margin: 5px;
+    }
+
+    .logout-list {
+        padding: 0 20px;
+    }
+
+    #why-here label {
+        font-size: 1.4rem !important;
+    }
+
+    
+    #sign-up-form p {
+        font-size: 1.5rem;
     }
 }
 

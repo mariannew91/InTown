@@ -720,72 +720,110 @@ if (!window._inTownPillHandlersAdded) {
     });
 }
 
-    const sections = {
-        'Suggested': document.getElementById('suggestions-box'),
-        'Your InTown': document.getElementById('feed')
-    };
+const sections = {
+    'Suggested': document.getElementById('suggestions-box'),
+    'Your InTown': document.getElementById('feed')
+};
 
-    const activateTab = (tabElement, sectionName) => {
-        document.querySelectorAll('.tab, .tab-btn').forEach(b => b.classList.remove('active'));
-        Object.values(sections).forEach(s => s?.classList.remove('is-visible'));
+const activateTab = (tabElement, sectionName) => {
+    document.querySelectorAll('.tab, .tab-btn').forEach(b => b.classList.remove('active'));
+    Object.values(sections).forEach(s => s?.classList.remove('is-visible'));
 
-        tabElement.classList.add('active');
-        sections[sectionName]?.classList.add('is-visible');
-    };
+    tabElement.classList.add('active');
+    sections[sectionName]?.classList.add('is-visible');
+};
 
-    const mobileTabs = document.querySelectorAll('.tab');
-    mobileTabs.forEach(tab => {
-        tab.addEventListener('click', () => activateTab(tab, tab.textContent.trim()));
-    });
+const mobileTabs = document.querySelectorAll('.tab');
+mobileTabs.forEach(tab => {
+    tab.addEventListener('click', () => activateTab(tab, tab.textContent.trim()));
+});
 
-    const mainLogin = document.getElementById('main-login');
-    const manageDesktopTabs = () => {
-        const existing = document.getElementById('dynamic-tab-bar');
-        
-        if (window.innerWidth > 767 && !existing && mainLogin) {
-            const bar = document.createElement('div');
-            bar.id = 'dynamic-tab-bar';
-            bar.innerHTML = `
+const mainLogin = document.getElementById('main-login');
+const manageAllDesktopTabs = () => {
+    const feedExisting = document.getElementById('dynamic-tab-bar-feed');
+    const homeExisting = document.getElementById('dynamic-tab-bar-home');
+    
+    if (window.innerWidth > 767) {
+        if (!feedExisting && document.getElementById('main-login')) {
+            const feedBar = document.createElement('div');
+            feedBar.id = 'dynamic-tab-bar-feed';
+            feedBar.innerHTML = `
                 <button type="button" class="tab-btn active tab-first">Suggested</button>
                 <button type="button" class="tab-btn tab-last">Your InTown</button>
             `;
-            mainLogin.insertBefore(bar, mainLogin.firstChild);
-
-            bar.querySelectorAll('.tab-btn').forEach(btn => {
+            document.getElementById('main-login').insertBefore(feedBar, document.getElementById('main-login').firstChild);
+            feedBar.querySelectorAll('.tab-btn').forEach(btn => {
                 btn.addEventListener('click', () => activateTab(btn, btn.textContent.trim()));
             });
-
-            activateTab(bar.querySelector('.tab-first'), 'Suggested');
-        } else if (window.innerWidth <= 767 && existing) {
-            existing.remove();
+        
         }
+    } else {
+        if (feedExisting) feedExisting.remove();
+        if (homeExisting) homeExisting.remove();
+    }
+};
+
+    const homePageSections = {
+        'For Public': document.getElementById('general'),
+        'For Groups': document.getElementById('groups')
     };
 
-    const initializeDefaultTab = () => {
-        const activeDesktop = document.querySelector('#dynamic-tab-bar .tab-btn.active');
-        const activeMobile = document.querySelector('.tab.active');
+    const homeActivateTab = (tabElement, sectionName) => {
+        document.querySelectorAll('.tab, .tab-btn').forEach(b => b.classList.remove('active'));
+        Object.values(homePageSections).forEach(s => s?.classList.remove('is-visible'));
+
+        tabElement.classList.add('active');
+        homePageSections[sectionName]?.classList.add('is-visible');
+    };
+
+    const initializeAllTabs = () => {
+        const activeDesktopFeed = document.querySelector('#dynamic-tab-bar-feed .tab-btn.active');
+        const activeMobileFeed = document.querySelector('.tab-bar .tab.active');
+        const activeDesktopHome = document.querySelector('#dynamic-tab-bar-home .tab-btn.active');
+        const activeMobileHome = document.querySelector('.tab-bar .tab.active');
 
         if (window.innerWidth > 767) {
-            if (!activeDesktop) {
-                const firstBtn = document.querySelector('.tab-btn');
-                if (firstBtn) activateTab(firstBtn, 'Suggested');
+            if (!activeDesktopFeed) {
+                const firstFeedBtn = document.querySelector('#dynamic-tab-bar-feed .tab-btn');
+                if (firstFeedBtn) activateTab(firstFeedBtn, 'Suggested');
             } else {
-                // If one is active, ensure its content is visible
-                activateTab(activeDesktop, activeDesktop.textContent.trim());
+                activateTab(activeDesktopFeed, activeDesktopFeed.textContent.trim());
+            }
+
+            if (!activeDesktopHome) {
+                const firstHomeBtn = document.querySelector('#dynamic-tab-bar-home .tab-btn');
+                if (firstHomeBtn) homeActivateTab(firstHomeBtn, 'For Public');
+            } else {
+                homeActivateTab(activeDesktopHome, activeDesktopHome.textContent.trim());
             }
         } else {
-            if (!activeMobile) {
+            if (!activeMobileFeed) {
                 const firstTab = document.querySelector('.tab');
                 if (firstTab) activateTab(firstTab, 'Suggested');
             } else {
-                activateTab(activeMobile, activeMobile.textContent.trim());
+                activateTab(activeMobileFeed, activeMobileFeed.textContent.trim());
+            }
+
+            if (!activeMobileHome) {
+                const firstHomeTab = document.querySelectorAll('.tab')[1];
+                if (firstHomeTab) homeActivateTab(firstHomeTab, 'For Public');
+            } else {
+                homeActivateTab(activeMobileHome, activeMobileHome.textContent.trim());
             }
         }
     };
 
-    initializeDefaultTab();
-    window.addEventListener('resize', manageDesktopTabs);
-    manageDesktopTabs();
+    const mobileHomeTabs = document.querySelectorAll('.tab');
+    mobileHomeTabs.forEach(tab => {
+        tab.addEventListener('click', () => homeActivateTab(tab, tab.textContent.trim()));
+    });
+
+    const mainLogout = document.getElementById('main-logout');
+    
+
+    initializeAllTabs();
+    window.addEventListener('resize', manageAllDesktopTabs);
+    manageAllDesktopTabs();
 
 });
 
