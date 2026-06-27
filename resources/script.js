@@ -619,14 +619,14 @@ document.addEventListener('DOMContentLoaded', () => {
     const businessFields = document.getElementById('business-fields');
     const organiserFields = document.getElementById('organiser-desc-container');
     if (userType === 'business') {
-        businessFields.style.display = 'block';
+        businessFields.style.display = 'flex';
         organiserFields.style.display = 'none';
     } else {
         if (businessFields) {
-            businessFields.style.display = 'block';
+            businessFields.style.display = 'none';
         }
         if (organiserFields) {
-            organiserFields.style.display = 'none';
+            organiserFields.style.display = 'flex';
         }
     }
 
