@@ -4,7 +4,7 @@ async function fetchData() {
         const data = await response.json();
         
         console.log(data.message); 
-        
+
     } catch (error) {
         console.error("Error connecting to FastAPI:", error);
     }
@@ -140,7 +140,7 @@ function eventCardTemplate(event, index) {
             </div>
             <div class="card-main-and-details ${index % 2 === 0 ? 'card-even' : 'card-odd'}">
                 <div class="card-main">
-                    <img class="event-photo" src="${event.photo || './resources/images/inTown-logo.png'}"></img>
+                    <img class="event-photo" src="${event.photo || '/resources/images/inTown-logo.png'}"></img>
                     <div class="card-main-writing">
                         <div class="title-and-info">
                             <h2 class="event-title">${event.name}</h2>
@@ -455,8 +455,8 @@ function saveNewListing(event) {
         price: document.getElementById('price-amount')?.value || 'Free',
         priceExtra: capitaliseFirstLetter(document.getElementById('listing-price-details')?.value || ''),
         category: capitaliseEveryWord(document.getElementById('listing-category-other')?.value.trim() || document.getElementById('category-select')?.value || 'General'),
-        profilePic: document.getElementById('event-photo-url')?.value || './resources/images/inTown-logo.png',
-        photo: document.getElementById('listing-photo-img')?.value || './resources/images/inTown-logo.png',
+        profilePic: document.getElementById('event-photo-url')?.value || '/resources/images/inTown-logo.png',
+        photo: document.getElementById('listing-photo-img')?.value || '/resources/images/inTown-logo.png',
         about: capitaliseFirstLetter(document.getElementById('listing-description')?.value || ''),
         age: document.getElementById('age-group')?.value || 'All Ages',
         ageExtra: capitaliseFirstLetter(document.getElementById('age-restriction')?.value || ''),
@@ -526,8 +526,8 @@ if (listingId !== null) {
 
         if (document.getElementById('listing-type')) document.getElementById('listing-type').textContent = singleEvent.type || 'Activity';
         if (document.getElementById('listing-description')) document.getElementById('listing-description').textContent = singleEvent.about || '';
-        if (document.getElementById('listing-photo-img')) document.getElementById('listing-photo-img').src = singleEvent.photo || './resources/images/inTown-logo.png';
-        if (document.getElementById('event-photo-url')) document.getElementById('event-photo-url').src = singleEvent.profilePic || './resources/images/inTown-logo.png';
+        if (document.getElementById('listing-photo-img')) document.getElementById('listing-photo-img').src = singleEvent.photo || '/resources/images/inTown-logo.png';
+        if (document.getElementById('event-photo-url')) document.getElementById('event-photo-url').src = singleEvent.profilePic || '/resources/images/inTown-logo.png';
         if (document.getElementById('num-followers')) document.getElementById('num-followers').textContent = singleEvent.numFollowers || '0';
         if (document.getElementById('organiser-person-name')) document.getElementById('organiser-person-name').textContent = singleEvent.organiser || 'Community Organiser';
         if (document.getElementById('listing-extra-details-box')) document.getElementById('listing-extra-details-box').textContent = singleEvent.extraInfo || '';
@@ -675,7 +675,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         if (document.getElementById('age-display') && profileData.ages) document.getElementById('age-display').textContent = profileData.ages.map(id => profileMappings.ages[id]?.full || id).join(', ');
         
-        if (document.getElementById('profile-pic')) document.getElementById('profile-pic').src = profileData.profPhoto || './resources/images/inTown-logo.png';
+        if (document.getElementById('profile-pic')) document.getElementById('profile-pic').src = profileData.profPhoto || '/resources/images/inTown-logo.png';
         if (document.getElementById('email')) document.getElementById('email').textContent = profileData.email;
     }
 
@@ -899,7 +899,7 @@ function saveNewProfile() {
         interests: getCheckedValues('interest-choice'),
         hopes: getCheckedValues('hope-choice'),
         ages: getCheckedValues('age-choice'),
-        profPhoto: document.getElementById('profile-photo-url')?.value || './resources/images/inTown-logo.png',
+        profPhoto: document.getElementById('profile-photo-url')?.value || '/resources/images/inTown-logo.png',
         email: document.getElementById('email-edit')?.value.trim() || emailFromSignup || ''
     };
 
@@ -930,7 +930,7 @@ function loadProfileData() {
     if (emailInput) emailInput.value = profileData.email || '';
 
     const photoImg = document.getElementById('profile-pic-edit');
-    if (photoImg) photoImg.src = profileData.profPhoto || './resources/images/inTown-logo.png';
+    if (photoImg) photoImg.src = profileData.profPhoto || '/resources/images/inTown-logo.png';
 }
 
 function renderEditPills() {

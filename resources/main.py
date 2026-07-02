@@ -1,6 +1,13 @@
 import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
+from fastapi import Request
+
+app.mount("/resources", StaticFiles(directory="resources"), name="resources")
+
+templates = Jinja2Templates(directory="templates")
 
 app = FastAPI()
 
@@ -14,5 +21,8 @@ app.add_middleware(
 )
 
 @app.get("/")
-async def root():
-    return {"message": "Hello from your FastAPI backend!"}
+async def home(request: Request):
+    return templates.TemplateResponse(
+        "index.html",
+        {"request": request}
+    )
