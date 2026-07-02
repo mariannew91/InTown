@@ -23,7 +23,7 @@ body {
 
 #main-logout.logout {
     display: none;
-}  */
+} */
 
 /*  To hide either log in  */
 .login { 
@@ -50,6 +50,16 @@ header {
     flex-wrap: nowrap;
     gap: 20px;
     width: 100%;
+}
+
+#home-link, .no-menu-home {
+    padding: 10px;
+    margin-left: 20px;
+}
+
+#home-link a, .no-menu-home a {
+    text-decoration: none;
+    color: rgb(255,106,94);
 }
 
 #search-input {
@@ -225,14 +235,14 @@ input {
 #main-logout h1 {
     text-align: center;
     margin: 20px;
-    font-size: clamp(1.5rem, 5vw, 2.5rem);
+    font-size: clamp(1.9rem, 5vw, 2.9rem);
 }
 
 #logout-top {
     max-width: 90ch;
     width: 100%;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 0 30px;
 }
 
 #top-sub {
@@ -255,10 +265,6 @@ input {
     font-weight: 400;
 }
 
-#how h1 {
-    margin-top: 20px;
-}
-
 #how button {
     font-size: 1.8rem;
 }
@@ -266,17 +272,18 @@ input {
 #gen-and-group {
     display: flex;
     gap: 10px;
-    align-items: stretch
+    align-items: stretch;
 }
 
 .boxes {
     background: rgb(255, 255, 255);
-    border: 1px solid rgb(21, 32, 57);
 }
 
 .boxes h2 {
     background-color: rgb(21, 32, 57);
     color: white;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
 }
 
 #gen-and-group ul {
@@ -289,11 +296,12 @@ input {
 
 #general , #groups {
     display: none;
+    border-radius: 20px;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
 }
 
 #general {
     width: 50%;
-    border: 1px solid rgb(21, 32, 57);
 }
 
 .boxes h2 {
@@ -312,7 +320,6 @@ input {
 
 #groups {
     width: 50%;
-    border: 1px solid rgb(21, 32, 57);
 }
 
 .how-head {
@@ -363,7 +370,7 @@ input {
 }
 
 
-#dynamic-tab-bar { 
+#dynamic-tab-bar-feed { 
     display: flex; 
     width: 70%;
     margin-bottom: -1px; 
@@ -372,9 +379,9 @@ input {
     position: relative;
 }
 
-#dynamic-tab-bar button {
+#dynamic-tab-bar-feed button {
     flex: 1;
-    padding: 15px 10px 30px;
+    padding: 15px 10px 30px !important;
     border: none;
     cursor: pointer;
     background: rgb(21, 32, 57);
@@ -389,7 +396,7 @@ input {
 }
 
 
-#dynamic-tab-bar :last-child {
+#dynamic-tab-bar-feed :last-child {
     margin-left: -20px;
 }
 
@@ -417,10 +424,9 @@ input {
 }
 
 .tab-btn {
-    background-color: #e0e0e0;
-    color: #333;
+    background-color: rgb(21, 32, 57) !important;
+    color: rgb(21, 32, 57);
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -748,12 +754,15 @@ footer ul, #foot-add-listing a {
 /* Main logged out */
 
 #how {
-    padding: 0 40px;
+    padding: 0 40px 80px;
+    background-color: rgb(242 236 224);
+    margin: 0 40px;
+    border-radius: 20px;
 }
 
 #how h1 {
-    background-color: rgb(230, 232, 235);
-    padding: 10px;
+    padding: 15px;
+    margin: 0;
 }
 
 .inside-box {
@@ -764,6 +773,14 @@ footer ul, #foot-add-listing a {
 
 #how h2 {
     padding: 10px 0;
+}
+
+#how h2:first-child {
+    box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.05), -16px 2px 24px rgba(0, 0, 0, 0.08);
+}
+
+#how h2:last-child {
+    box-sizing: 3px 4px 4px rgba(0, 0, 0, 0.05), 2px -1px 24px rgba(0, 0, 0, 0.08);
 }
 
 .subhead {
@@ -1974,26 +1991,28 @@ input[type=number] {
 #search-top {
     height: 100px;
     width: 100%;
+    display: flex;
 }
 
 #search-top h1 {
-    font-size: clamp(1.9rem, 4vw, 3.2rem);
+    font-size: clamp(2.4rem, 7vw, 3.2rem);
     text-align: center;
-    margin: 10px auto;
-    padding: 0 40px;
+    margin: 0 auto;
+    height: 86px;
+    align-content: center;
 }
 
 #search-filter-tag {
     top: 117px;
-    left: 8px;
     color: rgb(255,106,94);
-    border: 1px solid rgb(230, 232, 235);
+    background-color: rgb(21, 32, 57);
 }
 
 #search-side-bar {
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(21, 32, 57);
     border-right: 1px solid rgb(21, 32, 57);
     width: 25%;
+    height: calc(100dvh - 117px);
 }
 
 #search-categories {
@@ -2022,7 +2041,7 @@ input[type=number] {
 }
 
 .filter-btn {
-    color: rgb(21, 32, 57) !important;
+    color: white !important;
 }
 
 .filter-btn:hover {
@@ -2049,10 +2068,19 @@ input[type=number] {
     margin-left: 35px;
 }
 
+.filter-options label {
+    color: white;
+}
+
+
 #search-centre {
-    padding: 10px 40px;
-    width: 80%;
+    padding: 10px 10px;
     height: 100vh;
+    margin-left: 90px;
+}
+
+#search-centre-body {
+    margin-left: 20px
 }
 
 
@@ -2359,6 +2387,18 @@ input[type=number] {
 
 @media (max-width: 1040px) {
 
+    #home-link {
+        margin-left: 80px;
+    }
+
+    .no-menu-home {
+        margin-left: 20px !important;
+        margin-right: 20px !important;
+    }
+
+    header {
+        gap: 0;
+    }
 
     #search-page-main {
         display: flex;
@@ -2367,7 +2407,6 @@ input[type=number] {
     #search-side-bar {
         position: fixed;
         top: 117px;
-        height: calc(100dvh - 117px);
         left: -550px;
         width: 300px;
     }
@@ -2375,10 +2414,6 @@ input[type=number] {
     #search-side-bar.is-open {
         left: 0;
         margin-left: 10px;
-    }
-
-    header {
-        padding-left: 80px;
     }
 
     #main-login {
@@ -2432,6 +2467,7 @@ input[type=number] {
         border: none;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
     }
 
     .sidebar-tag i {
@@ -2483,6 +2519,10 @@ input[type=number] {
 
 @media (max-width: 950px) {
 
+    #search-input {
+        margin-left: -5px;
+    }
+
     #photo-edit-container {
         flex-direction: column;
     }
@@ -2505,7 +2545,16 @@ input[type=number] {
 @media (max-width: 910px) {
 
     #search-input {
-        margin-left: -20px;
+        width: 220px;
+        margin-left: -5px;
+    }
+
+    #home-link {
+        padding: 0;
+    }
+
+    .no-menu-home {
+        padding: 10px !important;
     }
 
     .main-head {
@@ -2526,12 +2575,16 @@ input[type=number] {
 
 @media (max-width: 870px) {
 
-    header {
+
+    #home-link {
+        margin-left: 10px;
         padding-left: 63px;
     }
 
-    #search-input {
-        width: 220px;
+    #listing-body button, #profile-container button, #main-body-login button {
+        padding: 1px 0;
+        left: 5px;
+        background-color: transparent;
     }
 
     .interest-headers {
@@ -2588,7 +2641,7 @@ input[type=number] {
     }
 
     #search-input {
-        margin-left: -20px;
+        margin-left: 40px;
     }
 
     #follow-button {
@@ -2597,39 +2650,6 @@ input[type=number] {
 
     #organiser-name-box p {
         font-size: 0.8rem;
-    }
-}
-
-@media (max-width: 767px) {
-    
-
-    /* To hide either log out
-    .logout {
-        display: none !important;
-    }
-
-    #main-logout.logout {
-        display: none !important;
-    }  */
-
-    /*  To hide either log in  */
-    .login {
-        display: none !important;
-    }
-
-
-    #main-body-login.login {
-        display: none !important;
-    } 
-
-    html {
-        font-size: 13px;
-    }
-
-    /* Header */
-
-    header {
-        padding-left: 0;
     }
 
     #intown-town-name {
@@ -2654,12 +2674,45 @@ input[type=number] {
     }
 
     #location {
-        margin-top: 15px;
+        margin-top: 20px;
     }
 
     #location h1 {
         font-size: 1.2rem;
         padding-top: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    
+
+    /* To hide either log out 
+    .logout {
+        display: none !important;
+    }
+
+    #main-logout.logout {
+        display: none !important;
+    } */
+
+    /*  To hide either log in  */
+    .login {
+        display: none !important;
+    }
+
+
+    #main-body-login.login {
+        display: none !important;
+    } 
+
+    html {
+        font-size: 13px;
+    }
+
+    /* Header */
+
+    header {
+        padding-left: 0;
     }
 
     #search-symbol {
@@ -2668,18 +2721,15 @@ input[type=number] {
         padding: 10px;
     }
 
+    #location {
+        margin-top: 15px;
+    }
+
     
     /* Home Page */
     
     .tab-bar-home {
         display: none;
-    }
-
-    #how {
-        display: flex;
-        flex-direction: column;
-        height: 100vh;
-        display: flow-root;
     }
 
     #how h1 {
@@ -2691,20 +2741,29 @@ input[type=number] {
         display: none;
     }
 
-    #logout-tab-bar {
-        flex-shrink: 0;
-    }
-
     #how h2 {
         display: none;
     }
 
     #general, #groups {
         width: 100%;
-        height: calc(100vh - 100px);
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
-        flex-grow: 1;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+
+    #logout-tab-bar {
+        position: relative;
+        background-color: transparent;
+    }
+
+    #how button:first-child {
+        border-top-left-radius: 20px;
+        box-shadow: 0px -1px 4px rgba(0, 0, 0, 0.05), -16px 2px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    #how button:last-child {
+        border-top-right-radius: 20px;
+        box-sizing: 3px 4px 4px rgba(0, 0, 0, 0.05), 2px -1px 24px rgba(0, 0, 0, 0.08);
     }
 
     .subhead {
@@ -2810,10 +2869,6 @@ input[type=number] {
     }
 
     /* Profile Page */
-
-    #logo-town {
-        margin-left: 80px;
-    }
 
     #profile-body {
         margin-left: 0;
@@ -3039,23 +3094,35 @@ input[type=number] {
         width: 400px;
     }
 
-    #search-top h1 {
-        padding-left: 60px;
-        padding-right: 20px;
-    }
 }
 @media (max-width: 650px) {
 
+
     #search-input {
-        margin-right: 20px;
-        margin-left: 0;
-        font-size: 0.9rem;
-        width: 170px;
-        padding: 8px 20px;
+        font-size: 1rem;
+        padding: 6px 25px;
+        max-width: 250px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        z-index: 20;
+        width: 0;
+        opacity: 0;
+        transition: all 0.3s ease;
+        border: none;
+        padding: 0;
+    }
+
+    #search-toggle:checked ~ #search-input {
+        width: 250px;
+        opacity: 1;
+        padding: 8px;
+        border: 1px solid rgb(255,106,94);
     }
 
     #search-symbol {
-        margin-left: -60px;
+        margin-left: 100px;
+        font-size: 1.5rem;
     }
 
     .sign-in {
@@ -3185,32 +3252,6 @@ input[type=number] {
         font-size: 1.5rem;
     }
 
-    #search-input {
-        font-size: 1rem;
-        padding: 6px 25px;
-        max-width: 250px;
-        position: absolute;
-        right: 0;
-        top: 50%;
-        z-index: 20;
-        width: 0;
-        opacity: 0;
-        transition: all 0.3s ease;
-        border: none;
-        padding: 0;
-    }
-
-    #search-toggle:checked ~ #search-input {
-        width: 250px;
-        opacity: 1;
-        padding: 8px;
-        border: 1px solid rgb(255,106,94);
-    }
-
-    #search-symbol {
-        margin-left: 100px;
-        font-size: 1.5rem;
-    }
 
     .interest-headers {
         font-size: 1rem;
@@ -3277,7 +3318,10 @@ input[type=number] {
 
     #search-side-bar.is-open {
         margin-left: 0;
+    }
 
+    #search-centre {
+        margin-left: 80px;
     }
 
 }
@@ -3294,9 +3338,6 @@ input[type=number] {
         width: 330px;
     }
 
-    #search-top h1 {
-        padding-right: 0;
-    }
 }
 
 @media (max-width: 500px) {
@@ -3383,6 +3424,10 @@ input[type=number] {
         width: 100%;
     }
 
+    #how {
+        margin: 10px;
+    }
+
 }
 
 @media (max-width: 480px) {
@@ -3410,8 +3455,22 @@ input[type=number] {
         width: 200px; 
     }
 
+    #listing-body button, #profile-container button, #main-body-login button {
+        left: -8px;
+    }
+
+    #home-link {
+        z-index: 1000;
+        margin-left: -10px;
+    }
+
+    .no-menu-home {
+        margin-right: 0 !important;
+        margin-left: 10px !important;
+    }
+
     #search-symbol {
-        margin-left: 10px;
+        margin-left: 20px;
         font-size: 1.6rem;
     }
 
@@ -3617,16 +3676,27 @@ input[type=number] {
         font-size: 1.4rem !important;
     }
 
-    
     #sign-up-form p {
         font-size: 1.5rem;
+    }
+
+    #sub-description {
+        font-size: 1.3rem;
+    }
+
+    #how {
+        padding: 20px;
+    }
+
+    #search-centre {
+        margin-left: 70px;
     }
 }
 
 @media (max-width: 425px) {
 
     #search-symbol {
-        margin-left: 0;
+        margin-left: 10px;
     }
 
     #head-bottom ul {
@@ -3667,10 +3737,6 @@ input[type=number] {
         width: 400px !important;
     }
 
-    #search-top h1 {
-        padding-left: 50px;
-    }
-
 }
 
 @media (max-width: 400px) {
@@ -3680,7 +3746,7 @@ input[type=number] {
     }
 
     #search-symbol {
-        margin-left: -5px;
+        margin-left: 10px;
     }
 
     #search-input {
@@ -3732,8 +3798,8 @@ input[type=number] {
         font-size: 2.2rem;
     }
 
-    #search-top h1 {
-        padding-left: 40px;
+    #how {
+        margin: 0;
     }
 
 
@@ -3743,6 +3809,14 @@ input[type=number] {
 
     #get-involved {
         font-size: 1.05rem;
+    }
+
+    #home-link {
+        margin-left: -15px;
+    }
+
+    #search-symbol {
+        margin-left: 0;
     }
 
     .tab {
@@ -3757,17 +3831,13 @@ input[type=number] {
         margin-left: -5px;
     }
 
-    #search-symbol {
-        margin-left: -20px;
-    }
-
     #search-input {
         right: -40px;
         top: 70%;
     }
 
-    #just-logo {
-        margin-left: -20px;
+    #sign-profile {
+        margin-right: 10px;
     }
 
     #message-box {
@@ -3850,6 +3920,14 @@ input[type=number] {
         width: 300px;
     }
 
+    #how {
+        padding: 0;
+    }
+
+    #search-centre {
+        margin-left: 60px;
+    }
+
 }
 
 @media (max-width: 340px) {
@@ -3862,8 +3940,8 @@ input[type=number] {
         margin-left: -10px;
     }
 
-    #just-logo {
-        margin-left: -25px;
+    #home-link {
+        margin-left: -20px;
     }
 
     .interest-box {
@@ -3906,12 +3984,13 @@ input[type=number] {
     #listing-extra-details label {
         width: 170px;
     }
+
+    #search-centre {
+        margin-left: 55px;
+    }
 }
 
 @media (max-width: 330px) {
-    #just-logo {
-        margin-left: -30px;
-    }
 
     #listing-city, #listing-address {
         width: 170px;

@@ -1,3 +1,17 @@
+async function fetchData() {
+    try {
+        const response = await fetch("http://127.0.0.1:8000/");
+        const data = await response.json();
+        
+        console.log(data.message); 
+        
+    } catch (error) {
+        console.error("Error connecting to FastAPI:", error);
+    }
+}
+
+fetchData();
+
 const lookingFor = document.getElementById('looking-for');
 const groupBusiness = document.getElementById('group-business');
 const kindOfThing = document.getElementById('kind-of-thing');
@@ -721,110 +735,113 @@ if (!window._inTownPillHandlersAdded) {
 }
 
 const sections = {
-    'Suggested': document.getElementById('suggestions-box'),
-    'Your InTown': document.getElementById('feed')
+    "Suggested": document.getElementById("suggestions-box"),
+    "Your InTown": document.getElementById("feed")
 };
 
-const activateTab = (tabElement, sectionName) => {
-    document.querySelectorAll('.tab, .tab-btn').forEach(b => b.classList.remove('active'));
-    Object.values(sections).forEach(s => s?.classList.remove('is-visible'));
-
-    tabElement.classList.add('active');
-    sections[sectionName]?.classList.add('is-visible');
+const homeSections = {
+    "For Public": document.getElementById("general"),
+    "For Groups": document.getElementById("groups")
 };
 
-const mobileTabs = document.querySelectorAll('.tab');
-mobileTabs.forEach(tab => {
-    tab.addEventListener('click', () => activateTab(tab, tab.textContent.trim()));
-});
+const activateLoginTab = (button, sectionName) => {
+    document
+        .querySelectorAll("#dynamic-tab-bar-feed .tab-btn, .tab-bar.login .tab")
+        .forEach(btn => btn.classList.remove("active"));
 
-const mainLogin = document.getElementById('main-login');
-const manageAllDesktopTabs = () => {
-    const feedExisting = document.getElementById('dynamic-tab-bar-feed');
-    const homeExisting = document.getElementById('dynamic-tab-bar-home');
-    
+    Object.values(sections).forEach(section =>
+        section?.classList.remove("is-visible")
+    );
+
+    button.classList.add("active");
+    sections[sectionName]?.classList.add("is-visible");
+};
+
+const activateHomeTab = (button, sectionName) => {
+    document
+        .querySelectorAll(".tab-bar.logout .tab")
+        .forEach(btn => btn.classList.remove("active"));
+
+    Object.values(homeSections).forEach(section =>
+        section?.classList.remove("is-visible")
+    );
+
+    button.classList.add("active");
+    homeSections[sectionName]?.classList.add("is-visible");
+};
+
+const initialiseLoginTabs = () => {
+
+    const mainLogin = document.getElementById("main-login");
+
+    if (!mainLogin) return;
+
+    let desktopBar = document.getElementById("dynamic-tab-bar-feed");
+
     if (window.innerWidth > 767) {
-        if (!feedExisting && document.getElementById('main-login')) {
-            const feedBar = document.createElement('div');
-            feedBar.id = 'dynamic-tab-bar-feed';
-            feedBar.innerHTML = `
-                <button type="button" class="tab-btn active tab-first">Suggested</button>
+
+        if (!desktopBar) {
+
+            desktopBar = document.createElement("div");
+            desktopBar.id = "dynamic-tab-bar-feed";
+
+            desktopBar.innerHTML = `
+                <button type="button" class="tab-btn tab-first">Suggested</button>
                 <button type="button" class="tab-btn tab-last">Your InTown</button>
             `;
-            document.getElementById('main-login').insertBefore(feedBar, document.getElementById('main-login').firstChild);
-            feedBar.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.addEventListener('click', () => activateTab(btn, btn.textContent.trim()));
+
+            mainLogin.insertBefore(desktopBar, mainLogin.firstChild);
+
+            desktopBar.querySelectorAll(".tab-btn").forEach(btn => {
+                btn.addEventListener("click", () => {
+                    activateLoginTab(btn, btn.textContent.trim());
+                });
             });
-        
         }
+
+        activateLoginTab(
+            desktopBar.querySelector(".tab-first"),
+            "Suggested"
+        );
+
     } else {
-        if (feedExisting) feedExisting.remove();
-        if (homeExisting) homeExisting.remove();
+
+        desktopBar?.remove();
+
+        const mobileTabs = document.querySelectorAll(".tab-bar.login .tab");
+
+        mobileTabs.forEach(tab => {
+            tab.onclick = () =>
+                activateLoginTab(tab, tab.textContent.trim());
+        });
+
+        if (mobileTabs.length) {
+            activateLoginTab(mobileTabs[0], "Suggested");
+        }
     }
 };
 
-    const homePageSections = {
-        'For Public': document.getElementById('general'),
-        'For Groups': document.getElementById('groups')
-    };
+const initialiseHomeTabs = () => {
 
-    const homeActivateTab = (tabElement, sectionName) => {
-        document.querySelectorAll('.tab, .tab-btn').forEach(b => b.classList.remove('active'));
-        Object.values(homePageSections).forEach(s => s?.classList.remove('is-visible'));
+    const mobileTabs = document.querySelectorAll(".tab-bar.logout .tab");
 
-        tabElement.classList.add('active');
-        homePageSections[sectionName]?.classList.add('is-visible');
-    };
+    if (!mobileTabs.length) return;
 
-    const initializeAllTabs = () => {
-        const activeDesktopFeed = document.querySelector('#dynamic-tab-bar-feed .tab-btn.active');
-        const activeMobileFeed = document.querySelector('.tab-bar .tab.active');
-        const activeDesktopHome = document.querySelector('#dynamic-tab-bar-home .tab-btn.active');
-        const activeMobileHome = document.querySelector('.tab-bar .tab.active');
-
-        if (window.innerWidth > 767) {
-            if (!activeDesktopFeed) {
-                const firstFeedBtn = document.querySelector('#dynamic-tab-bar-feed .tab-btn');
-                if (firstFeedBtn) activateTab(firstFeedBtn, 'Suggested');
-            } else {
-                activateTab(activeDesktopFeed, activeDesktopFeed.textContent.trim());
-            }
-
-            if (!activeDesktopHome) {
-                const firstHomeBtn = document.querySelector('#dynamic-tab-bar-home .tab-btn');
-                if (firstHomeBtn) homeActivateTab(firstHomeBtn, 'For Public');
-            } else {
-                homeActivateTab(activeDesktopHome, activeDesktopHome.textContent.trim());
-            }
-        } else {
-            if (!activeMobileFeed) {
-                const firstTab = document.querySelector('.tab');
-                if (firstTab) activateTab(firstTab, 'Suggested');
-            } else {
-                activateTab(activeMobileFeed, activeMobileFeed.textContent.trim());
-            }
-
-            if (!activeMobileHome) {
-                const firstHomeTab = document.querySelectorAll('.tab')[1];
-                if (firstHomeTab) homeActivateTab(firstHomeTab, 'For Public');
-            } else {
-                homeActivateTab(activeMobileHome, activeMobileHome.textContent.trim());
-            }
-        }
-    };
-
-    const mobileHomeTabs = document.querySelectorAll('.tab');
-    mobileHomeTabs.forEach(tab => {
-        tab.addEventListener('click', () => homeActivateTab(tab, tab.textContent.trim()));
+    mobileTabs.forEach(tab => {
+        tab.onclick = () =>
+            activateHomeTab(tab, tab.textContent.trim());
     });
 
-    const mainLogout = document.getElementById('main-logout');
-    
+    activateHomeTab(mobileTabs[0], "For Public");
+};
 
-    initializeAllTabs();
-    window.addEventListener('resize', manageAllDesktopTabs);
-    manageAllDesktopTabs();
+window.addEventListener("load", () => {
+    initialiseLoginTabs();
+    initialiseHomeTabs();
+});
 
+window.addEventListener("resize", () => {
+    initialiseLoginTabs();
 });
 
 const priceInput = document.getElementById('price-amount');
@@ -844,6 +861,7 @@ document.querySelectorAll('.filter-btn').forEach(item => {
         }
     });
 });
+
 
 
 if (profileForm) {
@@ -1019,4 +1037,4 @@ window.addEventListener("scroll", () => {
     }
     
 });
-
+})
