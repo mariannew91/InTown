@@ -1,6 +1,6 @@
 async function fetchData() {
     try {
-        const response = await fetch("https://intown.onrender.com");
+        const response = await fetch("https://intown.onrender.com/");
         const data = await response.json();
         
         console.log(data.message); 
