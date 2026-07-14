@@ -17,7 +17,7 @@ app.add_middleware(
 async def root():
     return {"message": "Hello from the InTown backend!"}
 
-    @app.get("/listings")
+@app.get("/listings")
 async def get_listings():
     return [
         {
