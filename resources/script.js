@@ -1126,7 +1126,7 @@ const sidebar = document.querySelector('.profile-side-bar');
 const toggleBtn = document.querySelector('.sidebar-tag');
 
 if (toggleBtn && sidebar) {
-    toggleBtn.addEventListener('click', () => {
+    toggleBtn.addEventListener('click', (event) => {
         event.stopPropagation();
         sidebar.classList.toggle('is-open');
     });
@@ -1161,19 +1161,19 @@ window.addEventListener("scroll", () => {
     const searchSidebar = document.getElementById("search-side-bar");
     const header = document.querySelector("header");
     if (!searchSidebar || !header) return; 
-    const headerHeight = header.offsetHeight;
+        const headerHeight = header.offsetHeight;
 
-    if (window.scrollY >= headerHeight) {
-        searchSidebar.style.top = "0";
-        searchSidebar.style.height = "100dvh";
-    } else {
-        const remaining = headerHeight - window.scrollY;
+        if (window.scrollY >= headerHeight) {
+            searchSidebar.style.top = "0";
+            searchSidebar.style.height = "100dvh";
+        } else {
+            const remaining = headerHeight - window.scrollY;
 
-        searchSidebar.style.top = `${remaining}px`;
-        searchSidebar.style.height = `calc(100dvh - ${remaining}px)`;
-    }
-    
-});
+            searchSidebar.style.top = `${remaining}px`;
+            searchSidebar.style.height = `calc(100dvh - ${remaining}px)`;
+        }
+        
+    });
 })
 
 
