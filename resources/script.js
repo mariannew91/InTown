@@ -624,7 +624,51 @@ if (document.getElementById('sign-up-btn')) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Initial Profile Setup
+
+    // Listing Page Navigation
+    const listingAboutBtn = document.getElementById('listing-about-btn');
+    const addPostBtn = document.getElementById('add-post-btn');
+    const membersBtn = document.getElementById('members-btn');
+    const listingPhotoBtn = document.getElementById('listing-photos-btn');
+    const listingContactBtn = document.getElementById('listing-contact-btn');
+    const upcomingBtn = document.getElementById('upcoming-date-btn');
+    const listingFollowerBtn = document.getElementById('listing-follower-btn');
+    const listingAboutSection = document.getElementById('listing-about-sect');
+    const addPostSection = document.getElementById('listing-post');
+    const listingMembers = document.getElementById('listing-members');
+    const listingPhotos = document.getElementById('listing-photos');
+    const listingContacts = document.getElementById('listing-contacts');
+    const listingUpcDate = document.getElementById('listing-upcoming-dates');
+    const listingFollowers = document.getElementById('listing-followers');
+
+    if(document.getElementById('listing-about-sect')) {
+        const btns = [listingAboutBtn, addPostBtn, membersBtn, listingPhotoBtn, listingContactBtn, upcomingBtn, listingFollowerBtn];
+        const sects = [listingAboutSection, addPostSection, listingMembers, listingPhotos, listingContacts, listingUpcDate, listingFollowers];
+        
+        function hideAllListingSections() {
+            sects.forEach(s => s && s.classList.remove('is-visible'));
+        }
+
+        function deactivateAllListingButtons() {
+            btns.forEach(button => {
+            button.classList.remove('is-active');
+            });
+        }
+        
+        btns.forEach((btn, i) => {
+            if(btn) btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                hideAllListingSections();
+                deactivateAllListingButtons();
+                if(sects[i]) sects[i].classList.add('is-visible');
+                btn.classList.add('is-active');
+            });
+            
+        });
+        if(listingAboutBtn) listingAboutBtn.click();
+    
+    }
+    
     const userNameHeading = document.getElementById('users-name');
     const savedName = localStorage.getItem('user-full-name');
     if (userNameHeading && savedName) userNameHeading.textContent = ` ${savedName.split(' ')[0]}`;
@@ -689,33 +733,33 @@ document.addEventListener('DOMContentLoaded', () => {
     loadProfileData();
     renderEditPills();
 
-if (!window._inTownPillHandlersAdded) {
-    window._inTownPillHandlersAdded = true;
+    if (!window._inTownPillHandlersAdded) {
+        window._inTownPillHandlersAdded = true;
 
-    document.querySelectorAll('.tag-selector').forEach(select => {
-        select.addEventListener('change', (e) => {
-            const value = e.target.value;
-            if (!value) return;
+        document.querySelectorAll('.tag-selector').forEach(select => {
+            select.addEventListener('change', (e) => {
+                const value = e.target.value;
+                if (!value) return;
 
-            const map = {
-                'type-select': 'types',
-                'interest-select': 'interests',
-                'hope-select': 'hopes',
-                'age-select': 'ages'
-            };
-            const key = map[e.target.id];
-            if (!key) return;
+                const map = {
+                    'type-select': 'types',
+                    'interest-select': 'interests',
+                    'hope-select': 'hopes',
+                    'age-select': 'ages'
+                };
+                const key = map[e.target.id];
+                if (!key) return;
 
-            const profileData = JSON.parse(localStorage.getItem('user-profile')) || {};
-            if (!Array.isArray(profileData[key])) profileData[key] = [];
-            if (!profileData[key].includes(value)) {
-                profileData[key].push(value);
-                localStorage.setItem('user-profile', JSON.stringify(profileData));
-                if (typeof renderEditPills === 'function') renderEditPills();
-            }
+                const profileData = JSON.parse(localStorage.getItem('user-profile')) || {};
+                if (!Array.isArray(profileData[key])) profileData[key] = [];
+                if (!profileData[key].includes(value)) {
+                    profileData[key].push(value);
+                    localStorage.setItem('user-profile', JSON.stringify(profileData));
+                    if (typeof renderEditPills === 'function') renderEditPills();
+                }
 
-            e.target.value = '';
-        });
+                e.target.value = '';
+            });
     });
 
     document.addEventListener('click', (e) => {
@@ -732,6 +776,99 @@ if (!window._inTownPillHandlersAdded) {
         localStorage.setItem('user-profile', JSON.stringify(profileData));
         if (typeof renderEditPills === 'function') renderEditPills();
     });
+
+    const newPostContainer = document.getElementById('listing-new-post');
+    const imageUploadInput = document.getElementById('post-image-upload');
+    const imagePreview = document.getElementById('post-image-preview');
+    const mediaContainer = document.getElementById('post-media-container');
+    const removeImageBtn = document.getElementById('remove-image-btn');
+    const submitPostBtn = document.getElementById('submit-post-btn');
+
+    let cropper = null;
+
+    function showImage() {
+        mediaContainer.style.display = 'block';
+    }
+
+    function hideImage() {
+        mediaContainer.style.display = 'none';
+        imagePreview.removeAttribute('src');
+        imageUploadInput.value = '';
+
+        if (cropper) {
+            cropper.destroy();
+            cropper = null;
+        }
+    }
+
+    if (imageUploadInput) {
+        imageUploadInput.addEventListener('change', event => {
+            const file = event.target.files[0];
+
+            if (!file) {
+                hideImage();
+                return;
+            }
+
+            const reader = new FileReader();
+
+            reader.onload = e => {
+                imagePreview.onload = () => {
+                    showImage();
+
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+
+                    cropper = new Cropper(imagePreview, {
+                        aspectRatio: 1,
+                        viewMode: 3,
+                        dragMode: 'move',
+                        autoCropArea: 1,
+                        responsive: true,
+                        restore: false,
+                        guides: false,
+                        center: false,
+                        background: false,
+                        highlight: false,
+                        cropBoxMovable: false,
+                        cropBoxResizable: false,
+                        toggleDragModeOnDblclick: false,
+                        movable: true,
+                        zoomable: true,
+                        scalable: false,
+                        rotatable: false
+                    });
+                };
+
+                imagePreview.src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        });
+    }
+
+    if (removeImageBtn) {
+        removeImageBtn.addEventListener('click', hideImage);
+    }
+
+    if (submitPostBtn) {
+        submitPostBtn.addEventListener('click', () => {
+            const postText = document.getElementById('post-input').value.trim();
+
+            let finalImage = null;
+
+            if (cropper) {
+                finalImage = cropper.getCroppedCanvas({
+                    width: 1000,
+                    height: 1000
+                }).toDataURL('image/jpeg');
+            }
+
+            console.log('Post Text:', postText);
+            console.log('Image:', finalImage);
+        });
+    }
 }
 
 const sections = {
@@ -1038,3 +1175,14 @@ window.addEventListener("scroll", () => {
     
 });
 })
+
+
+async function loadListings() {
+    const response = await fetch("https://intown.onrender.com/listings");
+
+    const listings = await response.json();
+
+    console.log(listings);
+}
+
+loadListings();
