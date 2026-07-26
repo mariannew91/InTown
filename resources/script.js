@@ -448,7 +448,6 @@ function saveNewListing(event) {
     else if (selectedType === 'ongoing-activity' || selectedType === 'something-else') finalDate = capitaliseFirstLetter(document.getElementById('opening-hours')?.value || finalDate);
 
     const typeMapping = { 'event': 'One-off event', 'group': 'Regular group', 'course': 'Short course', 'volunteering': 'Volunteering', 'ongoing-activity': 'Ongoing Activity', 'something-else': '[...]
-' };
 
     const newListing = {
         organiser: capitaliseEveryWord(localStorage.getItem('user-full-name') || 'Community Organiser'),
@@ -469,7 +468,7 @@ function saveNewListing(event) {
         webVal: document.getElementById('contact-website')?.value.trim() || '',
         socialVal: document.getElementById('contact-social')?.value.trim() || '',
         date: finalDate,
-        dateextra: capitaliseFirstLetter(document.getElementById('one-event-extra')?.value || document.getElementById('regular-date-extra')?.value || document.getElementById('short-course-extra')?.value || ''),
+        dateextra: capitaliseFirstLetter(document.getElementById('one-event-extra')?.value || document.getElementById('regular-date-extra')?.value || document.getElementById('short-course-extra')[...]
         type: typeMapping[localStorage.getItem('listing-type')] || 'Group',
         extraInfo: capitaliseFirstLetter(document.getElementById('listing-extra-details-box')?.value || '')
     };
@@ -478,7 +477,7 @@ function saveNewListing(event) {
     currentListing.push(newListing);
     localStorage.setItem('event-cards', JSON.stringify(currentListing));
     
-    const keysToClear = ['group-name', 'price-amount', 'listing-price-details', 'category-select', 'listing-category-other', 'event-photo-url', 'listing-photo-img', 'listing-description', 'age-group', 'age-restriction', 'listing-address', 'listing-city', 'listing-postcode', 'contact-phone', 'contact-email', 'contact-website', 'contact-social', 'listing-date', 'regular-date', 'short-course-date', 'shift-date', 'opening-hours', 'one-event-extra', 'regular-date-extra', 'short-course-extra', 'listing-extra-details-box', 'only-on-intown'];
+    const keysToClear = ['group-name', 'price-amount', 'listing-price-details', 'category-select', 'listing-category-other', 'event-photo-url', 'listing-photo-img', 'listing-description', 'age-gr[...]
     keysToClear.forEach(key => localStorage.removeItem(key));
 
     window.location.href = `listing.html?id=${currentListing.length - 1}`;
@@ -718,7 +717,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </span>`
             ).join('');
         }
-        if (document.getElementById('age-display') && profileData.ages) document.getElementById('age-display').textContent = profileData.ages.map(id => profileMappings.ages[id]?.full || id).join(', ');
+        if (document.getElementById('age-display') && profileData.ages) document.getElementById('age-display').textContent = profileData.ages.map(id => profileMappings.ages[id]?.full || id).join([...]
         
         if (document.getElementById('profile-pic')) document.getElementById('profile-pic').src = profileData.profPhoto || './resources/images/inTown-logo.png';
         if (document.getElementById('email')) document.getElementById('email').textContent = profileData.email;
