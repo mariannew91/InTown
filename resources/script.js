@@ -623,6 +623,8 @@ if (document.getElementById('sign-up-btn')) {
     document.getElementById('sign-up-btn').addEventListener('click', () => window.location.href = 'signup.html');
 }
 
+alert("script started");
+
 document.addEventListener('DOMContentLoaded', () => {
 
     // Listing Page Navigation
@@ -1121,12 +1123,15 @@ function saveEditProfile() {
     }, 1500);
 }
 
+alert("before sidebar");
+
 const sidebar = document.querySelector('.profile-side-bar');
 const toggleBtn = document.querySelector('.sidebar-tag');
 
+alert("after query");
+
 if (toggleBtn && sidebar) {
     toggleBtn.addEventListener('click', (event) => {
-        alert("clicked");
         event.stopPropagation();
         sidebar.classList.toggle('is-open');
     });
