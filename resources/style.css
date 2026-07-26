@@ -1643,6 +1643,7 @@ input[type="radio"] {
 
 #post-input {
     width: 100%;
+    font-family: "Urbanist", sans-serif;
     min-height: 90px;
     resize: none;
     outline: none;
