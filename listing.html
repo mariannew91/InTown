@@ -52,19 +52,21 @@
     <!--Body-->
     <div class="profile-top" id="listing-top">
         <div id="listing-top-left">
-            <div id="message-box">
-                <h3 id="message">Message Us</h3>
-                <i class="fa-solid fa-message fa-2x"></i>
-            </div>
             <div id="listing-head-centre">
                 <h1 id="listing-profile-name"></h1>
             </div>
         </div>
         <div class="profile-head" id="organiser-head-right">
-            <div class="name-and-town" id="organiser-name-box">
-                <p>Organised by</p>
-                <h3 id="organiser-person-name"></h3>
-            </div>
+            <button type="button" id="mobile-follow-btn" class="button">Follow</button>
+                <div class="name-and-town" id="organiser-name-box">
+                    <div id="message-organiser">
+                        <p>Organiser</p>
+                        <div id="message-box">
+                            <button><i class="fa-regular fa-message fa-lg"></i></button>
+                        </div>
+                    </div>
+                    <h3 id="organiser-person-name"></h3>
+                </div>
             <img class="profile-pic" id="event-photo-url">
         </div>
     </div>
@@ -118,34 +120,14 @@
                 <div id="listing-new-post" class="new-post-container">
                     <div id="post-media-container">
                         <img id="post-image-preview" alt="Post preview">
-                        <button
-                            type="button"
-                            id="remove-image-btn"
-                            aria-label="Remove image"
-                            title="Remove image">
-                            &times;
-                        </button>
+                        <button type="button" id="remove-image-btn" aria-label="Remove image" title="Remove image">&times;</button>
                     </div>
                     <div class="post-writing-section">
                         <textarea id="post-input" placeholder="Talk to your town..."></textarea>
                         <div class="post-footer-section">
-                            <label
-                                for="post-image-upload"
-                                class="photo-upload-btn"
-                                title="Add photo">
-                                <i class="fa-solid fa-camera"></i>
-                            </label>
-                            <input
-                                type="file"
-                                id="post-image-upload"
-                                accept="image/*"
-                                hidden>
-                            <button
-                                type="button"
-                                id="submit-post-btn"
-                                class="button">
-                                Post
-                            </button>
+                            <label for="post-image-upload" class="photo-upload-btn" title="Add photo"><i class="fa-solid fa-camera"></i></label>
+                            <input type="file" id="post-image-upload" accept="image/*" hidden>
+                            <button type="button" id="submit-post-btn" class="button">Post</button>
                         </div>
                     </div>
                 </div>
@@ -190,7 +172,7 @@
         </div>
         <div id="listing-feed">
             <div id="feed-header">
-                <h3>Feed</h3>
+                <h3>Posts</h3>
             </div>
         </div>
     </div>

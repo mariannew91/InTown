@@ -16,16 +16,16 @@ body {
     background: rgb(248, 244, 236);
 }
 
-/* To hide either log out */ 
+/* To hide either log out 
 .logout { 
     display: none;
 }
 
 #main-logout.logout {
     display: none;
-} 
+} */
 
-/*  To hide either log in 
+/*  To hide either log in  */
 .login { 
     display: none;
 }
@@ -33,7 +33,7 @@ body {
 
 #main-body-login.login {
     display: none;
-} /* 
+} 
 
 
 /* Header */
@@ -585,7 +585,6 @@ footer ul, #foot-add-listing a {
     display: flex;
     margin-bottom: 0;
     height: 200px;
-    margin-right: 10px;
 }
 
 .title-and-info {
@@ -605,7 +604,6 @@ footer ul, #foot-add-listing a {
     height: 150px;
     margin: 10px 0;
     object-fit: cover;
-    flex-shrink: 0;
 }
 
 .card-main-writing {
@@ -613,8 +611,8 @@ footer ul, #foot-add-listing a {
     flex-direction: column;
     justify-content: space-between;
     flex: 1;
-    width: 65%;
 }
+
 
 .event-title {
     margin: 3px 15px;
@@ -622,7 +620,8 @@ footer ul, #foot-add-listing a {
     font-weight: 600;
     color: rgb(15,23,42);
     white-space: nowrap;
-    overflow: scroll;
+    overflow: hidden;
+    text-overflow: ellipsis;
     max-width: 100%;
 }
 
@@ -674,7 +673,7 @@ footer ul, #foot-add-listing a {
     margin-left: 0;
     margin-right: 10px;
     background-color: rgb(220,240,232);
-    color: rgb(19 36 75);
+    color: rgb(46,94,78);
     border-radius: 12px;
     font-size: 1.1rem;
     padding: 3px 10px;
@@ -692,30 +691,7 @@ footer ul, #foot-add-listing a {
     color: rgb(19 36 75);
     overflow: scroll;
     max-height: 100px;
-    max-height: 100px;
-    width: 100%;
-    overflow-y: scroll;
-    padding-right: 5px;
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
 }
-
-.event-info::-webkit-scrollbar {
-    width: 6px;
-}
-
-.event-info::-webkit-scrollbar-track {
-    background: rgba(19, 36, 75, 0.05);
-    border-radius: 3px;
-}
-
-.event-info::-webkit-scrollbar-thumb {
-    background-color: rgb(19 36 75);
-    border-radius: 3px;
-
-}
-
-
 
 .card-footer {
     display: flex;
@@ -744,15 +720,6 @@ footer ul, #foot-add-listing a {
 
 .follow {
     color: white;
-}
-
-#card-follow-btn {
-    outline: none;
-    background-color: transparent;
-    border: none;
-    width: 100px;
-    padding: 2px 8px !important;
-    cursor: pointer;
 }
 
 .event-profile i {
@@ -1384,42 +1351,25 @@ input[type="radio"] {
 
 #listing-top {
     display: flex;
-    align-items: stretch;
+    align-items: center;
     border-bottom: 1px solid rgb(213, 228, 226);
     border-left: 1px solid rgb(213, 228, 226);
     border-right: 1px solid rgb(213, 228, 226);
 }
 
 #listing-top-left {
-    width: 85%;
+    width: 75%;
     display: flex;
     flex-direction: row;
-    align-items: center;
-    padding: 10px;
-}
-#message-organiser {
-    display: flex;
-    flex-direction: row;
-    margin-bottom: 7px;
     align-items: center;
 }
 
 #message-box {
+    width: 20%;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-left: 10px;
-}
-
-#message-box button {
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-}
-
-#message-box button:hover i {
-    filter: drop-shadow(3px 4px 4px rgb(255,106,94))
-            drop-shadow(-12px 11px 24px rgb(255,106,94));
+    height: 100px;
 }
 
 #message {
@@ -1432,6 +1382,8 @@ input[type="radio"] {
 
 #message-box i {
     color: rgb(255,106,94);
+    text-shadow: 
+        -1px 3px 0 #000, 1px -1px 0 #000, -2px 2px 5px #000, 1px 1px 0 #000, -1px -1px 0 #000, 0px -2px 0 #000;
 }
 
 #listing-head-centre {
@@ -1445,41 +1397,25 @@ input[type="radio"] {
 }
 
 #organiser-name-box {
-    margin: 0 auto;
+    margin-left: 0 auto;
     justify-content: end;
-    width: 100%;
+    width: 50%;
     padding-left: 5px;
-}
-
-#organiser-person-name {
-    overflow-wrap: break-word;
-}
-
-#mobile-follow-btn {
-    display: none;
 }
 
 #organiser-name-box p {
     font-size: 0.9rem;
-    margin: 0;
 }
 
 #organiser-name-box h3 {
     margin: 0;
-    padding-bottom: 2px;
+    padding-bottom: 10px;
 }
 
 #organiser-head-right {
     justify-content: center;
-    display: flex;
-    align-items: center;
-    flex-direction: column;
     border: none;
-    height: auto !important;
-    min-height: 100px;
-    align-self: stretch;
-    width: 15%;
-    min-width: 150px;
+    width: 25%;
     background-color: rgb(255, 255, 255);
 }
 
@@ -1532,7 +1468,6 @@ input[type="radio"] {
     background-color: rgb(19 36 75);  
     padding: 5px 0;
     height: auto;
-    min-height: 40px;
 }
 
 #head-bottom ul {
@@ -1578,7 +1513,6 @@ input[type="radio"] {
 }
 .listing-centre {
     display: none;
-    min-height: 500px;
 }
 
 .listing-centre.is-visible {
@@ -1588,12 +1522,10 @@ input[type="radio"] {
 .listing-centre-title {
     text-align: center;
     width: 100%;
-
 }
 
 #listing-about-sect {
     margin-bottom: 100px;
-    padding-top: 15px;
 }
 
 #listing-photo {
@@ -1617,10 +1549,6 @@ input[type="radio"] {
     width: 50%;
     margin-bottom: 100px;
     margin-left: 20px;
-}
-
-#listing-writing p {
-    font-size: 1rem;
 }
 
 #date-and-address {
@@ -1681,10 +1609,10 @@ input[type="radio"] {
     max-width: 450px;
     margin: 20px auto;
     background: rgb(248, 244, 236);
+    border: 2px solid rgb(240, 90, 80);
     border-radius: 20px;
     overflow: hidden;
     padding: clamp(20px, 4vw, 18px) clamp(10px, 4vw, 40px) !important;
-    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
 }
 
 #post-media-container {
@@ -1695,6 +1623,7 @@ input[type="radio"] {
     overflow: hidden;
     background: rgb(248, 244, 236);
     border-radius: 20px;
+    box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
 }
 
 #post-image-preview {
@@ -1715,7 +1644,7 @@ input[type="radio"] {
 #post-input {
     width: 100%;
     font-family: "Urbanist", sans-serif;
-    min-height: 120px;
+    min-height: 90px;
     resize: none;
     outline: none;
     border: 2px solid rgb(240, 90, 80);
@@ -1726,10 +1655,6 @@ input[type="radio"] {
     background: white;
     box-sizing: border-box;
     field-sizing: content;
-}
-
-#post-input:focus {
-    outline: none;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
 }
 
@@ -2807,8 +2732,7 @@ input[type=number] {
     }
 
     #submit-post-btn {
-        background-color: rgb(255,106,94) !important;
-        padding: 6px 10px !important;
+        color: rgb(255,106,94);
     }
 
     #listing-body button, #profile-container button, #main-body-login button {
@@ -2839,11 +2763,16 @@ input[type=number] {
     #listing-writing {
         margin: 0 auto;
         width: 80%;
-        margin-top: 5px;
     }
 
     .listing-page-details-style {
         width: 100%;
+    }
+
+    #event-photo-url {
+        margin-right: 2px;
+        height: 80px;
+        width: 80px;
     }
 
     #follow-button {
@@ -2852,7 +2781,7 @@ input[type=number] {
     }
 
     #head-bottom li {
-        font-size: 1rem;
+        font-size: 0.8rem;
     }
 
     #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
@@ -2871,6 +2800,10 @@ input[type=number] {
 
     #follow-button {
         padding: 6px 30px !important;
+    }
+
+    #organiser-name-box p {
+        font-size: 0.8rem;
     }
 
     #intown-town-name {
@@ -2895,7 +2828,7 @@ input[type=number] {
     }
 
     #location {
-        margin-top: 15px;
+        margin-top: 20px;
     }
 
     #location h1 {
@@ -2906,20 +2839,17 @@ input[type=number] {
 
 @media (max-width: 767px) {
     
-    html {
-        font-size: 13px;
-    }
 
-     To hide either log out 
+    /* To hide either log out 
     .logout {
         display: none !important;
     }
 
     #main-logout.logout {
         display: none !important;
-    } 
+    } */
 
-    /*  To hide either log in  
+    /*  To hide either log in  */
     .login {
         display: none !important;
     }
@@ -2927,7 +2857,7 @@ input[type=number] {
 
     #main-body-login.login {
         display: none !important;
-    } /* 
+    } 
 
     html {
         font-size: 13px;
@@ -2943,6 +2873,10 @@ input[type=number] {
         cursor: pointer;
         font-size: 1.2rem;
         padding: 10px;
+    }
+
+    #location {
+        margin-top: 15px;
     }
 
     
@@ -3070,7 +3004,7 @@ input[type=number] {
         padding-right: 0;
     }
 
-    .event-cards h4, .age, .date, .event-info {
+    .event-cards h4, .age, .date {
         font-size: 1.2rem;
     }
 
@@ -3174,8 +3108,12 @@ input[type=number] {
 
     /* Listing Page */
 
+    #organiser-name-box p {
+        font-size: 1rem;
+    }
+
     #listing-side-bar li {
-       font-size: 1.6rem;
+       font-size: 1.4rem;
     }
 
     .listing-main {
@@ -3186,12 +3124,22 @@ input[type=number] {
         display: none;
     }
 
+    .listing-centre {
+        height: 100vh;
+    }
+
+    #message-box {
+        width: 70px;
+    }
+
     #message {
         display: none;
     }
 
     #organiser-head-right {
-        right: 10px;
+        width: 30%;
+        position: absolute;
+        right: 10px
     }
 
     #organiser-name-box {
@@ -3200,15 +3148,7 @@ input[type=number] {
 
     #search-input {
         margin-left: 25px;
-    } 
-    
-    #listing-date {
-        font-size: 1.3rem;
-    }
-
-    #listing-address, #listing-writing p {
-        font-size: 1.2rem;
-    }
+    }   
 
     #listing-about-sect {
         flex-direction: row;
@@ -3278,6 +3218,7 @@ input[type=number] {
         padding: 30px 70px;
     }
 
+    /* 2. Force the groups and the name row to the left */
     .sign-up-form-group, #full-name {
         margin-left: 0 !important;
         margin-right: 0 !important;
@@ -3361,6 +3302,12 @@ input[type=number] {
 
     #photo-edit-container {
         padding: 0;
+    }
+
+    #event-photo-url {
+        height: 70px;
+        width: 70px;
+        margin-top: 10px;
     }
 
     #form-step-one textarea, #profile-bio-box textarea  {
@@ -3475,6 +3422,12 @@ input[type=number] {
         width: 40px;
     }
 
+    #event-photo-url {
+        height: 60px;
+        width: 60px;
+        margin-top: 13px;
+    }
+
     #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
         width: 90%;
     }
@@ -3538,10 +3491,6 @@ input[type=number] {
         margin-left: 80px;
     }
 
-    #message-box {
-        padding-left: 5px;
-    }
-
 }
 
 @media (max-width: 525px) {
@@ -3571,7 +3520,6 @@ input[type=number] {
     #listing-photo {
         display: flex;
         padding-right: 0;
-        justify-content: center;
     }
 
     #listing-photo-img {
@@ -3587,15 +3535,13 @@ input[type=number] {
         align-items: center;
         position: relative;
     }
-    
-    #message-organiser {
-        margin-bottom: 0;
-    }
-    
+
     #message-box {
         position: static;
+        left: 10px;
+        height: 80px;
+        background-color: rgb(248, 244, 236);
         border: none;
-        margin-left: -5px;
     }
 
     #listing-head-centre {
@@ -3604,27 +3550,23 @@ input[type=number] {
     }
 
     #organiser-head-right {
-        flex-direction: row;
         position: relative;
         width: 100%;
-        min-height: 30px;
         height: 60px;
         left: 0;
-        align-items: center;
     }
 
     #organiser-name-box {
         position: relative;
         left: 100px;
-        width: 80%;
     }
 
     #event-photo-url {
         height: 50px;
         width: 50px;
         margin: 0;
+        left: -200px;
         position: relative;
-        margin-right: 5px;
     }
 
     #organiser-name-box p {
@@ -3651,23 +3593,6 @@ input[type=number] {
 
     #how {
         margin: 10px;
-    }
-
-    #follow-button {
-        display: none !important;
-    }
-
-    #mobile-follow-btn {
-        display: flex;
-        padding: 6px 10px !important;
-        border: none;
-        left: 5px;
-        margin: 0 !important;
-        align-items: center;
-    }
-
-    #organiser-name-box h3 {
-        padding: 0;
     }
 
 }
@@ -3763,13 +3688,17 @@ input[type=number] {
         font-size: 1.2rem;
     }
 
+    #message-box {
+        height: 60px;
+    }
+
     .event-photo {
         height: 130px;
         width: 130px;
     }
 
     .event-info {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 
     .card-header, .card-footer {
@@ -3779,6 +3708,7 @@ input[type=number] {
     #event-photo-url {
         height: 35px;
         width: 35px;
+        bottom: 2px;
     }
 
     #organiser-name-box {
@@ -3792,7 +3722,6 @@ input[type=number] {
     #follow-button {
         font-size: 1.2rem !important;
         padding: 6px 15px !important;
-        display: none;
     }
 
     #head-bottom ul {
@@ -3800,12 +3729,12 @@ input[type=number] {
     }
 
     #head-bottom li {
-        font-size: 1.3rem;
+        font-size: 1rem;
     }
 
     #organiser-name-box p {
         margin-bottom: 2px;
-        margin-top: 1px;
+        margin-top: 4px;
     }
 
     #sign-up-form, #sign-up-main h1, #sign-up-main h2, #sign-in-body h1, #sign-in-form {
@@ -3933,38 +3862,6 @@ input[type=number] {
     #search-centre {
         margin-left: 70px;
     }
-
-    #post-input {
-        font-size: 1.3rem;
-    }
-
-    #mobile-follow-btn {
-        margin: 0;
-    }
-
-    #listing-date {
-        font-size: 1.5rem;
-    }
-
-    #listing-photo, #listing-writing {
-        width: 90%;
-    }
-
-    #listing-address, #listing-description {
-        font-size: 1.4rem;
-    }
-
-    #about {
-        font-size: 1.4rem;
-    }
-
-    .listing-centre-title {
-        font-size: 2.2rem;
-    }
-
-    #listing-writing p {
-        font-size: 1.4rem;
-    }
 }
 
 @media (max-width: 425px) {
@@ -3984,6 +3881,10 @@ input[type=number] {
 
     #follow-button {
         font-size: 1.1rem !important;
+    }
+
+    #event-photo-url {
+        left: -220px;
     }
 
     #organiser-name-box {
@@ -4046,6 +3947,10 @@ input[type=number] {
 
     .interest-item {
         padding: 6px;
+    }
+
+    #event-photo-url {
+        left: -200px;
     }
 
     #listing-city {
@@ -4111,6 +4016,8 @@ input[type=number] {
     }
 
     #message-box {
+        width: 50px;
+        background-color: rgb(248, 244, 236);
         border: none;
     }
 
@@ -4127,8 +4034,12 @@ input[type=number] {
         padding: 6px 3px !important;
     }
 
+    #event-photo-url {
+        left: -160px;
+    }
+
     #organiser-name-box {
-        margin-right: 40px;
+        left: 60px;
     }
 
     #sign-up-main h1 {
@@ -4209,7 +4120,8 @@ input[type=number] {
     }
 
     #head-bottom li {
-        font-size: 1.1rem;
+        font-size: 0.8rem;
+        padding: 5px 2px;
     }
 
     #head-bottom ul {
@@ -4218,6 +4130,10 @@ input[type=number] {
 
     #follow-button {
         padding: 6px 1px !important;
+    }
+
+    #event-photo-url {
+        left: -140px;
     }
 
     #sign-up-main h1 {

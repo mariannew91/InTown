@@ -160,7 +160,7 @@ function eventCardTemplate(event, index) {
                 <h4 id="event-profile-link" class="event-profile"></i><i class="fa-solid fa-arrow-right"></i><a href="listing.html?id=${index}"> Event Profile</a></h4>
                 <h4 id="profile-link" class="event-profile"></i><i class="fa-solid fa-arrow-right"></i><a href="listing.html?id=${index}"> Profile</a></h4>
                 <h4 class="event-address">📍 ${event['address'] || ''}</h4>
-                <h4 class="follow">Follow</h4>
+                <button id="card-follow-btn"><h4 class="follow">Follow</h4></button>
             </div>
         </div>
     `;
