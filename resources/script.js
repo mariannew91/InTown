@@ -870,6 +870,38 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Image:', finalImage);
         });
     }
+
+    const listingTitle = document.getElementById("listing-profile-name");
+    const organiserImage = document.getElementById("event-photo-url");
+    const organiserLabel = document.querySelector("#organiser-name-box p");
+    const organiserName = document.querySelector("#organiser-name-box h3");
+
+    function resizeOrganiser() {
+        const titleHeight = listingTitle.offsetHeight;
+
+        if (titleHeight > 100) {
+            // Bigger layout
+            organiserImage.style.width = "85px";
+            organiserImage.style.height = "85px";
+
+            organiserLabel.style.fontSize = "0.9rem";
+            organiserName.style.fontSize = "1rem";
+
+        } else {
+            // Compact layout
+            organiserImage.style.width = "60px";
+            organiserImage.style.height = "60px";
+
+            organiserLabel.style.fontSize = "0.65rem";
+            organiserName.style.fontSize = "0.8rem";
+        }
+    }
+
+    const titleObserver = new ResizeObserver(resizeOrganiser);
+
+    titleObserver.observe(listingTitle);
+
+    resizeOrganiser();
 });
 
 const sections = {
@@ -1181,3 +1213,6 @@ async function loadListings() {
 }
 
 loadListings();
+
+
+

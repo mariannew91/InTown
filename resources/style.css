@@ -1384,6 +1384,7 @@ input[type="radio"] {
 
 #listing-top {
     display: flex;
+    min-height: 100px;
     align-items: stretch;
     border-bottom: 1px solid rgb(213, 228, 226);
     border-left: 1px solid rgb(213, 228, 226);
@@ -1393,22 +1394,19 @@ input[type="radio"] {
 #listing-top-left {
     width: 85%;
     display: flex;
-    flex-direction: row;
     align-items: center;
     padding: 10px;
+    min-height: 100px;
 }
 #message-organiser {
     display: flex;
     flex-direction: row;
-    margin-bottom: 7px;
     align-items: center;
 }
 
 #message-box {
     display: flex;
     align-items: center;
-    justify-content: center;
-    margin-left: 10px;
 }
 
 #message-box button {
@@ -1432,6 +1430,7 @@ input[type="radio"] {
 
 #message-box i {
     color: rgb(255,106,94);
+    font-size: clamp(1.3rem, 1vw, 1.6rem);
 }
 
 #listing-head-centre {
@@ -1448,6 +1447,7 @@ input[type="radio"] {
     margin: 0 auto;
     justify-content: end;
     width: 100%;
+    min-width: 0;
     padding-left: 5px;
 }
 
@@ -1460,13 +1460,16 @@ input[type="radio"] {
 }
 
 #organiser-name-box p {
-    font-size: 0.9rem;
     margin: 0;
+    line-height: 1.1;
+    font-size: 0.65rem;
+    overflow-wrap: anywhere;
 }
 
 #organiser-name-box h3 {
     margin: 0;
     padding-bottom: 2px;
+    font-size: 0.8rem;
 }
 
 #organiser-head-right {
@@ -1481,6 +1484,20 @@ input[type="radio"] {
     width: 15%;
     min-width: 150px;
     background-color: rgb(255, 255, 255);
+}
+
+#pic-and-message {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#event-photo-url {
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+    object-fit: cover;
 }
 
 #listing-side-bar {
@@ -3588,10 +3605,6 @@ input[type=number] {
         position: relative;
     }
     
-    #message-organiser {
-        margin-bottom: 0;
-    }
-    
     #message-box {
         position: static;
         border: none;
@@ -3614,22 +3627,27 @@ input[type=number] {
     }
 
     #organiser-name-box {
-        position: relative;
-        left: 100px;
+        padding-left: 50px;
         width: 80%;
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
     }
 
     #event-photo-url {
-        height: 50px;
-        width: 50px;
+        height: 50px !important;
+        width: 50px !important;
         margin: 0;
         position: relative;
         margin-right: 5px;
     }
 
     #organiser-name-box p {
-        margin-bottom: 8px;
-        margin-top: 8px;
+        font-size: 1rem !important;
+    }
+
+    #message-box i {
+        font-size: 1.8rem;
     }
 
     #form-step-one, #form-step-two, #create-profile-form {
@@ -3645,8 +3663,13 @@ input[type=number] {
         width: 230px;
     }
 
+    #listing-top {
+        min-height: unset;
+    }
+
     #listing-top-left {
         width: 100%;
+        min-height: unset;
     }
 
     #how {
@@ -3668,6 +3691,7 @@ input[type=number] {
 
     #organiser-name-box h3 {
         padding: 0;
+        font-size: 1.2rem !important;
     }
 
 }
@@ -3965,6 +3989,10 @@ input[type=number] {
     #listing-writing p {
         font-size: 1.4rem;
     }
+
+    #organiser-name-box h3 {
+        font-size: 1.4rem !important;
+    }
 }
 
 @media (max-width: 425px) {
@@ -3987,7 +4015,7 @@ input[type=number] {
     }
 
     #organiser-name-box {
-        left: 30px;
+        padding-left: 30px;
     }
 
     #form-step-one, #form-step-two, #create-profile-form {
@@ -4125,10 +4153,6 @@ input[type=number] {
 
     #follow-button {
         padding: 6px 3px !important;
-    }
-
-    #organiser-name-box {
-        margin-right: 40px;
     }
 
     #sign-up-main h1 {
