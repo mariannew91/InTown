@@ -1154,7 +1154,7 @@ function saveEditProfile() {
 }
 
 const sidebar = document.querySelector('.profile-side-bar');
-const toggleBtn = document.querySelector('.sidebar-tag');
+const toggleBtn = document.querySelector('#sidebar-toggle-btn');
 
 if (toggleBtn && sidebar) {
     toggleBtn.addEventListener('click', (event) => {

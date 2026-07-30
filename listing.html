@@ -17,10 +17,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script> 
 </head>
-<body>
+<body class="listing-page">
      <!--Header-->
     <header>
-        <div id="home-link"><a href='./index.html'><i class="fa-solid fa-house fa-2x"></i></a></div>
+        <div class="no-menu-home"><a href='./index.html'><i class="fa-solid fa-house fa-2x"></i></a></div>
         <div id="logo-town">
             <div id="just-logo">
                 <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
@@ -73,7 +73,6 @@
         </div>
     </div>
     <div id="listing-body">
-        <button class="sidebar-tag"><i class="fa-solid fa-bars"></i></button>
         <aside class="profile-side-bar" id="listing-side-bar">
             <ul>
                 <li class="is-active" id="listing-about-btn"><i class="fa-solid fa-circle-info"></i> About</li>
@@ -85,6 +84,9 @@
                 <li id="listing-follower-btn"><i class="fa-solid fa-people-group"></i><span id="num-followers"></span> followers</li>
             </ul>
         </aside>
+        <button id="sidebar-toggle-btn" class="sidebar-toggle" aria-label="Open Sidebar">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <div class="listing-main">
             <div id="head-bottom">
                 <ul>

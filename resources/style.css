@@ -377,6 +377,7 @@ input {
     z-index: 10;
     justify-content: center;
     position: relative;
+    padding-left: 15px;
 }
 
 #dynamic-tab-bar-feed button {
@@ -1114,9 +1115,8 @@ input[type="radio"] {
     min-width: 0;
 }
 
-.sidebar-tag {
+#sidebar-toggle-btn.sidebar-toggle {
     display: none;
-    flex-shrink: 0;
 }
 
 .profile-side-bar {
@@ -1441,6 +1441,7 @@ input[type="radio"] {
 
 #listing-profile-name {
     margin: 0 auto;
+    padding-left: 15px;
 }
 
 #organiser-name-box {
@@ -2629,6 +2630,29 @@ input[type=number] {
 
 @media (max-width: 1040px) {
 
+    #sidebar-toggle-btn.sidebar-toggle {
+        position: fixed;
+        top: 21%;
+        left: 0;
+        z-index: 1000;
+        background-color: rgb(19, 36, 75);
+        color: white;
+        border: none;
+        border-radius: 0 8px 8px 0;
+        padding: 18px 6px;
+        cursor: pointer;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        width: auto !important;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        transition: left 0.3s ease;
+    }
+
+    .profile-side-bar.is-open ~ #sidebar-toggle-btn.sidebar-toggle {
+        left: 300px;
+    }
+
     #home-link {
         margin-left: 80px;
     }
@@ -2655,7 +2679,6 @@ input[type=number] {
 
     #search-side-bar.is-open {
         left: 0;
-        margin-left: 10px;
     }
 
     #main-login {
@@ -2670,6 +2693,7 @@ input[type=number] {
     #side-bar {
         width: 300px;
         padding-top: 110px;
+        border-left: none;
     }
 
     #side-bar a, #side-bar li {
@@ -2718,7 +2742,7 @@ input[type=number] {
 
     .profile-side-bar {
         position: fixed;
-        left: -550px;
+        left: -300px;
         top: 0;
         height: 100vh;
         z-index: 1000;
@@ -3007,8 +3031,18 @@ input[type=number] {
         font-size: 1.4rem;
     }
 
-    #side-bar {
-        width: 300px;
+    #sidebar-toggle-btn.sidebar-toggle {
+        top: 30%;
+        font-size: 1.5rem;
+    }
+
+    .listing-page #sidebar-toggle-btn.sidebar-toggle {
+        top: 21% !important;
+    }
+
+    .home-page #sidebar-toggle-btn.sidebar-toggle {
+        background-color: rgb(255,106,94) !important;
+        top: 190px;
     }
 
     #side-bar li, #side-bar a {
@@ -3472,9 +3506,13 @@ input[type=number] {
         margin-top: 10px;
     }
 
-    .sidebar-tag {
-        height: 86px;
-        top: 2px;
+    .listing-page #sidebar-toggle-btn.sidebar-toggle {
+        top: 17% !important;
+    }
+
+    .home-page #sidebar-toggle-btn.sidebar-toggle {
+        background-color: rgb(255,106,94) !important;
+        top: 155px;
     }
 
     .sign-in {
@@ -3579,6 +3617,10 @@ input[type=number] {
 
     #search-symbol {
         margin-left: 60px;
+    }
+
+    .listing-page #sidebar-toggle-btn.sidebar-toggle {
+        top: 90px !important;
     }
 
     #listing-about-sect {
@@ -4121,8 +4163,8 @@ input[type=number] {
         font-size: 1.4rem;
     }
 
-    .sidebar-tag {
-        width: 60px;
+    .profile-side-bar.is-open ~ #sidebar-toggle-btn.sidebar-toggle {
+        left: 270px;
     }
 
     .sign-in {
@@ -4200,8 +4242,8 @@ input[type=number] {
         transform: scale(1.4);
     }
 
-    .profile-side-bar.is-open {
-        width: 300px;
+    .profile-side-bar.is-open, #search-side-bar.is-open, #listing-side-bar.is-open, #side-bar {
+        width: 270px;
     }
 
     #how {

@@ -14,11 +14,10 @@
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <script src="./resources/script.js" defer></script>
 </head>
-<body>
+<body class="home-page">
     <!--Header-->
     <header>
-        <div id="home-link" class="login"><a href='./index.html'><i class="fa-solid fa-house fa-2x"></i></a></div>
-        <div class="no-menu-home logout"><a href='./index.html'><i class="fa-solid fa-house fa-2x"></i></a></div>
+        <div class="no-menu-home"><a href='./index.html'><i class="fa-solid fa-house fa-2x"></i></a></div>
         <div id="logo-town">
             <div id="just-logo">
                 <a href='./index.html'><img id="logo" src="./resources/images/inTown-logo.png"></a>
@@ -107,7 +106,6 @@
     </nav>
     <div id="main-body-login" class="login">
         <!--Side Bar-->
-        <button class="sidebar-tag"><i class="fa-solid fa-bars"></i></button>
         <div id="side-bar" class="profile-side-bar">
             <ul id="nav">
                 <li class="section"><a href="index.html"><i class="fa-regular fa-house fa-lg"></i></a></li>
@@ -118,6 +116,9 @@
                 <li class="section" id="main-add-listing"><a href='./add-listing.html'>Add a listing</a></li>
             </ul>
         </div>
+        <button id="sidebar-toggle-btn" class="sidebar-toggle" aria-label="Open Sidebar">
+            <i class="fa-solid fa-bars"></i>
+        </button>
         <div id="main-login" class="login">
             <div id="suggestions-box">
                 <h1 class="main-head">You Might Like</h1>
