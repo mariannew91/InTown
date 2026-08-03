@@ -669,8 +669,6 @@ footer ul, #foot-add-listing a {
     width: 50%;
 }
 
-
-
 .age {
     margin-left: 0;
     margin-right: 10px;
@@ -715,8 +713,6 @@ footer ul, #foot-add-listing a {
     border-radius: 3px;
 
 }
-
-
 
 .card-footer {
     display: flex;
@@ -784,6 +780,99 @@ footer ul, #foot-add-listing a {
 .follow a :hover {
     background-color: rgb(240,90,80);
 }
+
+/* Opened post */
+
+#opened-post {
+    display: flex;
+    z-index: 9999;
+    position: fixed;
+    top: 5vh;
+    bottom: 5vh;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: column;
+    width: 90%;
+    max-width: 580px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 20px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15), 0 20px 50px -10px rgba(0, 0, 0, 0.3);
+    overflow-y: auto;
+}
+
+#post-header {
+    display: flex;
+    flex-direction: row;
+}
+
+#post-profile-pic {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin: 0 10px;
+}
+
+#post-photo {
+    object-fit: cover;
+    width: clamp(280px, 80vw, 430px);
+    margin: 0 auto;
+    overflow: hidden;
+    aspect-ratio: 1/1;
+    border-radius: 20px;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+
+#post-content {
+    width: 75%;
+    font-size: clamp(0.95rem, 0.9rem + 0.5vw, 1.2rem);;
+}
+
+#comment-section {
+    background-color: white;
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid rgb(241, 245, 249);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.comment {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.comment-profile-pic {
+    width: 40px;
+    aspect-ratio: 1/1;
+    border-radius: 10px;
+}
+
+#post-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: 10px;
+}
+
+#opened-post button {
+    background-color: transparent;
+    border: none;
+    width: 10%;
+    cursor: pointer;
+}
+
+#opened-post button i {
+    color: rgb(19 36 75);
+}
+
+
 
 /* Main logged out */
 
@@ -2079,7 +2168,7 @@ input[type=number] {
 }
 
 ::placeholder {
-    color: #676161; /* A slightly darker grey for better readability */
+    color: rgb(103, 97, 97);
     opacity: 1;
 }
 
