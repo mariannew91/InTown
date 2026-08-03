@@ -1606,7 +1606,7 @@ input[type="radio"] {
 .listing-centre-title {
     text-align: center;
     width: 100%;
-
+    font-size: 1.4rem;
 }
 
 #listing-about-sect {
@@ -2010,12 +2010,12 @@ input[type="radio"] {
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 
@@ -2653,6 +2653,10 @@ input[type=number] {
         left: 300px;
     }
 
+    .profile-page #sidebar-toggle-btn.sidebar-toggle {
+        top: 219px;
+    }
+
     #home-link {
         margin-left: 80px;
     }
@@ -2742,7 +2746,7 @@ input[type=number] {
 
     .profile-side-bar {
         position: fixed;
-        left: -300px;
+        left: -350px;
         top: 0;
         height: 100vh;
         z-index: 1000;
@@ -3206,7 +3210,7 @@ input[type=number] {
     /* Search Page */
 
     .profile-side-bar.is-open {
-        width: 350px;
+        width: 300px;
         overflow: scroll;
     }
 
@@ -3317,6 +3321,10 @@ input[type=number] {
 
     #zero {
         font-size: 1rem;
+    }
+
+    .listing-centre-title {
+        font-size: 1.8rem;
     }
 
     /* Sign Up Page */
@@ -3513,6 +3521,10 @@ input[type=number] {
     .home-page #sidebar-toggle-btn.sidebar-toggle {
         background-color: rgb(255,106,94) !important;
         top: 155px;
+    }
+
+    .profile-page #sidebar-toggle-btn.sidebar-toggle {
+        top: 191px;
     }
 
     .sign-in {
@@ -3940,6 +3952,10 @@ input[type=number] {
         font-size: 1.3rem;
     }
 
+    .profile-centre h2, .listing-centre-title {
+        font-size: 1.9rem;
+    }
+
     #profile-bio-box textarea {
         font-size: 1.1rem;
     }
@@ -4022,10 +4038,6 @@ input[type=number] {
 
     #about {
         font-size: 1.4rem;
-    }
-
-    .listing-centre-title {
-        font-size: 2.2rem;
     }
 
     #listing-writing p {
