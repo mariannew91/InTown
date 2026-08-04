@@ -355,7 +355,6 @@ input {
     display: block;
     width: 50%;
     border-left: 1px solid rgb(213, 228, 226);
-    height: 100vh;
 }
 
 .main-head {
@@ -781,10 +780,36 @@ footer ul, #foot-add-listing a {
     background-color: rgb(240,90,80);
 }
 
+/* Your Posts Section */
+
+.your-posts {
+    margin: 0 auto;
+    margin-bottom: 10px;
+    overflow: hidden;
+    max-width: 400px;
+    justify-content: center;
+    background-color: rgb(255, 255, 255);
+    border-radius: 20px;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 7%), 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.your-posts .photo-container {
+    width: clamp(150px, 80vw, 350px);
+}
+
+.your-posts .post-content {
+    display: flex;
+    flex-direction: column;
+    max-width: 330px;
+    margin: 0 auto;
+}
+
+
 /* Opened post */
 
 #opened-post {
-    display: flex;
+    display: none;
     z-index: 9999;
     position: fixed;
     top: 5vh;
@@ -792,10 +817,10 @@ footer ul, #foot-add-listing a {
     left: 50%;
     transform: translateX(-50%);
     flex-direction: column;
-    width: 90%;
-    max-width: 580px;
+    width: clamp(320px, 85vw, 580px);
     background-color: rgb(255, 255, 255);
     padding: 20px;
+    padding-top: 10px;
     align-items: center;
     justify-content: flex-start;
     border-radius: 20px;
@@ -803,33 +828,96 @@ footer ul, #foot-add-listing a {
     overflow-y: auto;
 }
 
-#post-header {
+.post-header {
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-#post-profile-pic {
+.post-profile-pic {
     width: 60px;
     height: 60px;
     object-fit: cover;
     border-radius: 20px;
-    margin: 0 10px;
 }
 
-#post-photo {
-    object-fit: cover;
-    width: clamp(280px, 80vw, 430px);
-    margin: 0 auto;
-    overflow: hidden;
+.post-username {
+    font-weight: 600;
+    margin: 0;
+    font-size: clamp(15px, 2vw, 20px);
+    padding: 0 5px;
+}
+
+.photo-container {
+    display: flex;
+    position: relative;
+    width: clamp(260px, 75vw, 430px);
     aspect-ratio: 1/1;
-    border-radius: 20px;
+    margin: 5px auto 0 auto;
     flex-shrink: 0;
     flex-grow: 0;
+    border-radius: 20px;
+    overflow: hidden;
 }
 
-#post-content {
-    width: 75%;
-    font-size: clamp(0.95rem, 0.9rem + 0.5vw, 1.2rem);;
+.post-photo img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+.post-photo {
+    object-fit: cover;
+    aspect-ratio: 1/1;
+    border-radius: 15px;
+    display: block;
+}
+
+.listing-overlay-badge {
+    position: absolute;
+    bottom: 5px;
+    left: 7px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.56);
+    padding: 6px 12px 6px 6px;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 95%;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.listing-overlay-badge:hover {
+    transform: scale(1.02);
+}
+
+.listing-thumb {
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.listing-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: #1e293b;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.post-content {
+    width: clamp(270px, 75vw, 410px);
+}
+
+.post-text {
+    font-size: clamp(15px, 2vw, 16px);
+    padding: 0 5px;
 }
 
 #comment-section {
@@ -844,24 +932,50 @@ footer ul, #foot-add-listing a {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    margin: 5px;
+    width: 100%;
+}
+
+.user-comment {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.comment-and-like {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    margin: 3px 0;
 }
 
 .comment-profile-pic {
     width: 40px;
     aspect-ratio: 1/1;
     border-radius: 10px;
+    margin-right: 5px;
 }
 
-#post-buttons {
+.comment-username {
+    font-weight: 600;
+    margin: 0;
+    font-size: clamp(12px, 2vw, 15.2px);
+}
+
+.comment-text {
+    margin: 0;
+    font-size: clamp(13px, 2vw, 15.2px);
+}
+
+.post-buttons {
     display: flex;
     flex-direction: row;
     gap: 5px;
     margin-bottom: 10px;
 }
 
-#opened-post button {
+.post-buttons button, .comment button {
     background-color: transparent;
     border: none;
     width: 10%;
@@ -870,6 +984,15 @@ footer ul, #foot-add-listing a {
 
 #opened-post button i {
     color: rgb(19 36 75);
+}
+
+.comment button:last-child {
+    display: none;
+}
+
+.love {
+    margin-left: auto;
+    margin-right: 5px;
 }
 
 
@@ -1871,7 +1994,7 @@ input[type="radio"] {
     font-size: 1.3rem;
 }
 
-#remove-image-btn {
+#remove-image-btn, .close-post {
     position: absolute;
     top: 12px;
     left: 85% !important;
@@ -3051,7 +3174,7 @@ input[type=number] {
 
     #main-logout.logout {
         display: none !important;
-    } 
+    } /* 
 
     /*  To hide either log in  
     .login {

@@ -1,3 +1,25 @@
 fastapi
 uvicorn[standard]
 python-dotenv
+
+<div class="your-posts">
+        <div class="post-header">
+            <img class="post-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
+            <h2 class="post-username">Marianne Walsh</h2>
+        </div>
+        <div class="photo-container">
+            <div class="post-photo"><img src="./resources/images/Winston.jpeg" alt="Winston"></div>
+            <div class="listing-overlay-badge">
+                <img src="./resources/images/intown-logo.png" alt="Listing" class="listing-thumb">
+                <span class="listing-name">The Grand Ballroom Event on Walney Island</span>
+            </div>
+        </div>
+         <div class="post-content">
+            <p class="post-text">Had a great time at the event!</p>
+            <div class="post-buttons">
+                <button><i class="fa-regular fa-comment"></i></button>
+                <button><i class="fa-regular fa-heart"></i></button>
+                <button><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+    </div>

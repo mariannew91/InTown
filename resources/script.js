@@ -56,7 +56,7 @@ const ongoingActivity = document.getElementById('ongoing-multi-date');
 const listingName = document.getElementById('group-name');
 const groupLeader = document.getElementById('group-leader');
 const businessLeader = document.getElementById('business');
-const organiserName = document.getElementById('organiser-name-container');
+const organiserNameBox = document.getElementById('organiser-name-container');
 const businessDescription = document.getElementById('business-desc-container');
 const organiserDescription = document.getElementById('organiser-desc-container');
 
@@ -165,6 +165,33 @@ function eventCardTemplate(event, index) {
         </div>
     `;
 }
+
+function createPostCard(postData) {
+    return `
+    <div class="your-posts">
+        <div class="post-header">
+            <img class="post-profile-pic" src="${postData.profilePic}" alt="Profile Picture">
+            <h2 class="post-username">${postData.username}</h2>
+        </div>
+        <div class="photo-container">
+            <img class="post-photo" src="${postData.postImage}" alt="Post photo">
+            <div class="listing-overlay-badge">
+                <img src="${postData.listingThumb}" alt="Listing" class="listing-thumb">
+                <span class="listing-name">${postData.listingName}</span>
+            </div>
+        </div>
+         <div class="post-content">
+            <p class="post-text">${postData.caption}</p>
+            <div class="post-buttons">
+                <button><i class="fa-regular fa-comment"></i></button>
+                <button><i class="fa-regular fa-heart"></i></button>
+                <button><i class="fa-solid fa-heart"></i></button>
+            </div>
+        </div>
+    </div>
+    `;
+}
+const feed = document.getElementById('feed');
 
 function deactivateAllButtons() {
     const allButtons = document.querySelectorAll('.profile-side-bar li');
@@ -391,12 +418,12 @@ if (listingForm) {
     let savedOrganiserType = localStorage.getItem('user-type');
     const orgNameInput = document.getElementById('organiser-name');
     if (savedOrganiserType === 'group') {
-        if(organiserName) organiserName.style.display = 'none';
+        if(organiserNameBox) organiserNameBox.style.display = 'none';
         if(businessDescription) businessDescription.style.display = 'none';
         if(organiserDescription) organiserDescription.style.display = 'flex'; 
         if(orgNameInput) orgNameInput.required = false;
     } else if (savedOrganiserType === 'business') {
-        if(organiserName) organiserName.style.display = 'flex'; 
+        if(organiserNameBox) organiserNameBox.style.display = 'flex'; 
         if(businessDescription) businessDescription.style.display = 'flex'; 
         if(organiserDescription) organiserDescription.style.display = 'none';
         if(orgNameInput) orgNameInput.required = true;
@@ -779,7 +806,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     const newPostContainer = document.getElementById('listing-new-post');
-    const imageUploadInput = document.getElementById('post-image-upload');
+    const imageUpload = document.getElementById('post-image-upload');
     const imagePreview = document.getElementById('post-image-preview');
     const mediaContainer = document.getElementById('post-media-container');
     const removeImageBtn = document.getElementById('remove-image-btn');
@@ -794,7 +821,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideImage() {
         mediaContainer.style.display = 'none';
         imagePreview.removeAttribute('src');
-        imageUploadInput.value = '';
+        imageUpload.value = '';
 
         if (cropper) {
             cropper.destroy();
@@ -802,8 +829,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    if (imageUploadInput) {
-        imageUploadInput.addEventListener('change', event => {
+    if (imageUpload) {
+        imageUpload.addEventListener('change', event => {
             const file = event.target.files[0];
 
             if (!file) {
@@ -821,25 +848,27 @@ document.addEventListener('DOMContentLoaded', () => {
                         cropper.destroy();
                     }
 
-                    cropper = new Cropper(imagePreview, {
-                        aspectRatio: 1,
-                        viewMode: 3,
-                        dragMode: 'move',
-                        autoCropArea: 1,
-                        responsive: true,
-                        restore: false,
-                        guides: false,
-                        center: false,
-                        background: false,
-                        highlight: false,
-                        cropBoxMovable: false,
-                        cropBoxResizable: false,
-                        toggleDragModeOnDblclick: false,
-                        movable: true,
-                        zoomable: true,
-                        scalable: false,
-                        rotatable: false
-                    });
+                    if (typeof Cropper !== 'undefined') {
+                        cropper = new Cropper(imagePreview, {
+                            aspectRatio: 1,
+                            viewMode: 3,
+                            dragMode: 'move',
+                            autoCropArea: 1,
+                            responsive: true,
+                            restore: false,
+                            guides: false,
+                            center: false,
+                            background: false,
+                            highlight: false,
+                            cropBoxMovable: false,
+                            cropBoxResizable: false,
+                            toggleDragModeOnDblclick: false,
+                            movable: true,
+                            zoomable: true,
+                            scalable: false,
+                            rotatable: false
+                        });
+                    }
                 };
 
                 imagePreview.src = e.target.result;
@@ -855,6 +884,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitPostBtn) {
         submitPostBtn.addEventListener('click', () => {
+            console.log("Button clicked successfully!");
             const postText = document.getElementById('post-input').value.trim();
 
             let finalImage = null;
@@ -866,8 +896,22 @@ document.addEventListener('DOMContentLoaded', () => {
                 }).toDataURL('image/jpeg');
             }
 
-            console.log('Post Text:', postText);
-            console.log('Image:', finalImage);
+            if (!postText && !finalImage) return;
+
+            const newPostData = {
+                username: "Marianne Walsh",
+                profilePic: "./resources/images/intown-logo.png",
+                postImage: finalImage || "./resources/images/Winston.jpeg",
+                listingThumb: "./resources/images/intown-logo.png",
+                listingName: "The Grand Ballroom Event on Walney Island",
+                caption: postText
+            };
+
+            let savedPosts = JSON.parse(localStorage.getItem('listingFeedPosts')) || [];
+            savedPosts.unshift(newPostData);
+            localStorage.setItem('listingFeedPosts', JSON.stringify(savedPosts));
+
+            window.location.href = 'index.html';
         });
     }
 
@@ -877,32 +921,139 @@ document.addEventListener('DOMContentLoaded', () => {
     const organiserName = document.querySelector("#organiser-name-box h3");
 
     function resizeOrganiser() {
-        const titleHeight = listingTitle.offsetHeight;
+        if (!listingTitle || !organiserImage || !organiserLabel || !organiserName) return;
+            const titleHeight = listingTitle.offsetHeight;
 
-        if (titleHeight > 100) {
-            // Bigger layout
-            organiserImage.style.width = "85px";
-            organiserImage.style.height = "85px";
+            if (titleHeight > 100) {
+                // Bigger layout
+                organiserImage.style.width = "85px";
+                organiserImage.style.height = "85px";
 
-            organiserLabel.style.fontSize = "0.9rem";
-            organiserName.style.fontSize = "1rem";
+                organiserLabel.style.fontSize = "0.9rem";
+                organiserName.style.fontSize = "1rem";
 
-        } else {
-            // Compact layout
-            organiserImage.style.width = "60px";
-            organiserImage.style.height = "60px";
+            } else {
+                // Compact layout
+                organiserImage.style.width = "60px";
+                organiserImage.style.height = "60px";
 
-            organiserLabel.style.fontSize = "0.65rem";
-            organiserName.style.fontSize = "0.8rem";
+                organiserLabel.style.fontSize = "0.65rem";
+                organiserName.style.fontSize = "0.8rem";
+            }
         }
-    }
 
-    const titleObserver = new ResizeObserver(resizeOrganiser);
-
-    titleObserver.observe(listingTitle);
-
+        const titleObserver = new ResizeObserver(resizeOrganiser);
+        if (listingTitle) {
+            titleObserver.observe(listingTitle);
+        }
     resizeOrganiser();
-});
+
+    const feedContainer = document.getElementById('feed-posts');
+    if (feedContainer) {
+        
+        let savedPosts = JSON.parse(localStorage.getItem('listingFeedPosts')) || [];
+        
+        savedPosts.forEach(postData => {
+            const postHTML = createPostCard(postData);
+            feedContainer.insertAdjacentHTML('beforeend', postHTML);
+        });
+
+    feedContainer.addEventListener('click', (event) => {
+        const postButtons = event.target.closest('.post-buttons');
+        if (postButtons && postButtons.firstElementChild.contains(event.target)) {
+            
+            const postCard = event.target.closest('.your-posts');
+            if (!postCard) return;
+
+            const username = postCard.querySelector('.post-username')?.textContent || '';
+            const profilePic = postCard.querySelector('.post-profile-pic')?.src || '';
+            const postImage = postCard.querySelector('.post-photo')?.src || '';
+            const caption = postCard.querySelector('.post-text')?.textContent || '';
+            const listingThumb = postCard.querySelector('.listing-thumb')?.src || '';
+            const listingName = postCard.querySelector('.listing-name')?.textContent || '';
+
+            const openedPostModal = document.getElementById('opened-post');
+            if (openedPostModal) {
+                openedPostModal.innerHTML = `
+                    <div class="post-header">
+                        <img class="post-profile-pic" src="${profilePic}" alt="Profile Picture">
+                        <h2 class="post-username">${username}</h2>
+                    </div>
+                    <div class="photo-container">
+                        <div class="post-photo"><img src="${postImage}" alt="Post Photo"></div>
+                        <button type="button" class="close-post" id="close-post"><i class="fa-solid fa-xmark"></i></button>
+                        <div class="listing-overlay-badge">
+                            <img src="${listingThumb}" alt="Listing" class="listing-thumb">
+                            <span class="listing-name">${listingName}</span>
+                        </div>
+                    </div>
+                    <div class="post-content">
+                        <p class="post-text">${caption}</p>
+                        <div class="post-buttons">
+                            <button><i class="fa-regular fa-comment"></i></button>
+                            <button><i class="fa-regular fa-heart"></i></button>
+                            <button><i class="fa-solid fa-heart"></i></button>
+                        </div>
+                        <div id="comment-section">
+                            <div id="post-comments">
+                                <div class="comment">
+                                    <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
+                                    <div class="user-comment">
+                                        <p class="comment-username">John Smith</p>
+                                        <div class="comment-and-like">
+                                            <p class="comment-text">Glad you enjoyed it!</p>
+                                            <button class="love"><i class="fa-regular fa-heart"></i></button>
+                                            <button class="love"><i class="fa-solid fa-heart"></i></button>
+                                        </div>
+                                    </div>
+                                </div>  
+                                <div class="comment">
+                                    <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
+                                    <div class="user-comment">
+                                        <p class="comment-username">John Smith</p>
+                                        <div class="comment-and-like">
+                                            <p class="comment-text">Glad you enjoyed it!</p>
+                                            <button class="love"><i class="fa-regular fa-heart"></i></button>
+                                            <button class="love"><i class="fa-solid fa-heart"></i></button>
+                                        </div>
+                                    </div>
+                                </div>       
+                                <div class="comment">
+                                    <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
+                                    <div class="user-comment">
+                                        <p class="comment-username">John Smith</p>
+                                        <div class="comment-and-like">
+                                            <p class="comment-text">Glad you enjoyed it!</p>
+                                            <button class="love"><i class="fa-regular fa-heart"></i></button>
+                                            <button class="love"><i class="fa-solid fa-heart"></i></button>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                openedPostModal.style.display = 'flex';
+            }
+        }
+    });
+
+    document.addEventListener('click', (event) => {
+        const openedPostModal = document.getElementById('opened-post');
+        if (!openedPostModal || openedPostModal.style.display !== 'flex') return;
+
+        const closeBtn = event.target.closest('#close-post');
+        
+        const clickedOutsideModal = !openedPostModal.contains(event.target);
+
+        const clickedTriggerButton = event.target.closest('.post-buttons')?.firstElementChild?.contains(event.target);
+
+        if (closeBtn || (clickedOutsideModal && !clickedTriggerButton)) {
+            openedPostModal.style.display = 'none';
+        }
+    });
+}});
 
 const sections = {
     "Suggested": document.getElementById("suggestions-box"),
@@ -1010,8 +1161,14 @@ window.addEventListener("load", () => {
     initialiseHomeTabs();
 });
 
+let lastIsDesktop = window.innerWidth > 767;
+
 window.addEventListener("resize", () => {
-    initialiseLoginTabs();
+    const currentIsDesktop = window.innerWidth > 767;
+    if (currentIsDesktop !== lastIsDesktop) {
+        lastIsDesktop = currentIsDesktop;
+        initialiseLoginTabs();
+    }
 });
 
 const priceInput = document.getElementById('price-amount');
