@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script> 
     <script src="./resources/script.js" defer></script>
 </head>
 <body class="profile-page">
@@ -157,11 +159,14 @@
                                     <h3>Profile Photo</h3>
                                     <div id="photo-edit-container">
                                         <div id="photo-left">
-                                            <img class="profile-pic" id="profile-pic-edit"></img>
+                                            <div class="edit-profile-media-container" id="edit-profile-media-container">
+                                                <img class="profile-pic" id="profile-pic-edit" alt="Profile picture preview">
+                                                <button type="button" id="remove-edit-profile-image-btn" aria-label="Remove image" title="Remove image">&times;</button>
+                                            </div>
                                         </div>
                                         <div id="photo-right">
                                             <label for="profile-photo-change" class="button"><i class="fa-solid fa-arrow-up-from-bracket"></i> Change Photo</label>
-                                            <input type="file" id="profile-photo-change" name="profile-photo-change">
+                                            <input type="file" id="profile-photo-change" name="profile-photo-change" accept="image/*" style="display: none;">
                                         </div>
                                     </div>
                                     <label for="users-name-edit">My Name</label>

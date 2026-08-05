@@ -12,6 +12,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.13/cropper.min.js"></script> 
     <script src="./resources/script.js" defer></script>
 </head>
 <body>
@@ -249,11 +251,24 @@
                 </div>
                 <h2>Upload some photos</h2>
                 <div id="photo-upload">
-                    <label for="event-photo-url">Choose your profile photo</label>
-                    <input type="text" id="event-photo-url" name="event-photo-url" placeholder="Paste image link here">
-
-                    <label for="listing-photo-img">Choose a photo for your listing</label>
-                    <input type="text" id="listing-photo-img" name="listing-photo-img" placeholder="Paste image link here">
+                    <div class="photo-upload-section" id="profile-photo-upload">
+                        <p>Choose your profile photo</p>
+                        <input type="file" id="profile-photo-file-input" accept="image/*" style="display: none;">
+                        <button type="button" id="upload-profile-photo-btn" class="button"><i class="fa-solid fa-camera"></i></button>
+                        <div class="listing-media-container" style="display: none;" id="profile-media-container">
+                            <img id="event-photo-url" alt="User profile picture preview">
+                            <button type="button" id="remove-profile-image-btn" aria-label="Remove image" title="Remove image">&times;</button>
+                        </div>
+                    </div>
+                    <div class="photo-upload-section" id="listing-photo-upload">
+                        <p>Choose a photo to show off your listing</p>
+                        <input type="file" id="listing-photo-file-input" accept="image/*" style="display: none;">
+                        <button type="button" id="upload-listing-photo-btn" class="button"><i class="fa-solid fa-camera"></i></button>
+                        <div class="listing-media-container" style="display: none;" id="listing-media-container">
+                            <img id="listing-photo-img" alt="Listing preview">
+                            <button type="button" id="remove-listing-image-btn" aria-label="Remove image" title="Remove image">&times;</button>
+                        </div>
+                    </div>
                     
                     <!-- Just commenting out for now -->
                 <!--<label for="listing-photos">Choose a profile photo</label>-->

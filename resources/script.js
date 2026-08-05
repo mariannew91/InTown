@@ -167,30 +167,35 @@ function eventCardTemplate(event, index) {
 }
 
 function createPostCard(postData) {
+    const isListingPost = postData.isListingPost;
     return `
-    <div class="your-posts">
-        <div class="post-header">
-            <img class="post-profile-pic" src="${postData.profilePic}" alt="Profile Picture">
-            <h2 class="post-username">${postData.username}</h2>
-        </div>
-        <div class="photo-container">
-            <img class="post-photo" src="${postData.postImage}" alt="Post photo">
-            <div class="listing-overlay-badge">
-                <img src="${postData.listingThumb}" alt="Listing" class="listing-thumb">
-                <span class="listing-name">${postData.listingName}</span>
+        <div class="your-posts">
+            <div class="post-header">
+                <img class="post-profile-pic" src="${isListingPost ? (postData.listingThumb || postData.profilePic) : postData.profilePic}" alt="Profile Picture">
+                <h2 class="post-username">${isListingPost ? postData.listingName : postData.username}</h2>
+            </div>
+            <div class="photo-container">
+                <div class="post-photo"><img src="${postData.postImage}" alt="Post Photo"></div>
+                
+                ${!isListingPost && postData.listingName ? `
+                    <div class="listing-overlay-badge">
+                        <img src="${postData.listingThumb}" alt="Listing" class="listing-thumb">
+                        <span class="listing-name">${postData.listingName}</span>
+                    </div>
+                ` : ''}
+            </div>
+            <div class="post-content">
+                <p class="post-text">${postData.caption || ''}</p>
+                <div class="post-buttons">
+                    <button type="button"><i class="fa-regular fa-comment"></i></button>
+                    <button type="button"><i class="fa-regular fa-heart"></i></button>
+                    <button type="button"><i class="fa-solid fa-heart"></i></button>
+                </div>
             </div>
         </div>
-         <div class="post-content">
-            <p class="post-text">${postData.caption}</p>
-            <div class="post-buttons">
-                <button><i class="fa-regular fa-comment"></i></button>
-                <button><i class="fa-regular fa-heart"></i></button>
-                <button><i class="fa-solid fa-heart"></i></button>
-            </div>
-        </div>
-    </div>
     `;
 }
+
 const feed = document.getElementById('feed');
 
 function deactivateAllButtons() {
@@ -397,10 +402,12 @@ if (signupForm) {
 
 if (listingForm) {
     listingForm.addEventListener('input', function(event) {
+        if (event.target.type === 'file') return;
         if (event.target.name) localStorage.setItem(event.target.name, event.target.value);
     });
 
     for (const input of listingFormElements) {
+        if (input.type === 'file') continue;
         if (input.name) {
             const savedValue = localStorage.getItem(input.name);
             if (savedValue) {
@@ -427,6 +434,211 @@ if (listingForm) {
         if(businessDescription) businessDescription.style.display = 'flex'; 
         if(organiserDescription) organiserDescription.style.display = 'none';
         if(orgNameInput) orgNameInput.required = true;
+    }
+
+    document.getElementById('upload-profile-photo-btn').addEventListener('click', () => {
+        document.getElementById('profile-photo-file-input').click();
+    });
+
+    document.getElementById('upload-listing-photo-btn').addEventListener('click', () => {
+        document.getElementById('listing-photo-file-input').click();
+    });
+
+    const profileFileInput = document.getElementById('profile-photo-file-input');
+    const profileImg = document.getElementById('event-photo-url');
+    const profileContainer = document.getElementById('profile-media-container');
+    const removeProfileBtn = document.getElementById('remove-profile-image-btn');
+    let profileCropper = null;
+
+    function hideProfileImage() {
+        if (profileContainer) profileContainer.style.display = 'none';
+        if (profileImg) profileImg.removeAttribute('src');
+        if (profileFileInput) profileFileInput.value = '';
+
+        if (profileCropper) {
+            profileCropper.destroy();
+            profileCropper = null;
+        }
+    }
+
+    if (profileFileInput) {
+        profileFileInput.addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (!file) {
+                hideProfileImage();
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                profileImg.onload = () => {
+                    if (profileContainer) profileContainer.style.display = 'block';
+
+                    if (profileCropper) {
+                        profileCropper.destroy();
+                    }
+
+                    if (typeof Cropper !== 'undefined') {
+                        profileCropper = new Cropper(profileImg, {
+                            aspectRatio: 1,
+                            viewMode: 3,
+                            dragMode: 'move',
+                            autoCropArea: 1,
+                            responsive: true,
+                            restore: false,
+                            guides: false,
+                            center: false,
+                            background: false,
+                            highlight: false,
+                            cropBoxMovable: false,
+                            cropBoxResizable: false,
+                            toggleDragModeOnDblclick: false,
+                            movable: true,
+                            zoomable: true,
+                            scalable: false,
+                            rotatable: false
+                        });
+                    }
+                };
+                profileImg.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    if (removeProfileBtn) {
+        removeProfileBtn.addEventListener('click', hideProfileImage);
+    }
+
+    const listingFileInput = document.getElementById('listing-photo-file-input');
+    const listingImg = document.getElementById('listing-photo-img');
+    const listingContainer = document.getElementById('listing-media-container');
+    const removeListingBtn = document.getElementById('remove-listing-image-btn');
+    let listingCropper = null;
+
+    function hideListingImage() {
+        if (listingContainer) listingContainer.style.display = 'none';
+        if (listingImg) listingImg.removeAttribute('src');
+        if (listingFileInput) listingFileInput.value = '';
+
+        if (listingCropper) {
+            listingCropper.destroy();
+            listingCropper = null;
+        }
+    }
+
+    if (listingFileInput) {
+        listingFileInput.addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (!file) {
+                hideListingImage();
+                return;
+            }
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                listingImg.onload = () => {
+                    if (listingContainer) listingContainer.style.display = 'block';
+
+                    if (listingCropper) {
+                        listingCropper.destroy();
+                    }
+
+                    if (typeof Cropper !== 'undefined') {
+                        listingCropper = new Cropper(listingImg, {
+                            aspectRatio: 1,
+                            viewMode: 3,
+                            dragMode: 'move',
+                            autoCropArea: 1,
+                            responsive: true,
+                            restore: false,
+                            guides: false,
+                            center: false,
+                            background: false,
+                            highlight: false,
+                            cropBoxMovable: false,
+                            cropBoxResizable: false,
+                            toggleDragModeOnDblclick: false,
+                            movable: true,
+                            zoomable: true,
+                            scalable: false,
+                            rotatable: false
+                        });
+                    }
+                };
+                listingImg.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
+    if (removeListingBtn) {
+        removeListingBtn.addEventListener('click', hideListingImage);
+    }
+
+
+    if (profileFileInput) {
+        profileFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    profileImg.src = event.target.result;
+                    if (profileContainer) profileContainer.style.display = 'block';
+
+                    if (profileCropper) profileCropper.destroy();
+                    profileCropper = new Cropper(profileImg, {
+                        aspectRatio: 1,
+                        viewMode: 1,
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    if (removeProfileBtn) {
+        removeProfileBtn.addEventListener('click', () => {
+            if (profileContainer) profileContainer.style.display = 'none';
+            profileImg.src = '';
+            profileFileInput.value = '';
+            if (profileCropper) {
+                profileCropper.destroy();
+                profileCropper = null;
+            }
+        });
+    }
+
+    if (listingFileInput) {
+        listingFileInput.addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    listingImg.src = event.target.result;
+                    if (listingContainer) listingContainer.style.display = 'block';
+
+                    if (listingCropper) listingCropper.destroy();
+                    listingCropper = new Cropper(listingImg, {
+                        aspectRatio: 16 / 9,
+                        viewMode: 1,
+                    });
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    }
+
+    if (removeListingBtn) {
+        removeListingBtn.addEventListener('click', () => {
+            if (listingContainer) listingContainer.style.display = 'none';
+            listingImg.src = '';
+            listingFileInput.value = '';
+            if (listingCropper) {
+                listingCropper.destroy();
+                listingCropper = null;
+            }
+        });
     }
 }
 
@@ -466,48 +678,68 @@ if (categorySelect && customCategoryBox && customCategoryInput) {
 
 function saveNewListing(event) {
     if (event && event.preventDefault) event.preventDefault();
-    const selectedType = localStorage.getItem('listing-type');
-    let finalDate = 'Contact for dates';
-    if (selectedType === 'event') finalDate = formatDateString(document.getElementById('listing-date')?.value);
-    else if (selectedType === 'group') finalDate = capitaliseFirstLetter(document.getElementById('regular-date')?.value || finalDate);
-    else if (selectedType === 'course') finalDate = capitaliseFirstLetter(document.getElementById('short-course-date')?.value || finalDate);
-    else if (selectedType === 'volunteering') finalDate = capitaliseFirstLetter(document.getElementById('shift-date')?.value || finalDate);
-    else if (selectedType === 'ongoing-activity' || selectedType === 'something-else') finalDate = capitaliseFirstLetter(document.getElementById('opening-hours')?.value || finalDate);
 
-    const typeMapping = { 'event': 'One-off event', 'group': 'Regular group', 'course': 'Short course', 'volunteering': 'Volunteering', 'ongoing-activity': 'Ongoing Activity', 'something-else': 'Something else' };
+    const profilePhotoInput = document.getElementById('event-photo-url');
+    const additionalPhotoInput = document.getElementById('listing-photo-img');
 
-    const newListing = {
-        organiser: capitaliseEveryWord(localStorage.getItem('user-full-name') || 'Community Organiser'),
-        name: capitaliseEveryWord(document.getElementById('group-name')?.value || localStorage.getItem('group-name') || 'Group/Event'),
-        price: document.getElementById('price-amount')?.value || 'Free',
-        priceExtra: capitaliseFirstLetter(document.getElementById('listing-price-details')?.value || ''),
-        category: capitaliseEveryWord(document.getElementById('listing-category-other')?.value.trim() || document.getElementById('category-select')?.value || 'General'),
-        profilePic: document.getElementById('event-photo-url')?.value || './resources/images/inTown-logo.png',
-        photo: document.getElementById('listing-photo-img')?.value || './resources/images/inTown-logo.png',
-        about: capitaliseFirstLetter(document.getElementById('listing-description')?.value || ''),
-        age: document.getElementById('age-group')?.value || 'All Ages',
-        ageExtra: capitaliseFirstLetter(document.getElementById('age-restriction')?.value || ''),
-        address: capitaliseEveryWord(document.getElementById('listing-address')?.value || ''),
-        'listing-city': capitaliseEveryWord(document.getElementById('listing-city')?.value || ''),
-        'listing-postcode': document.getElementById('listing-postcode')?.value.toUpperCase() || '',
-        phoneVal: document.getElementById('contact-phone')?.value.trim() || '',
-        emailVal: document.getElementById('contact-email')?.value.trim() || '',
-        webVal: document.getElementById('contact-website')?.value.trim() || '',
-        socialVal: document.getElementById('contact-social')?.value.trim() || '',
-        date: finalDate,
-        dateextra: capitaliseFirstLetter(document.getElementById('one-event-extra')?.value || document.getElementById('regular-date-extra')?.value || document.getElementById('short-course-extra')?.value || ''),
-        type: typeMapping[localStorage.getItem('listing-type')] || 'Group',
-        extraInfo: capitaliseFirstLetter(document.getElementById('listing-extra-details-box')?.value || '')
+    const processFilesAndSave = () => {
+        const selectedType = localStorage.getItem('listing-type');
+        let finalDate = 'Contact for dates';
+        if (selectedType === 'event') finalDate = formatDateString(document.getElementById('listing-date')?.value);
+        else if (selectedType === 'group') finalDate = capitaliseFirstLetter(document.getElementById('regular-date')?.value || finalDate);
+        else if (selectedType === 'course') finalDate = capitaliseFirstLetter(document.getElementById('short-course-date')?.value || finalDate);
+        else if (selectedType === 'volunteering') finalDate = capitaliseFirstLetter(document.getElementById('shift-date')?.value || finalDate);
+        else if (selectedType === 'ongoing-activity' || selectedType === 'something-else') finalDate = capitaliseFirstLetter(document.getElementById('opening-hours')?.value || finalDate);
+
+        const typeMapping = { 'event': 'One-off event', 'group': 'Regular group', 'course': 'Short course', 'volunteering': 'Volunteering', 'ongoing-activity': 'Ongoing Activity', 'something-else': 'Something else' };
+
+        const newListing = {
+            organiser: capitaliseEveryWord(localStorage.getItem('user-full-name') || 'Community Organiser'),
+            name: capitaliseEveryWord(document.getElementById('group-name')?.value || localStorage.getItem('group-name') || 'Group/Event'),
+            price: document.getElementById('price-amount')?.value || 'Free',
+            priceExtra: capitaliseFirstLetter(document.getElementById('listing-price-details')?.value || ''),
+            category: capitaliseEveryWord(document.getElementById('listing-category-other')?.value.trim() || document.getElementById('category-select')?.value || 'General'),
+            profilePic: window._tempProfilePhoto || './resources/images/inTown-logo.png',
+            photo: window._tempListingPhoto || './resources/images/inTown-logo.png',
+            about: capitaliseFirstLetter(document.getElementById('listing-description')?.value || ''),
+            age: document.getElementById('age-group')?.value || 'All Ages',
+            ageExtra: capitaliseFirstLetter(document.getElementById('age-restriction')?.value || ''),
+            address: capitaliseEveryWord(document.getElementById('listing-address')?.value || ''),
+            'listing-city': capitaliseEveryWord(document.getElementById('listing-city')?.value || ''),
+            'listing-postcode': document.getElementById('listing-postcode')?.value.toUpperCase() || '',
+            phoneVal: document.getElementById('contact-phone')?.value.trim() || '',
+            emailVal: document.getElementById('contact-email')?.value.trim() || '',
+            webVal: document.getElementById('contact-website')?.value.trim() || '',
+            socialVal: document.getElementById('contact-social')?.value.trim() || '',
+            date: finalDate,
+            dateextra: capitaliseFirstLetter(document.getElementById('one-event-extra')?.value || document.getElementById('regular-date-extra')?.value || document.getElementById('short-course-extra')?.value || ''),
+            type: typeMapping[localStorage.getItem('listing-type')] || 'Group',
+            extraInfo: capitaliseFirstLetter(document.getElementById('listing-extra-details-box')?.value || '')
+        };
+
+        const currentListing = JSON.parse(localStorage.getItem('event-cards')) || [];
+        currentListing.push(newListing);
+        localStorage.setItem('event-cards', JSON.stringify(currentListing));
+        
+        const keysToClear = ['group-name', 'price-amount', 'listing-price-details', 'category-select', 'listing-category-other', 'listing-description', 'age-group', 'age-restriction', 'listing-address', 'listing-city', 'listing-postcode', 'contact-phone', 'contact-email', 'contact-website', 'contact-social', 'listing-date', 'regular-date', 'short-course-date', 'shift-date', 'opening-hours', 'one-event-extra', 'regular-date-extra', 'short-course-extra', 'listing-extra-details-box', 'only-on-intown'];
+        keysToClear.forEach(key => localStorage.removeItem(key));
+
+        window.location.href = `listing.html?id=${currentListing.length - 1}`;
     };
 
-    const currentListing = JSON.parse(localStorage.getItem('event-cards')) || [];
-    currentListing.push(newListing);
-    localStorage.setItem('event-cards', JSON.stringify(currentListing));
-    
-    const keysToClear = ['group-name', 'price-amount', 'listing-price-details', 'category-select', 'listing-category-other', 'event-photo-url', 'listing-photo-img', 'listing-description', 'age-group', 'age-restriction', 'listing-address', 'listing-city', 'listing-postcode', 'contact-phone', 'contact-email', 'contact-website', 'contact-social', 'listing-date', 'regular-date', 'short-course-date', 'shift-date', 'opening-hours', 'one-event-extra', 'regular-date-extra', 'short-course-extra', 'listing-extra-details-box', 'only-on-intown'];
-    keysToClear.forEach(key => localStorage.removeItem(key));
-
-    window.location.href = `listing.html?id=${currentListing.length - 1}`;
+    function checkSecondPhoto() {
+        if (additionalPhotoInput && additionalPhotoInput.files[0]) {
+            const reader2 = new FileReader();
+            reader2.onload = function(e) {
+                window._tempListingPhoto = e.target.result;
+                processFilesAndSave();
+            };
+            reader2.readAsDataURL(additionalPhotoInput.files[0]);
+        } else {
+            window._tempListingPhoto = './resources/images/inTown-logo.png';
+            processFilesAndSave();
+        }
+    }
 }
 
 if (listingId !== null) {
@@ -898,12 +1130,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (!postText && !finalImage) return;
 
+            const savedUserProfile = JSON.parse(localStorage.getItem('user-profile')) || {};
+            const savedUserName = localStorage.getItem('user-full-name') || savedUserProfile.user;
+            const savedUserPhoto = savedUserProfile.profPhoto || "./resources/images/intown-logo.png";
+
             const newPostData = {
-                username: "Marianne Walsh",
-                profilePic: "./resources/images/intown-logo.png",
+                isListingPost: true,
+                username: savedUserName,
+                profilePic: savedUserPhoto,
                 postImage: finalImage || "./resources/images/Winston.jpeg",
-                listingThumb: "./resources/images/intown-logo.png",
-                listingName: "The Grand Ballroom Event on Walney Island",
+                listingThumb: document.getElementById('event-photo-url')?.src || "./resources/images/inTown-logo.png",
+                listingName: document.getElementById('listing-profile-name')?.textContent || "Listing Name",
                 caption: postText
             };
 
@@ -950,110 +1187,89 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const feedContainer = document.getElementById('feed-posts');
     if (feedContainer) {
-        
         let savedPosts = JSON.parse(localStorage.getItem('listingFeedPosts')) || [];
-        
         savedPosts.forEach(postData => {
             const postHTML = createPostCard(postData);
             feedContainer.insertAdjacentHTML('beforeend', postHTML);
         });
 
-    feedContainer.addEventListener('click', (event) => {
-        const postButtons = event.target.closest('.post-buttons');
-        if (postButtons && postButtons.firstElementChild.contains(event.target)) {
-            
-            const postCard = event.target.closest('.your-posts');
-            if (!postCard) return;
+        feedContainer.addEventListener('click', (event) => {
+            const postButtons = event.target.closest('.post-buttons');
+            if (postButtons && postButtons.firstElementChild.contains(event.target)) {
+                
+                const postCard = event.target.closest('.your-posts');
+                if (!postCard) return;
 
-            const username = postCard.querySelector('.post-username')?.textContent || '';
-            const profilePic = postCard.querySelector('.post-profile-pic')?.src || '';
-            const postImage = postCard.querySelector('.post-photo')?.src || '';
-            const caption = postCard.querySelector('.post-text')?.textContent || '';
-            const listingThumb = postCard.querySelector('.listing-thumb')?.src || '';
-            const listingName = postCard.querySelector('.listing-name')?.textContent || '';
+                const allPosts = Array.from(feedContainer.querySelectorAll('.your-posts'));
+                const postIndex = allPosts.indexOf(postCard);
 
-            const openedPostModal = document.getElementById('opened-post');
-            if (openedPostModal) {
-                openedPostModal.innerHTML = `
-                    <div class="post-header">
-                        <img class="post-profile-pic" src="${profilePic}" alt="Profile Picture">
-                        <h2 class="post-username">${username}</h2>
-                    </div>
-                    <div class="photo-container">
-                        <div class="post-photo"><img src="${postImage}" alt="Post Photo"></div>
+                const currentSavedPosts = JSON.parse(localStorage.getItem('listingFeedPosts')) || [];
+                const postData = currentSavedPosts[postIndex];
+
+                if (!postData) return;
+
+                const openedPostModal = document.getElementById('opened-post');
+                if (openedPostModal) {
+                    openedPostModal.innerHTML = `
                         <button type="button" class="close-post" id="close-post"><i class="fa-solid fa-xmark"></i></button>
-                        <div class="listing-overlay-badge">
-                            <img src="${listingThumb}" alt="Listing" class="listing-thumb">
-                            <span class="listing-name">${listingName}</span>
+                        <div class="post-header">
+                            <img class="post-profile-pic" src="${postData.isListingPost ? (postData.listingThumb || postData.profilePic) : postData.profilePic}" alt="Profile Picture">
+                            <h2 class="post-username">${postData.isListingPost ? postData.listingName : postData.username}</h2>
                         </div>
-                    </div>
-                    <div class="post-content">
-                        <p class="post-text">${caption}</p>
-                        <div class="post-buttons">
-                            <button><i class="fa-regular fa-comment"></i></button>
-                            <button><i class="fa-regular fa-heart"></i></button>
-                            <button><i class="fa-solid fa-heart"></i></button>
+                        <div class="photo-container">
+                            <div class="post-photo"><img src="${postData.postImage}" alt="Post Photo"></div>
+                            
+                            ${!postData.isListingPost && postData.listingName ? `
+                                <div class="listing-overlay-badge">
+                                    <img src="${postData.listingThumb}" alt="Listing" class="listing-thumb">
+                                    <span class="listing-name">${postData.listingName}</span>
+                                </div>
+                            ` : ''}
                         </div>
-                        <div id="comment-section">
-                            <div id="post-comments">
-                                <div class="comment">
-                                    <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
-                                    <div class="user-comment">
-                                        <p class="comment-username">John Smith</p>
-                                        <div class="comment-and-like">
-                                            <p class="comment-text">Glad you enjoyed it!</p>
-                                            <button class="love"><i class="fa-regular fa-heart"></i></button>
-                                            <button class="love"><i class="fa-solid fa-heart"></i></button>
+                        <div class="post-content">
+                            <p class="post-text">${postData.caption || ''}</p>
+                            <div class="post-buttons">
+                                <button><i class="fa-regular fa-comment"></i></button>
+                                <button><i class="fa-regular fa-heart"></i></button>
+                                <button><i class="fa-solid fa-heart"></i></button>
+                            </div>
+                            <div id="comment-section">
+                                <div id="post-comments">
+                                    <div class="comment">
+                                        <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
+                                        <div class="user-comment">
+                                            <p class="comment-username">John Smith</p>
+                                            <div class="comment-and-like">
+                                                <p class="comment-text">Glad you enjoyed it!</p>
+                                                <button class="love"><i class="fa-regular fa-heart"></i></button>
+                                                <button class="love"><i class="fa-solid fa-heart"></i></button>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>  
-                                <div class="comment">
-                                    <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
-                                    <div class="user-comment">
-                                        <p class="comment-username">John Smith</p>
-                                        <div class="comment-and-like">
-                                            <p class="comment-text">Glad you enjoyed it!</p>
-                                            <button class="love"><i class="fa-regular fa-heart"></i></button>
-                                            <button class="love"><i class="fa-solid fa-heart"></i></button>
-                                        </div>
-                                    </div>
-                                </div>       
-                                <div class="comment">
-                                    <img class="comment-profile-pic" src="./resources/images/intown-logo.png" alt="Profile Picture">
-                                    <div class="user-comment">
-                                        <p class="comment-username">John Smith</p>
-                                        <div class="comment-and-like">
-                                            <p class="comment-text">Glad you enjoyed it!</p>
-                                            <button class="love"><i class="fa-regular fa-heart"></i></button>
-                                            <button class="love"><i class="fa-solid fa-heart"></i></button>
-                                        </div>
-                                    </div>
-                                </div>                        
+                                    </div>                        
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
+                    `;
 
-                openedPostModal.style.display = 'flex';
+                    openedPostModal.style.display = 'flex';
+                }
             }
-        }
-    });
+        });
 
-    document.addEventListener('click', (event) => {
-        const openedPostModal = document.getElementById('opened-post');
-        if (!openedPostModal || openedPostModal.style.display !== 'flex') return;
+        document.addEventListener('click', (event) => {
+            const openedPostModal = document.getElementById('opened-post');
+            if (!openedPostModal || openedPostModal.style.display !== 'flex') return;
 
-        const closeBtn = event.target.closest('#close-post');
-        
-        const clickedOutsideModal = !openedPostModal.contains(event.target);
+            const closeBtn = event.target.closest('#close-post');
+            const clickedOutsideModal = !openedPostModal.contains(event.target);
+            const clickedTriggerButton = event.target.closest('.post-buttons')?.firstElementChild?.contains(event.target);
 
-        const clickedTriggerButton = event.target.closest('.post-buttons')?.firstElementChild?.contains(event.target);
-
-        if (closeBtn || (clickedOutsideModal && !clickedTriggerButton)) {
-            openedPostModal.style.display = 'none';
-        }
-    });
-}});
+            if (closeBtn || (clickedOutsideModal && !clickedTriggerButton)) {
+                openedPostModal.style.display = 'none';
+            }
+        });
+    }
+});
 
 const sections = {
     "Suggested": document.getElementById("suggestions-box"),
@@ -1289,14 +1505,89 @@ if (editProfileForm) {
     });
 }
 
+// --- Edit Profile Photo Cropper Setup ---
+    const editProfileFileInput = document.getElementById('profile-photo-change');
+    const editProfileImg = document.getElementById('profile-pic-edit');
+    const editProfileContainer = document.getElementById('edit-profile-media-container');
+    let editProfileCropper = null;
+
+    function initEditProfileCropper() {
+        if (editProfileContainer) editProfileContainer.style.display = 'block';
+
+        if (editProfileCropper) {
+            editProfileCropper.destroy();
+        }
+
+        if (typeof Cropper !== 'undefined' && editProfileImg.src) {
+            editProfileCropper = new Cropper(editProfileImg, {
+                aspectRatio: 1,
+                viewMode: 3,
+                dragMode: 'move',
+                autoCropArea: 1,
+                responsive: true,
+                restore: false,
+                guides: false,
+                center: false,
+                background: false,
+                highlight: false,
+                cropBoxMovable: false,
+                cropBoxResizable: false,
+                toggleDragModeOnDblclick: false,
+                movable: true,
+                zoomable: true,
+                scalable: false,
+                rotatable: false
+            });
+        }
+    }
+
+    const profileData = JSON.parse(localStorage.getItem('user-profile'));
+    if (profileData && profileData.profPhoto) {
+        editProfileImg.onload = () => {
+            initEditProfileCropper();
+        };
+        editProfileImg.src = profileData.profPhoto;
+        if (editProfileImg.complete) {
+            initEditProfileCropper();
+        }
+    }
+
+    if (editProfileFileInput) {
+        editProfileFileInput.addEventListener('change', event => {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = e => {
+                editProfileImg.onload = () => {
+                    initEditProfileCropper();
+                };
+                editProfileImg.src = e.target.result;
+                if (editProfileImg.complete) {
+                    initEditProfileCropper();
+                }
+            };
+            reader.readAsDataURL(file);
+        });
+    }
+
 function saveEditProfile() {
     const existingProfile = JSON.parse(localStorage.getItem('user-profile')) || {};
     
+    let finalProfPhoto = existingProfile.profPhoto;
+    if (editProfileCropper) {
+        finalProfPhoto = editProfileCropper.getCroppedCanvas({
+            width: 1000,
+            height: 1000
+        }).toDataURL('image/jpeg');
+    }
+
     const updatedProfile = {
         ...existingProfile,
         user: capitaliseEveryWord(document.getElementById('users-name-edit')?.value || existingProfile.user),
         bio: capitaliseEveryWord(document.getElementById('profile-bio-edit')?.value || existingProfile.bio),
-        email: document.getElementById('email-edit')?.value.trim() || existingProfile.email
+        email: document.getElementById('email-edit')?.value.trim() || existingProfile.email,
+        profPhoto: finalProfPhoto
     };
 
     localStorage.setItem('user-profile', JSON.stringify(updatedProfile));

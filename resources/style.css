@@ -852,7 +852,7 @@ footer ul, #foot-add-listing a {
 .photo-container {
     display: flex;
     position: relative;
-    width: clamp(260px, 75vw, 430px);
+    width: clamp(260px, 75vw, 380px);
     aspect-ratio: 1/1;
     margin: 5px auto 0 auto;
     flex-shrink: 0;
@@ -869,7 +869,7 @@ footer ul, #foot-add-listing a {
 }
 
 .post-photo {
-    object-fit: cover;
+    object-fit: contain;
     aspect-ratio: 1/1;
     border-radius: 15px;
     display: block;
@@ -1994,7 +1994,20 @@ input[type="radio"] {
     font-size: 1.3rem;
 }
 
-#remove-image-btn, .close-post {
+#upload-profile-photo-btn, #upload-listing-photo-btn {
+    padding: 8px 20px;
+    border: none;
+    font-size: 1.3rem;  
+    margin: 0;
+    margin-left: 30px;
+}
+
+#photo-upload p {
+    margin-left: 25px;
+    font-size: 1rem;
+}
+
+#remove-image-btn, .close-post, #remove-listing-image-btn, #remove-profile-image-btn {
     position: absolute;
     top: 12px;
     left: 85% !important;
@@ -2009,6 +2022,30 @@ input[type="radio"] {
     color: white;
     font-size: 22px;
     cursor: pointer;
+}
+
+#profile-media-container, 
+#listing-media-container {
+    width: 250px;
+    height: 250px;
+    max-width: 100%;
+    overflow: hidden;
+    position: relative;
+    margin: 0 auto;
+}
+
+#profile-media-container img, 
+#listing-media-container img {
+    max-width: 100%;
+    display: block;
+}
+
+#listing-media-container .cropper-view-box, #profile-media-container .cropper-view-box {
+    outline: none;
+}
+
+#listing-media-container .cropper-modal, #profile-media-container .cropper-modal {
+    opacity: 10 !important;
 }
 
 .post-media-container .cropper-container,
@@ -2679,6 +2716,16 @@ input[type=number] {
     border-radius: 6px;
     background-color: white;
     width: 95%;
+}
+
+.edit-profile-media-container {
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+}
+
+.photo-left .cropper-modal {
+    opacity: 10 !important;
 }
 
 #left-form, #right-form {
