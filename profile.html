@@ -60,6 +60,7 @@
             </div>
             <div id="profile-top-centre">
                 <h1 id="profile-name"></h1>
+                <button id="add-post-btn"><i class="fa-solid fa-pen-to-square"></i></button>
             </div>
                 
             </div>
@@ -76,6 +77,7 @@
                     <li id="groups-btn"><i class="fa-solid fa-people-group"></i> My Groups</li>
                     <li id="events-btn"><i class="fa-regular fa-calendar"></i> My Events</li>
                     <li id="bookmarks-btn"><i class="fa-regular fa-bookmark"></i> Bookmarks</li>
+                    <li id="create-post-btn"><i class="fa-solid fa-pen-to-square"></i> Create Post</li>
                 </ul>
                 <ul id="bottom-side-bar">
                     <li id="edit-profile-btn"><i class="fa-solid fa-pen-to-square"></i> Edit Profile</li>
@@ -148,6 +150,32 @@
                 <div class="profile-centre" id="bookmarks">
                     <h2>Bookmarks</h2>
                     <p>You haven't bookmarked anything yet. Find some groups or events to meet people in your town!</p>
+                </div>
+                <div class="profile-centre" id="create-post">
+                    <h2 class="listing-centre-title">Create a Post</h2>
+                    <div id="listing-new-post" class="new-post-container">
+                        <div class="tag-search-wrapper">
+                            <input type="text" id="listing-search-input" placeholder="Tag a listing (required)..." autocomplete="off">
+                            <ul id="listing-results-list" class="results-dropdown" style="display: none;"></ul>
+                            <div id="tagged-badge" class="tagged-badge" style="display: none;">
+                                <img id="event-photo-url" src="./resources/images/inTown-logo.png" alt="Listing Thumbnail">
+                                <span id="listing-profile-name"></span>
+                                <button type="button" id="remove-tag-btn">&times;</button>
+                            </div>
+                        </div>
+                        <div id="post-media-container">
+                            <img id="post-image-preview" alt="Post preview">
+                            <button type="button" id="remove-image-btn" aria-label="Remove image" title="Remove image">&times;</button>
+                        </div>
+                        <div class="post-writing-section">
+                            <textarea id="post-input" placeholder="Talk to your town..."></textarea>
+                            <div class="post-footer-section">
+                                <label for="post-image-upload" class="photo-upload-btn" title="Add photo"><i class="fa-solid fa-camera"></i></label>
+                                <input type="file" id="post-image-upload" accept="image/*" hidden>
+                                <button type="button" id="submit-post-btn" class="button">Post</button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="profile-centre" id="edit-profile">
                     <h2>Edit Profile</h2>

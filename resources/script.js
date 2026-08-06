@@ -24,6 +24,8 @@ const interestsBtn = document.getElementById('interests-btn');
 const groupsBtn = document.getElementById('groups-btn');
 const eventsBtn = document.getElementById('events-btn');
 const bookmarksBtn = document.getElementById('bookmarks-btn');
+const createPostBtn = document.getElementById('create-post-btn');
+const addPostBtn = document.getElementById('add-post-btn');
 const editProfileBtn = document.getElementById('edit-profile-btn');
 const accountSettingsBtn = document.getElementById('profile-setting-btn');
 const logoutBtn = document.getElementById('log-out-btn');
@@ -34,6 +36,7 @@ const interestsSection = document.getElementById('my-interests');
 const groupsSection = document.getElementById('my-groups');
 const eventsSection = document.getElementById('my-events');
 const bookmarksSection = document.getElementById('bookmarks');
+const createPostSection = document.getElementById('create-post')
 const editProfileSection = document.getElementById('edit-profile');
 const accSettingsSection = document.getElementById('acc-settings');
 const logoutSection = document.getElementById('log-out-profile');
@@ -254,11 +257,26 @@ if(aboutSection !== null) {
         bookmarksBtn.classList.add('is-active');
     });
 
+    createPostBtn.addEventListener('click', function() {
+        hideAllProfileSections();
+        deactivateAllButtons();
+        createPostSection.classList.add('is-visible');
+        createPostBtn.classList.add('is-active');
+    });
+
+    addPostBtn.addEventListener('click', function(e) {
+        hideAllProfileSections();
+        deactivateAllButtons();
+        createPostSection.classList.add('is-visible');
+        createPostBtn.classList.add('is-active');
+    });
+
     editProfileBtn.addEventListener('click', function() {
         hideAllProfileSections();
         deactivateAllButtons();
         editProfileSection.classList.add('is-visible');
         editProfileBtn.classList.add('is-active');
+        initEditProfileCropper();
     });
 
     accountSettingsBtn.addEventListener('click', function() {
@@ -1116,41 +1134,133 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (submitPostBtn) {
         submitPostBtn.addEventListener('click', () => {
-            console.log("Button clicked successfully!");
-            const postText = document.getElementById('post-input').value.trim();
+            const postTextInput = document.getElementById('post-input');
+            const postText = postTextInput ? postTextInput.value.trim() : '';
+
+            const listingNameEl = document.getElementById('listing-profile-name');
+            const listingThumbEl = document.getElementById('event-photo-url');
+            const taggedListingName = listingNameEl?.textContent.trim() || listingNameEl?.value?.trim() || '';
+            const isListingTagged = Boolean(taggedListingName && taggedListingName !== "Listing Name");
+
+            const savedUserType = localStorage.getItem('user-type');
+            const isGeneralUser = savedUserType === 'public';
+
+            if (isGeneralUser && !isListingTagged) {
+                alert("Please tag a listing before sharing your post!");
+                return;
+            }
 
             let finalImage = null;
+            if (typeof cropper !== 'undefined' && cropper) {
+                try {
+                    const canvas = cropper.getCroppedCanvas({ width: 600, height: 600 });
+                    if (canvas) {
+                        finalImage = canvas.toDataURL('image/jpeg', 0.7);
+                    }
+                } catch (err) {
+                    console.error("Cropper error:", err);
+                }
+            }
 
-            if (cropper) {
-                finalImage = cropper.getCroppedCanvas({
-                    width: 1000,
-                    height: 1000
-                }).toDataURL('image/jpeg');
+            if (!finalImage) {
+                const previewImg = document.getElementById('post-image-preview');
+                if (previewImg && previewImg.src && previewImg.src.startsWith('data:image')) {
+                    finalImage = previewImg.src;
+                }
             }
 
             if (!postText && !finalImage) return;
 
             const savedUserProfile = JSON.parse(localStorage.getItem('user-profile')) || {};
-            const savedUserName = localStorage.getItem('user-full-name') || savedUserProfile.user;
+            const savedUserName = localStorage.getItem('user-full-name') || savedUserProfile.user || "InTown Member";
             const savedUserPhoto = savedUserProfile.profPhoto || "./resources/images/intown-logo.png";
+            const isBusiness = savedUserType === 'business' || savedUserType === 'group';
 
             const newPostData = {
-                isListingPost: true,
+                isListingPost: isBusiness,
                 username: savedUserName,
                 profilePic: savedUserPhoto,
-                postImage: finalImage || "./resources/images/Winston.jpeg",
-                listingThumb: document.getElementById('event-photo-url')?.src || "./resources/images/inTown-logo.png",
-                listingName: document.getElementById('listing-profile-name')?.textContent || "Listing Name",
+                postImage: finalImage || "",
+                listingName: taggedListingName,
+                listingThumb: listingThumbEl?.src || "./resources/images/inTown-logo.png",
                 caption: postText
             };
 
             let savedPosts = JSON.parse(localStorage.getItem('listingFeedPosts')) || [];
             savedPosts.unshift(newPostData);
             localStorage.setItem('listingFeedPosts', JSON.stringify(savedPosts));
-
             window.location.href = 'index.html';
         });
+
     }
+
+    const searchInput = document.getElementById('listing-search-input');
+    const resultsList = document.getElementById('listing-results-list');
+    const taggedBadge = document.getElementById('tagged-badge');
+    const listingNameEl = document.getElementById('listing-profile-name');
+    const listingThumbEl = document.getElementById('event-photo-url');
+    const removeTagBtn = document.getElementById('remove-tag-btn');
+
+    if (searchInput && resultsList) {
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            resultsList.innerHTML = '';
+
+            if (!query) {
+                resultsList.style.display = 'none';
+                return;
+            }
+
+            const liveListings = JSON.parse(localStorage.getItem('event-cards')) || [];
+            const matches = liveListings.filter(item => 
+                item.name && item.name.toLowerCase().includes(query)
+            );
+
+            if (matches.length > 0) {
+                matches.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'result-item';
+                    li.innerHTML = `
+                        <img src="${item.profilePic || './resources/images/inTown-logo.png'}" alt="${item.name}">
+                        <span>${item.name}</span>
+                    `;
+
+                    li.addEventListener('click', () => {
+                        if (listingNameEl) listingNameEl.textContent = item.name;
+                        if (listingThumbEl) listingThumbEl.src = item.profilePic || './resources/images/inTown-logo.png';
+
+                        searchInput.style.display = 'none';
+                        resultsList.style.display = 'none';
+                        searchInput.value = '';
+                        if (taggedBadge) taggedBadge.style.display = 'flex';
+                    });
+
+                    resultsList.appendChild(li);
+                });
+                resultsList.style.display = 'block';
+            } else {
+                resultsList.style.display = 'none';
+            }
+        });
+    }
+
+    if (removeTagBtn) {
+        removeTagBtn.addEventListener('click', () => {
+            if (listingNameEl) listingNameEl.textContent = '';
+            if (listingThumbEl) listingThumbEl.src = './resources/images/inTown-logo.png';
+            if (taggedBadge) taggedBadge.style.display = 'none';
+            if (searchInput) {
+                searchInput.style.display = 'block';
+                searchInput.focus();
+            }
+        });
+    }
+
+    document.addEventListener('click', (e) => {
+        if (resultsList && !searchInput.contains(e.target) && !resultsList.contains(e.target)) {
+            resultsList.style.display = 'none';
+        }
+    });
 
     const listingTitle = document.getElementById("listing-profile-name");
     const organiserImage = document.getElementById("event-photo-url");
@@ -1505,7 +1615,6 @@ if (editProfileForm) {
     });
 }
 
-// --- Edit Profile Photo Cropper Setup ---
     const editProfileFileInput = document.getElementById('profile-photo-change');
     const editProfileImg = document.getElementById('profile-pic-edit');
     const editProfileContainer = document.getElementById('edit-profile-media-container');
@@ -1524,6 +1633,8 @@ if (editProfileForm) {
                 viewMode: 3,
                 dragMode: 'move',
                 autoCropArea: 1,
+                minContainerWidth: 0,
+                minContainerHeight: 0,
                 responsive: true,
                 restore: false,
                 guides: false,
@@ -1542,7 +1653,7 @@ if (editProfileForm) {
     }
 
     const profileData = JSON.parse(localStorage.getItem('user-profile'));
-    if (profileData && profileData.profPhoto) {
+    if (editProfileImg && profileData && profileData.profPhoto) {
         editProfileImg.onload = () => {
             initEditProfileCropper();
         };

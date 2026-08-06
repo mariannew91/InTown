@@ -686,16 +686,14 @@ footer ul, #foot-add-listing a {
     margin-bottom: 5px;
     margin-top: 10px;
     margin-left: 15px;
-    padding-right: 5px;
     color: rgb(19 36 75);
-    overflow: scroll;
     max-height: 100px;
     max-height: 100px;
     width: 100%;
-    overflow-y: scroll;
-    padding-right: 5px;
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    padding-right: 15px;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 .event-info::-webkit-scrollbar {
@@ -833,6 +831,7 @@ footer ul, #foot-add-listing a {
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    gap: 20px;
 }
 
 .post-profile-pic {
@@ -1306,6 +1305,26 @@ input[type="radio"] {
     width: auto;
 }
 
+#profile-top-centre {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#profile-top-centre button {
+    margin: 10px;
+    font-size: 2rem;
+    width: 50px;
+    background-color: transparent;
+    border: none;
+    color: rgb(19 36 75);
+    cursor: pointer;
+}
+
+#profile-top-centre button:hover {
+    color: rgb(255, 106, 94);
+}
+
 #profile-name, #listing-profile-name {
     margin: 2px 0;
     width: 100%;
@@ -1420,8 +1439,12 @@ input[type="radio"] {
 .profile-centre p {
     width: 80%;
     margin: 0 auto;
-    font-size: 1.1rem;
+    font-size: clamp(15.7px, 4vw, 1.4rem);
     color: rgb(19 36 75);
+}
+
+.profile-centre h3 {
+    font-size: clamp(15.7px, 4vw, 1.4rem);
 }
 
 .interest-box {
@@ -1442,8 +1465,8 @@ input[type="radio"] {
     margin-top: 0; 
     flex-shrink: 0; 
     font-size: 1.3rem; 
-    display: flex;        /* Aligns icon and text horizontally */
-    align-items: center;  /* Centers them vertically */
+    display: flex;
+    align-items: center;
     gap: 15px;  
     padding-right: 10px;        
 }
@@ -1466,14 +1489,11 @@ input[type="radio"] {
     flex-shrink: 0;
 }
 
-
 .interest-headers span {
     color: rgb(19 36 75);
     font-weight: 300;
     
 }
-
-
 
 #interest-display {
     display: flex;
@@ -1506,8 +1526,7 @@ input[type="radio"] {
 .type-item {
     margin-bottom: 8px;
     padding: 5px;
-    border-radius: 4px;
-    
+    border-radius: 4px;  
 }
 
 #hopes-container {
@@ -1544,7 +1563,9 @@ input[type="radio"] {
     border-bottom: 0.5px solid rgb(131, 131, 131);
 }
 
-
+#log-out-profile button {
+    margin-top: 20px;
+}
 
 
 /* Sign In Page */
@@ -2722,9 +2743,15 @@ input[type=number] {
     width: 150px;
     height: 150px;
     overflow: hidden;
+    position: relative;
 }
 
-.photo-left .cropper-modal {
+#edit-profile-media-container {
+    border: 1px solid rgb(240, 90, 80);
+    border-radius: 20px;
+}
+
+#edit-profile-media-container .cropper-modal {
     opacity: 10 !important;
 }
 
@@ -2742,9 +2769,23 @@ input[type=number] {
 }
 
 #profile-pic-edit {
-    height: 150px;
-    width: 150px;
+    display: block;
     border: 1px solid rgb(240, 90, 80);
+    width: auto !important;
+    height: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: unset !important;
+    margin: 0;
+}
+
+.edit-profile-media-container .cropper-container,
+.edit-profile-media-container .cropper-wrap-box,
+.edit-profile-media-container .cropper-canvas,
+.edit-profile-media-container .cropper-drag-box,
+.edit-profile-media-container .cropper-crop-box {
+    width: 150px !important;
+    height: 150px !important;
 }
 
 #edit-profile-form h3 {
@@ -2821,7 +2862,10 @@ input[type=number] {
 
 #right-form h3, #left-form h3, #keep-update {
     font-weight: 500;
-    font-size: 1.2rem;
+}
+
+#left-form h3:first-child {
+    margin-bottom: 10px;
 }
 
 #left-form label {
@@ -3010,7 +3054,7 @@ input[type=number] {
         height: 100vh;
         z-index: 1000;
         transition: left 0.3s ease;
-        width: 350px;
+        width: 300px;
     }
 
     #search-categories li {
@@ -3115,7 +3159,7 @@ input[type=number] {
         padding: 6px 10px !important;
     }
 
-    #listing-body button, #profile-container button, #main-body-login button {
+    #listing-body button, #main-body-login button {
         padding: 1px 0;
         left: 5px;
         background-color: transparent;
@@ -3186,10 +3230,6 @@ input[type=number] {
         margin: 0;
     }
 
-    #get-involved {
-        font-size: 1rem;
-    }
-
     #title-in {
         font-size: 2.6rem;
     }
@@ -3204,7 +3244,7 @@ input[type=number] {
 
     #location h1 {
         font-size: 1.2rem;
-        padding-top: 15px;
+        padding-top: 20px;
     }
 }
 
@@ -3249,6 +3289,14 @@ input[type=number] {
         padding: 10px;
     }
 
+    #get-involved {
+        font-size: 1rem;
+    }
+
+    #location h1 {
+        font-size: 1.4rem;
+        padding-top: 10px;
+    }
     
     /* Home Page */
     
