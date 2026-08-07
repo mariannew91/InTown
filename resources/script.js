@@ -1155,7 +1155,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 try {
                     const canvas = cropper.getCroppedCanvas({ width: 600, height: 600 });
                     if (canvas) {
-                        finalImage = canvas.toDataURL('image/jpeg', 0.7);
+                        finalImage = canvas.toDataURL('image/jpeg', 0.4);
                     }
                 } catch (err) {
                     console.error("Cropper error:", err);
@@ -1183,13 +1183,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 postImage: finalImage || "",
                 listingName: taggedListingName,
                 listingThumb: listingThumbEl?.src || "./resources/images/inTown-logo.png",
-                caption: postText
+                caption: formatMentions(postText, registeredUsers)
             };
 
             let savedPosts = JSON.parse(localStorage.getItem('listingFeedPosts')) || [];
             savedPosts.unshift(newPostData);
+            savedPosts = savedPosts.slice(0, 3);
             localStorage.setItem('listingFeedPosts', JSON.stringify(savedPosts));
-            window.location.href = 'index.html';
+            window.location.href = 'index.html?tab=feed';
         });
 
     }
@@ -1261,6 +1262,106 @@ document.addEventListener('DOMContentLoaded', () => {
             resultsList.style.display = 'none';
         }
     });
+
+    function getCaretCoordinates(element, position) {
+        const mirror = document.createElement('div');
+        const style = window.getComputedStyle(element);
+
+        const properties = [
+            'direction', 'boxSizing', 'width', 'height', 'overflowX', 'overflowY',
+            'borderTopWidth', 'borderRightWidth', 'borderBottomWidth', 'borderLeftWidth',
+            'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+            'fontStyle', 'fontVariant', 'fontWeight', 'fontStretch', 'fontSize',
+            'lineHeight', 'fontFamily', 'textAlign', 'textTransform', 'letterSpacing'
+        ];
+
+        mirror.style.position = 'absolute';
+        mirror.style.visibility = 'hidden';
+        mirror.style.whiteSpace = 'pre-wrap';
+        mirror.style.wordWrap = 'break-word';
+
+        properties.forEach(prop => {
+            mirror.style[prop] = style[prop];
+        });
+
+        mirror.textContent = element.value.substring(0, position);
+        const span = document.createElement('span');
+        span.textContent = element.value.substring(position) || '.';
+        mirror.appendChild(span);
+
+        document.body.appendChild(mirror);
+        const coordinates = {
+            top: span.offsetTop - element.scrollTop,
+            left: span.offsetLeft - element.scrollLeft
+        };
+        document.body.removeChild(mirror);
+
+        return coordinates;
+    }
+
+    const postInput = document.getElementById('post-input');
+    const userMentionList = document.getElementById('user-mention-list');
+
+    const registeredUsers = [
+        { name: "John Smith", pic: "./resources/images/intown-logo.png" },
+        { name: "Sarah ", pic: "./resources/images/intown-logo.png" },
+        { name: "Alex", pic: "./resources/images/intown-logo.png" }
+    ];
+
+    if (postInput && userMentionList) {
+        postInput.addEventListener('input', (e) => {
+            const text = e.target.value;
+            const cursorPos = e.target.selectionStart;
+            const textBeforeCursor = text.slice(0, cursorPos);
+            const words = textBeforeCursor.split(/\s+/);
+            const lastWord = words[words.length - 1];
+
+            if (lastWord.startsWith('@')) {
+                const query = lastWord.slice(1).toLowerCase();
+                userMentionList.innerHTML = '';
+
+                const matches = registeredUsers.filter(u => u.name.toLowerCase().includes(query));
+
+                if (matches.length > 0) {
+                    const coords = getCaretCoordinates(postInput, cursorPos);
+                    const lineHeight = parseInt(window.getComputedStyle(postInput).lineHeight) || 20;
+
+                    userMentionList.style.position = 'absolute';
+                    userMentionList.style.top = `${coords.top + lineHeight + 4}px`;
+                    userMentionList.style.left = '0px';
+
+                    matches.forEach(user => {
+                        const li = document.createElement('li');
+                        li.className = 'result-item';
+                        li.innerHTML = `
+                            <img src="${user.pic}" alt="${user.name}">
+                            <span title="${user.name}">${user.name}</span>
+                        `;
+
+                        li.addEventListener('click', () => {
+                            words[words.length - 1] = `@${user.name}`;
+                            postInput.value = words.join(' ') + ' ' + text.slice(cursorPos);
+                            userMentionList.style.display = 'none';
+                            postInput.focus();
+                        });
+
+                        userMentionList.appendChild(li);
+                    });
+                    userMentionList.style.display = 'block';
+                } else {
+                    userMentionList.style.display = 'none';
+                }
+            } else {
+                userMentionList.style.display = 'none';
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!postInput.contains(e.target) && !userMentionList.contains(e.target)) {
+                userMentionList.style.display = 'none';
+            }
+        });
+    }
 
     const listingTitle = document.getElementById("listing-profile-name");
     const organiserImage = document.getElementById("event-photo-url");
@@ -1423,6 +1524,10 @@ const initialiseLoginTabs = () => {
 
     if (!mainLogin) return;
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const isFeedTab = urlParams.get('tab') === 'feed';
+    const initialTabName = isFeedTab ? "Your InTown" : "Suggested";
+
     let desktopBar = document.getElementById("dynamic-tab-bar-feed");
 
     if (window.innerWidth > 767) {
@@ -1446,10 +1551,11 @@ const initialiseLoginTabs = () => {
             });
         }
 
-        activateLoginTab(
-            desktopBar.querySelector(".tab-first"),
-            "Suggested"
-        );
+        const targetBtn = isFeedTab 
+            ? desktopBar.querySelector(".tab-last") 
+            : desktopBar.querySelector(".tab-first");
+
+        activateLoginTab(targetBtn, initialTabName);
 
     } else {
 
@@ -1769,6 +1875,24 @@ async function loadListings() {
     const listings = await response.json();
 
     console.log(listings);
+}
+
+function formatMentions(text, users = typeof registeredUsers !== 'undefined' ? registeredUsers : []) {
+    if (!text) return '';
+
+    let formattedText = text;
+
+    if (users && users.length > 0) {
+        const sortedUsers = [...users].sort((a, b) => b.name.length - a.name.length);
+        sortedUsers.forEach(user => {
+            const safeName = user.name.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
+            const regex = new RegExp(`@${safeName}\\b`, 'gi');
+            formattedText = formattedText.replace(regex, `<a href="#" class="mention-tag">${user.name}</a>`);
+        });
+        return formattedText;
+    }
+
+    return text.replace(/@([A-Z][a-zA-Z0-9_]+(?:\s+[A-Z][a-zA-Z0-9_]+)*)/g, '<a href="#" class="mention-tag">$1</a>');
 }
 
 loadListings();

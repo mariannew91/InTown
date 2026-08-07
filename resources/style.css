@@ -919,6 +919,22 @@ footer ul, #foot-add-listing a {
     padding: 0 5px;
 }
 
+.mention-tag {
+    color: rgb(255,106,94);
+    font-weight: bold;
+    background-color: rgb(255,106,94, 0.1);
+    padding: 2px 4px;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.mention-tag:hover {
+    text-decoration: underline;
+    background-color: rgba(59, 130, 246, 0.2);
+}
+
 #comment-section {
     background-color: white;
     padding: 10px;
@@ -1419,7 +1435,7 @@ input[type="radio"] {
     display: none;
     flex-direction: column;
     width: 100%;
-    height: 100dvh;
+    min-height: 900px;
     background-color: white;
 }
 
@@ -1674,7 +1690,7 @@ input[type="radio"] {
 
 #listing-profile-name {
     margin: 0 auto;
-    padding-left: 15px;
+    padding-left: 18px;
 }
 
 #organiser-name-box {
@@ -1775,7 +1791,7 @@ input[type="radio"] {
 .listing-main {
     display: flex;
     flex-direction: column;
-    width: 55%;
+    width: 80%;
     background-color: white;
 }
 
@@ -1853,6 +1869,7 @@ input[type="radio"] {
 
 #listing-photo img {
     width: 100%;
+    max-width: 400px;
     aspect-ratio: 1 / 1;
     margin: 15px;
     padding: 0;
@@ -1933,7 +1950,7 @@ input[type="radio"] {
     margin: 20px auto;
     background: rgb(248, 244, 236);
     border-radius: 20px;
-    overflow: hidden;
+    overflow: visible;
     padding: clamp(20px, 4vw, 18px) clamp(10px, 4vw, 40px) !important;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
 }
@@ -1948,6 +1965,34 @@ input[type="radio"] {
     border-radius: 20px;
 }
 
+#listing-search-input {
+    margin-left: 0;
+    margin-bottom: 7px;
+    border: 2px solid rgb(255, 106, 94);
+}
+
+.tagged-badge {
+    align-items: center;
+    width: 90%;
+    margin-bottom: 7px;
+}
+
+.tagged-badge img {
+    border-radius: 12px;
+}
+
+.tagged-badge span {
+    font-size: 1.2rem !important;
+    text-align: unset !important;
+}
+
+.tagged-badge button {
+    background-color: transparent !important;
+    width: 10px !important;
+    border: none;
+    font-size: 1.8rem;
+}
+
 #post-image-preview {
     display: block;
     width: 100%;
@@ -1956,7 +2001,7 @@ input[type="radio"] {
 
 .post-writing-section {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     align-items: center;
     position: relative;
     background: rgb(248, 244, 236);
@@ -1965,7 +2010,6 @@ input[type="radio"] {
 
 #post-input {
     width: 100%;
-    font-family: "Urbanist", sans-serif;
     min-height: 120px;
     resize: none;
     outline: none;
@@ -1973,7 +2017,6 @@ input[type="radio"] {
     border-radius: 20px;
     padding: 10px;
     padding-right: 95px;
-    font: inherit;
     background: white;
     box-sizing: border-box;
     field-sizing: content;
@@ -1982,6 +2025,47 @@ input[type="radio"] {
 #post-input:focus {
     outline: none;
     box-shadow: 3px 4px 4px rgba(0, 0, 0, 0.05), -12px 11px 24px rgba(0, 0, 0, 0.08);
+}
+
+.results-dropdown {
+    background-color: rgb(19 36 75);
+    width: 75%;
+    border-radius: 12px;
+    padding: 7px 15px 3px;
+    margin-left: 10px;
+}
+
+.result-item {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    max-width: 100%;
+    gap: 7px;
+}
+
+.result-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 5px;
+    border-radius: 12px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.result-item span {
+    color: white;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.result-item span:hover {
+    color: rgb(255,106,94);
+    white-space: normal;
+    word-break: break-word;
+    overflow: visible;
 }
 
 .post-footer-section {
@@ -2113,13 +2197,14 @@ input[type="radio"] {
 #listing-feed {
     background-color: rgb(19 36 75);
     width: 25%;
+    display: none;
 }
 
 #feed-header {
     background-color: rgb(241, 245, 249);
     height: 49px;
     align-items: center;
-    display: flex;
+    display: none;
     justify-content: center;
     padding-bottom: 4px;
 }
@@ -3016,7 +3101,7 @@ input[type=number] {
     }
 
     .listing-main {
-        width: 75%;
+        width: 100%;
     }
 
     #listing-photo {
@@ -3454,10 +3539,6 @@ input[type=number] {
 
     #profile-body {
         margin-left: 0;
-    }
-
-    .profile-centre {
-        min-height: 100dvh;
     }
 
     .interest-headers {
